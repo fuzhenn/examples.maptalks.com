@@ -1,12 +1,14 @@
-import { SideBar, Title } from "./components";
-
-import { Container } from "./style";
+import { CodeBox, SideBar, Title } from "./components";
+import { Container, Content } from "./style";
 
 function App() {
   return (
     <Container>
       <Title />
-      <SideBar />
+      <Content>
+        <SideBar />
+        <CodeBox />
+      </Content>
     </Container>
   );
 }

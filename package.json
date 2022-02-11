@@ -1,6 +1,6 @@
 {
-  "name": "my-vue-app",
-  "private": true,
+  "name": "example.maptalks.com",
+  "private": false,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -9,9 +9,17 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.18.6",
+    "@codemirror/lang-css": "^0.19.3",
+    "@codemirror/lang-html": "^0.19.4",
+    "@codemirror/lang-javascript": "^0.19.7",
+    "@uiw/react-codemirror": "^4.4.0",
+    "antd": "^4.18.7",
+    "mobx": "^6.3.13",
+    "mobx-react-lite": "^3.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-frame-component": "^5.2.1",
+    "react-use": "^17.3.2",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
@@ -20,6 +28,6 @@
     "@types/styled-components": "^5.1.22",
     "@vitejs/plugin-react": "^1.0.7",
     "typescript": "^4.5.4",
-    "vite": "^2.8.0"
+    "vite": "^2.8.3"
   }
 }
