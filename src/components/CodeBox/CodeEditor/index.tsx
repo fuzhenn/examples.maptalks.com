@@ -1,11 +1,11 @@
 import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { Container, StyledTabs } from "./style";
 import { css, cssCompletion } from "@codemirror/lang-css";
+import { getCurrentCodes, getFirstKey } from "@/utils";
 import { html, htmlCompletion } from "@codemirror/lang-html";
 import { useMount, useUpdateEffect } from "react-use";
 
 import { javascript } from "@codemirror/lang-javascript";
-import { list } from "@/config";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
 
@@ -15,19 +15,17 @@ function CodeEditor() {
   const store = useStore();
 
   useMount(() => {
-    store.setCurrentKey("0-0-0");
+    const key = getFirstKey() ?? "";
+    store.setCurrentKey(key);
   });
 
   useUpdateEffect(() => {
     if (store.currentKey) {
-      for (const i of list) {
-        for (const j of i.children) {
-          if (j.key === store.currentKey) {
-            store.setHtmlCode(j.html);
-            store.setCssCode(j.css);
-            store.setJsCode(j.js);
-          }
-        }
+      const codes = getCurrentCodes(store.currentKey);
+      if (codes.html || codes.css || codes.js) {
+        store.setHtmlCode(codes.html ?? "");
+        store.setCssCode(codes.css ?? "");
+        store.setJsCode(codes.js ?? "");
       }
     }
   }, [store.currentKey]);

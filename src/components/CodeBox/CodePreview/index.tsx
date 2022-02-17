@@ -1,27 +1,11 @@
 import { IFrame } from "./style";
 import { observer } from "mobx-react-lite";
-import { useMount } from "react-use";
 import { useRef } from "react";
 import { useStore } from "@/store";
 
 function CodePreview() {
   const store = useStore();
   const iframeRef = useRef<HTMLIFrameElement>();
-
-  window.onerror = () => {
-    console.log(333);
-  };
-
-  useMount(() => {
-    console.log(2222);
-    iframeRef.current!.contentWindow!.onerror = () => {
-      console.log(1111);
-    };
-    iframeRef.current!.contentWindow!.addEventListener("error", () => {
-      console.log(1111);
-    });
-    console.log(iframeRef.current!.contentWindow);
-  });
 
   const initial = `<!DOCTYPE html>
   <html>
