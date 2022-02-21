@@ -42,7 +42,7 @@ function getCurrentCodes(key: string) {
           };
         }
         if (item2.children) {
-          for (const item3 of item1.children) {
+          for (const item3 of item2.children) {
             if (item3.key === key) {
               return {
                 html: item3.html,

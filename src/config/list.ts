@@ -1,6 +1,10 @@
 import { addMarkerCodes } from "./codes/gltflayer/add-marker";
 import { addToGltfLayerCodes } from "./codes/gltfmarker/addto-gltflayer";
 import { clearLayerCodes } from "./codes/gltflayer/clear-layer";
+import { addVtLayerCodes } from "./codes/vtlayer/layer-operation/add-vtlayer";
+import { loadLocalGeoDataCodes } from "./codes/vtlayer/layer-operation/load-local-geo";
+import { setLayerVisibleCodes } from "./codes/vtlayer/layer-operation/set-layer-visible";
+import { removeLayerCodes } from "./codes/vtlayer/layer-operation/remove-layer";
 
 interface IListItem {
   title: string;
@@ -48,15 +52,15 @@ const baseList: IListItem[] = [
         children: [
           {
             title: "添加一个矢量瓦片图层",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: addVtLayerCodes.html,
+            css: addVtLayerCodes.css,
+            js: addVtLayerCodes.js,
           },
           {
             title: "载入GeoJSON对象数据",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: loadLocalGeoDataCodes.html,
+            css: loadLocalGeoDataCodes.css,
+            js: loadLocalGeoDataCodes.js,
           },
           {
             title: "载入远程GeoJSON数据",
@@ -84,15 +88,15 @@ const baseList: IListItem[] = [
           },
           {
             title: "隐藏显示图层",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: setLayerVisibleCodes.html,
+            css: setLayerVisibleCodes.css,
+            js: setLayerVisibleCodes.js,
           },
           {
             title: "移除图层",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: removeLayerCodes.html,
+            css: removeLayerCodes.css,
+            js: removeLayerCodes.js,
           },
           {
             title: "坐标系转换",
