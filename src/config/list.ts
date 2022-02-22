@@ -12,6 +12,9 @@ import { setLayerZoomAccessCodes } from "./codes/vtlayer/layer-operation/set-zoo
 import { convertCoordinateCodes } from "./codes/vtlayer/layer-operation/convert-coordinate";
 import { defaultVtStyleCodes } from "./codes/vtlayer/layer-style/default-style";
 import { setVtStyleCodes } from "./codes/vtlayer/layer-style/set-style";
+import { filterDataStyleCodes } from "./codes/vtlayer/layer-style/filter-data";
+import { updateRenderStyleCodes } from "./codes/vtlayer/layer-style/update-style";
+import { updateDataConfigCodes } from "./codes/vtlayer/layer-style/update-dataConfig";
 
 interface IListItem {
   title: string;
@@ -130,21 +133,21 @@ const baseList: IListItem[] = [
           },
           {
             title: "只显示符合条件的数据",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: filterDataStyleCodes.html,
+            css: filterDataStyleCodes.css,
+            js: filterDataStyleCodes.js,
           },
           {
             title: "更新渲染插件样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateRenderStyleCodes.html,
+            css: updateRenderStyleCodes.css,
+            js: updateRenderStyleCodes.js,
           },
           {
             title: "更新渲染插件的dataConfig",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateDataConfigCodes.html,
+            css: updateDataConfigCodes.css,
+            js: updateDataConfigCodes.js,
           },
           {
             title: "更新渲染插件的sceneConfig",
