@@ -9,6 +9,9 @@ import { loadRemoteGeoDataCodes } from "./codes/vtlayer/layer-operation/load-rem
 import { convertedGeoDataCodes } from "./codes/vtlayer/layer-operation/convert-geo";
 import { setLayerZoomBoundaryCodes } from "./codes/vtlayer/layer-operation/set-zoom-boundary";
 import { setLayerZoomAccessCodes } from "./codes/vtlayer/layer-operation/set-zoom-access";
+import { convertCoordinateCodes } from "./codes/vtlayer/layer-operation/convert-coordinate";
+import { defaultVtStyleCodes } from "./codes/vtlayer/layer-style/default-style";
+import { setVtStyleCodes } from "./codes/vtlayer/layer-style/set-style";
 
 interface IListItem {
   title: string;
@@ -104,9 +107,9 @@ const baseList: IListItem[] = [
           },
           {
             title: "坐标系转换",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: convertCoordinateCodes.html,
+            css: convertCoordinateCodes.css,
+            js: convertCoordinateCodes.js,
           },
         ],
       },
@@ -115,15 +118,15 @@ const baseList: IListItem[] = [
         children: [
           {
             title: "图层默认样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: defaultVtStyleCodes.html,
+            css: defaultVtStyleCodes.css,
+            js: defaultVtStyleCodes.js,
           },
           {
             title: "设置图层样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: setVtStyleCodes.html,
+            css: setVtStyleCodes.css,
+            js: setVtStyleCodes.js,
           },
           {
             title: "只显示符合条件的数据",
