@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "adcode": "110000",
+    "name": "北京市",
+    "center": [116.405285, 39.904989],
+    "centroid": [116.41995, 40.18994],
+    "childrenNum": 16,
+    "level": "province",
+    "parent": { "adcode": 100000 },
+    "subFeatureIndex": 0,
+    "acroutes": [100000]
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [116.405285, 39.904989]
+  }
+}

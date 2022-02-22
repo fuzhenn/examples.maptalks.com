@@ -18,7 +18,52 @@ const jsCode = `const map = new maptalks.Map('map', {
   });
   
   const geo = new maptalks.GeoJSONVectorTileLayer('geo', {
-    data: '/resources/geojson/area.geojson'
+    data: {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [120.1862434, 30.31784858]
+          },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": { "type": "Point", "coordinates": [120.194314, 30.34644838] },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [120.1911453, 30.33728535]
+          },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [120.1924787, 30.32657846]
+          },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [120.1723801, 30.27646996]
+          },
+          "properties": {}
+        }
+      ]
+    }
+  });
+
+  geo.on('dataload', e => {
+    map.fitExtent(e.extent)
   });
   
   const groupLayer = new maptalks.GroupGLLayer('group', [geo]);

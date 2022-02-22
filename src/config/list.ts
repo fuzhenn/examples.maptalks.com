@@ -5,6 +5,8 @@ import { addVtLayerCodes } from "./codes/vtlayer/layer-operation/add-vtlayer";
 import { loadLocalGeoDataCodes } from "./codes/vtlayer/layer-operation/load-local-geo";
 import { setLayerVisibleCodes } from "./codes/vtlayer/layer-operation/set-layer-visible";
 import { removeLayerCodes } from "./codes/vtlayer/layer-operation/remove-layer";
+import { loadRemoteGeoDataCodes } from "./codes/vtlayer/layer-operation/load-remote-geo";
+import { convertedGeoDataCodes } from "./codes/vtlayer/layer-operation/convert-geo";
 
 interface IListItem {
   title: string;
@@ -64,15 +66,15 @@ const baseList: IListItem[] = [
           },
           {
             title: "载入远程GeoJSON数据",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: loadRemoteGeoDataCodes.html,
+            css: loadRemoteGeoDataCodes.css,
+            js: loadRemoteGeoDataCodes.js,
           },
           {
             title: "转换函数把远程JSON数据转成GeoJSON",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: convertedGeoDataCodes.html,
+            css: convertedGeoDataCodes.css,
+            js: convertedGeoDataCodes.js,
           },
           {
             title: "设置图层的最大和最小级别",
