@@ -7,6 +7,8 @@ import { setLayerVisibleCodes } from "./codes/vtlayer/layer-operation/set-layer-
 import { removeLayerCodes } from "./codes/vtlayer/layer-operation/remove-layer";
 import { loadRemoteGeoDataCodes } from "./codes/vtlayer/layer-operation/load-remote-geo";
 import { convertedGeoDataCodes } from "./codes/vtlayer/layer-operation/convert-geo";
+import { setLayerZoomBoundaryCodes } from "./codes/vtlayer/layer-operation/set-zoom-boundary";
+import { setLayerZoomAccessCodes } from "./codes/vtlayer/layer-operation/set-zoom-access";
 
 interface IListItem {
   title: string;
@@ -78,15 +80,15 @@ const baseList: IListItem[] = [
           },
           {
             title: "设置图层的最大和最小级别",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: setLayerZoomBoundaryCodes.html,
+            css: setLayerZoomBoundaryCodes.css,
+            js: setLayerZoomBoundaryCodes.js,
           },
           {
             title: "设置图层的最大可访问级别",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: setLayerZoomAccessCodes.html,
+            css: setLayerZoomAccessCodes.css,
+            js: setLayerZoomAccessCodes.js,
           },
           {
             title: "隐藏显示图层",
