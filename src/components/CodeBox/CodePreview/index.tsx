@@ -20,6 +20,7 @@ function CodePreview() {
   <script type="text/javascript" src="https://unpkg.com/@maptalks/vt.basic@0.60.2/dist/maptalks.vt.basic.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@maptalks/gltf-layer@0.31.0/dist/maptalks.gltf.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@maptalks/geojson-bbox@1.0.4/dist/bbox.umd"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui/build/dat.gui.min.js"></script>
   </head>
   <body>
   ${store.htmlCode}

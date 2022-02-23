@@ -1,6 +1,4 @@
-import { addMarkerCodes } from "./codes/gltflayer/add-marker";
-import { addToGltfLayerCodes } from "./codes/gltfmarker/addto-gltflayer";
-import { clearLayerCodes } from "./codes/gltflayer/clear-layer";
+import { addToGltfLayerCodes } from "./codes/gltflayer/GLTFLayer/addto-gltflayer";
 import { addVtLayerCodes } from "./codes/vtlayer/layer-operation/add-vtlayer";
 import { loadLocalGeoDataCodes } from "./codes/vtlayer/layer-operation/load-local-geo";
 import { setLayerVisibleCodes } from "./codes/vtlayer/layer-operation/set-layer-visible";
@@ -9,6 +7,7 @@ import { loadRemoteGeoDataCodes } from "./codes/vtlayer/layer-operation/load-rem
 import { convertedGeoDataCodes } from "./codes/vtlayer/layer-operation/convert-geo";
 import { setLayerZoomBoundaryCodes } from "./codes/vtlayer/layer-operation/set-zoom-boundary";
 import { setLayerZoomAccessCodes } from "./codes/vtlayer/layer-operation/set-zoom-access";
+import { gltfList } from "./codes/gltflayer/gltfList";
 
 interface IListItem {
   title: string;
@@ -20,34 +19,8 @@ interface IListItem {
 }
 
 const baseList: IListItem[] = [
-  {
-    title: "Gltf图层示例",
-    children: [
-      {
-        title: "添加模型",
-        html: addMarkerCodes.html,
-        css: addMarkerCodes.css,
-        js: addMarkerCodes.js,
-      },
-      {
-        title: "清除图层",
-        html: clearLayerCodes.html,
-        css: clearLayerCodes.css,
-        js: clearLayerCodes.js,
-      },
-    ],
-  },
-  {
-    title: "Gltf Marker示例",
-    children: [
-      {
-        title: "添加到图层",
-        html: addToGltfLayerCodes.html,
-        css: addToGltfLayerCodes.css,
-        js: addToGltfLayerCodes.js,
-      },
-    ],
-  },
+  gltfList
+  ,
   {
     title: "矢量瓦片图层",
     children: [
