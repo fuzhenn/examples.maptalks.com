@@ -17,6 +17,12 @@ import { updateDataConfigCodes } from "./codes/vtlayer/layer-style/update-dataCo
 import { updateSceneConfigCodes } from "./codes/vtlayer/layer-style/update-sceneConfig";
 import { removeVtStyleCodes } from "./codes/vtlayer/layer-style/remove-style";
 import { compressVtStyleCodes } from "./codes/vtlayer/layer-style/compress-style";
+import { setFeatureStyleCodes } from "./codes/vtlayer/layer-style/set-feature-style";
+import { hideFeatureCodes } from "./codes/vtlayer/layer-style/hide-feature";
+import { updateFeatureStyleCodes } from "./codes/vtlayer/layer-style/update-feature-style";
+import { enlargeIconCodes } from "./codes/vtlayer/layer-style/enlarge-icon";
+import { updateFeatureSceneConfigCodes } from "./codes/vtlayer/layer-style/update-feature-sceneConfig";
+import { updateFeatureDataConfigCodes } from "./codes/vtlayer/layer-style/update-feature-dataConfig";
 
 interface IListItem {
   title: string;
@@ -144,39 +150,39 @@ const baseList: IListItem[] = [
           },
           {
             title: "单独隐藏Feature",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: hideFeatureCodes.html,
+            css: hideFeatureCodes.css,
+            js: hideFeatureCodes.js,
           },
           {
             title: "单独设置Feature的样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: setFeatureStyleCodes.html,
+            css: setFeatureStyleCodes.css,
+            js: setFeatureStyleCodes.js,
           },
           {
             title: "更新Feature的样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateFeatureStyleCodes.html,
+            css: updateFeatureStyleCodes.css,
+            js: updateFeatureStyleCodes.js,
           },
           {
             title: "更新Feature渲染插件的dataConfig",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateFeatureDataConfigCodes.html,
+            css: updateFeatureDataConfigCodes.css,
+            js: updateFeatureDataConfigCodes.js,
           },
           {
             title: "更新Feature渲染插件的sceneConfig",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateFeatureSceneConfigCodes.html,
+            css: updateFeatureSceneConfigCodes.css,
+            js: updateFeatureSceneConfigCodes.js,
           },
           {
             title: "整体放大图标和文字",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: enlargeIconCodes.html,
+            css: enlargeIconCodes.css,
+            js: enlargeIconCodes.js,
           },
         ],
       },

@@ -17,42 +17,162 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoom: 16,
 });
 
-const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
-  spatialReference: 'preset-vt-3857',
+const geo = new maptalks.GeoJSONVectorTileLayer('geo', {
+  data: '/resources/geojson/area.geojson'
+});
+
+geo.on('dataload', e => {
+  map.fitExtent(e.extent)
 });
 
 const style = {
   style: [
     {
-      filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
-      renderPlugin: {
-        dataConfig: {
-          type: 'point',
+      "filter": true,
+      "renderPlugin": {
+        "dataConfig": {
+          "type": "fill"
         },
-        sceneConfig: {
-          collision: true,
-          fading: true,
-          depthFunc: 'always',
+        "sceneConfig": {},
+        "type": "fill"
+      },
+      "symbol": {
+        "polygonBloom": false,
+        "polygonFill": [0.345, 0.345, 0.502, 1],
+        "polygonOpacity": 1,
+        "polygonPatternFile": null,
+        "visible": true
+      }
+    },
+    {
+      "filter": true,
+      "renderPlugin": {
+        "dataConfig": {
+          "type": "line"
+        },
+        "sceneConfig": {},
+        "type": "line"
+      },
+      "symbol": {
+        "lineBloom": false,
+        "lineCap": "butt",
+        "lineColor": [0.73, 0.73, 0.73, 1],
+        "lineDasharray": [0, 0, 0, 0],
+        "lineDashColor": [1, 1, 1, 0],
+        "lineDx": 0,
+        "lineDy": 0,
+        "lineGapWidth": 0,
+        "lineJoin": "miter",
+        "lineOpacity": 1,
+        "linePatternAnimSpeed": 0,
+        "linePatternFile": null,
+        "lineStrokeWidth": 0,
+        "lineStrokeColor": [0, 0, 0, 0],
+        "lineJoinPatternMode": 0,
+        "lineWidth": 2,
+        "visible": true
+      }
+    }
+  ],
+  "featureStyle": [
+    {
+      "id": 12,
+      "style": [
+        {
+          "renderPlugin": {
+            "dataConfig": {
+              "type": "fill"
+            },
+            "sceneConfig": {},
+            "type": "fill"
           },
-        type: 'icon',
-      },
-      symbol: {
-        markerBloom: false,
-        markerAllowOverlap: false,
-        markerDx: 0,
-        markerDy: 0,
-        markerType: 'circle,
-      },
+          "symbol": {
+            "polygonBloom": false,
+            "polygonFill": [
+              0.9725490196078431, 0.1568627450980392,
+              0.403921568627451, 1
+            ],
+            "polygonOpacity": 1,
+            "polygonPatternFile": null,
+            "visible": true
+          }
+        },
+        {
+          "renderPlugin": {
+            "dataConfig": {
+              "type": "line"
+            },
+            "sceneConfig": {},
+            "type": "line"
+          },
+          "symbol": {
+            "lineBloom": false,
+            "lineCap": "butt",
+            "lineColor": [0.73, 0.73, 0.73, 1],
+            "lineDasharray": [0, 0, 0, 0],
+            "lineDashColor": [1, 1, 1, 0],
+            "lineDx": 0,
+            "lineDy": 0,
+            "lineGapWidth": 0,
+            "lineJoin": "miter",
+            "lineOpacity": 1,
+            "linePatternAnimSpeed": 0,
+            "linePatternFile": null,
+            "lineStrokeWidth": 0,
+            "lineStrokeColor": [0, 0, 0, 0],
+            "lineJoinPatternMode": 0,
+            "lineWidth": 2,
+            "visible": true
+          }
+        },
+        {
+          renderPlugin: {
+            dataConfig: {
+              type: 'point',
+            },
+            sceneConfig: {
+              collision: true,
+              fading: true,
+              depthFunc: 'always',
+            },
+            type: 'icon',
+          },
+          symbol: {
+            markerBloom: false,
+            markerAllowOverlap: false,
+            markerDx: 0,
+            markerDy: 0,
+            markerFile: null,
+            markerFill: [0.53, 0.77, 0.94, 1],
+            markerFillOpacity: 1,
+            markerHeight: 20,
+            markerWidth: 20,
+            markerHorizontalAlignment: 'middle',
+            markerIgnorePlacement: false,
+            markerLineColor: [0.2, 0.29, 0.39, 1],
+            markerLineDasharray: [0, 0, 0, 0],
+            markerLineOpacity: 1,
+            markerLineWidth: 3,
+            markerOpacity: 1,
+            markerPitchAlignment: 'viewport',
+            markerPlacement: 'point',
+            markerRotationAlignment: 'viewport',
+            markerSpacing: 0,
+            markerType: 'ellipse',
+            markerVerticalAlignment: 'middle',
+          },
+        }
+      ]
     }
   ]
 };
-vt.setStyle(style);
+geo.setStyle(style);
+  
+const groupLayer = new maptalks.GroupGLLayer('group', [geo]);
+groupLayer.addTo(map);
+geo.updateFeatureSceneConfig(0, 2, { collision: false })`;
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
-groupLayer.addTo(map);`;
-
-export const filterDataStyleCodes = {
+export const updateFeatureSceneConfigCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,
