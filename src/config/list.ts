@@ -14,6 +14,9 @@ import { setVtStyleCodes } from "./codes/vtlayer/layer-style/set-style";
 import { filterDataStyleCodes } from "./codes/vtlayer/layer-style/filter-data";
 import { updateRenderStyleCodes } from "./codes/vtlayer/layer-style/update-style";
 import { updateDataConfigCodes } from "./codes/vtlayer/layer-style/update-dataConfig";
+import { updateSceneConfigCodes } from "./codes/vtlayer/layer-style/update-sceneConfig";
+import { removeVtStyleCodes } from "./codes/vtlayer/layer-style/remove-style";
+import { compressVtStyleCodes } from "./codes/vtlayer/layer-style/compress-style";
 
 interface IListItem {
   title: string;
@@ -25,8 +28,7 @@ interface IListItem {
 }
 
 const baseList: IListItem[] = [
-  gltfList
-  ,
+  gltfList,
   {
     title: "矢量瓦片图层",
     children: [
@@ -124,21 +126,21 @@ const baseList: IListItem[] = [
           },
           {
             title: "更新渲染插件的sceneConfig",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: updateSceneConfigCodes.html,
+            css: updateSceneConfigCodes.css,
+            js: updateSceneConfigCodes.js,
           },
           {
             title: "移除图层样式",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: removeVtStyleCodes.html,
+            css: removeVtStyleCodes.css,
+            js: removeVtStyleCodes.js,
           },
           {
             title: "压缩图层样式数据",
-            html: addToGltfLayerCodes.html,
-            css: addToGltfLayerCodes.css,
-            js: addToGltfLayerCodes.js,
+            html: compressVtStyleCodes.html,
+            css: compressVtStyleCodes.css,
+            js: compressVtStyleCodes.js,
           },
           {
             title: "单独隐藏Feature",
