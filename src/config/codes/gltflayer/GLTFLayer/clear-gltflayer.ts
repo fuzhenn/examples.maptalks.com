@@ -1,5 +1,8 @@
 import { map, sceneConfig } from '../gltf-util';
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `
+<div id="map" class="container"></div>
+<input type="button" id="clear" value="clear markers"></input>
+`;
 
 const cssCode = `html,
 body {
@@ -11,7 +14,16 @@ body {
 .container {
     width: 100%;
     height: 100%;
-}`;
+}
+
+input {
+    float: right;
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 80px;
+}
+`;
 
 const jsCode = `
 ${map}
@@ -27,6 +39,7 @@ const markers = [];
 for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
         const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+            id: i + "_" + j,
             symbol: symbol
         });
         markers.push(gltfmarker);
@@ -35,9 +48,13 @@ for (let i = 0; i < 3; i++) {
 
 gltflayer.addGeometry(markers);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+
+document.getElementById("clear").onclick = functionr() {
+    gltflayer.clear();
+}
 `;
 
-export const addToGltfLayerCodes = {
+export const clearGLTFLayerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

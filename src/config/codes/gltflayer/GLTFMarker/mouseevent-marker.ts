@@ -23,15 +23,26 @@ const symbol = {
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+const gltfmarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
+}).addTo(gltflayer);
+
+gltfmarker.on('click', e => {
+    alert('click event');
+});
+gltfmarker.on('mousemove', e => {
+    map.setCursor('url(/resources/images/cursor.png) 9 0, auto');
+    gltfmarker.setUniform('polygonFill', [0.0, 0.8, 0.0, 1.0]);
+});
+gltfmarker.on('mouseleave', e => {
+    map.resetCursor();
+    gltfmarker.setUniform('polygonFill', [1, 1, 1, 1.0]);
 });
 
-gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 `;
 
-export const addMarkerCodes = {
+export const mouseeventMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

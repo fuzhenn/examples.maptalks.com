@@ -20,18 +20,27 @@ const url = '/resources/gltf/Duck/Duck.glb';
 const symbol = {
     url: url
 };
-
-const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+const data = [];
+for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+        data.push({
+            coordinates : position.add(i * 0.01, j * 0.01),
+            translation : [0, 0, 0],
+            rotation : [0, 0, Math.random() * 90],
+            scale : [1, 1, 1],
+            // color : [i / 5 + 0.2, 0.1 + j / 5, 1.0 - (i + j) / 10, 0.9]
+        });
+    }
+}
+const gltflayer = new maptalks.GLTFLayer('gltf');
+const groupgltfmarker = new maptalks.MultiGLTFMarker(data, {
     symbol: symbol
-});
-
-gltflayer.addGeometry(gltfmarker);
+}).addTo(gltflayer);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 `;
 
-export const addMarkerCodes = {
+export const addToMultiGLTFMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

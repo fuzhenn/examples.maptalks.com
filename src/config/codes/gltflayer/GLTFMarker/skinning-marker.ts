@@ -18,13 +18,16 @@ ${map}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
-    this.visible = true;
+    this.animation = true;
+    this.loop = true;
 };
 const options = new Config();
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/aatrox/scene.gltf';
 const symbol = {
     url: url,
     shadow: true,
+    animation: options.animation,
+    loop: options.loop,
     scale: [2, 2, 2]
 };
 
@@ -36,18 +39,18 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
-//visible control
-const visibleController = gui.add(options, 'visible');
-visibleController.onChange(function (value) {
-    if (!value) {
-        gltfmarker.hide();
-    } else {
-        gltfmarker.show();
-    }
+//animation control
+const animationController = gui.add(options, 'animation');
+animationController.onChange(function (value) {
+    gltfmarker.setAnimation(value);
+});
+const loopController = gui.add(options, 'loop');
+loopController.onChange(function (value) {
+    gltfmarker.setAnimationLoop(value);
 });
 `;
 
-export const showMarkerCodes = {
+export const skinningMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

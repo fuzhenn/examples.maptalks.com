@@ -23,15 +23,25 @@ const symbol = {
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+const gltfmarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+var options = {
+    'items'  : [
+            {item: 'item1', click: function () { alert('Click item1'); }},
+        '-',
+            {item: 'item2', click: function () { alert('Click item2'); }}
+    ]
+};
+gltfmarker.on('load', () => {
+    gltfmarker.setMenu(options).openMenu();
+});
 `;
 
-export const addMarkerCodes = {
+export const menuMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

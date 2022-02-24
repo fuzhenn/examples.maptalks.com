@@ -46,39 +46,39 @@ const sceneConfig = `const sceneConfig = {
     "postProcess": {
             "enable": true,
             "antialias": {
-            "enable": true,
-            "taa": true,
-            "jitterRatio": 0.25
+                "enable": true,
+                "taa": true,
+                "jitterRatio": 0.25
             },
             "ssr": {
-            "enable": true
+                "enable": true
             },
             "bloom": {
-            "enable": true,
-            "threshold": 0,
-            "factor": 1,
-            "radius": 1
+                "enable": true,
+                "threshold": 0.1,
+                "factor": 0.5,
+                "radius": 0.3
             },
             "ssao": {
-            "enable": true,
-            "bias": 0.08,
-            "radius": 0.08,
-            "intensity": 1.5
+                "enable": true,
+                "bias": 0.08,
+                "radius": 0.08,
+                "intensity": 1.5
             },
             "sharpen": {
-            "enable": false,
-            "factor": 0.2
+                "enable": false,
+                "factor": 0.2
             },
             "outline": {
-            "enable": true,
-            "outlineFactor": 0.5,
-            "highlightFactor": 0.5,
-            "outlineWidth": 2,
-            "outlineColor": [
-                0,
-                0,
-                1
-            ]
+                "enable": true,
+                "outlineFactor": 0.5,
+                "highlightFactor": 0.5,
+                "outlineWidth": 2,
+                "outlineColor": [
+                    0,
+                    0,
+                    1
+                ]
             }
         },
     "ground": {

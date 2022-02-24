@@ -16,22 +16,34 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
+const gui = new dat.GUI({ width: 250 });
+const Config = function () {
+    this.shadow = false;
+};
+const options = new Config();
 const url = '/resources/gltf/Duck/Duck.glb';
 const symbol = {
-    url: url
+    url: url,
+    shadow: options.shadow,
+    scale: [2, 2, 2]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
-    symbol: symbol
-});
+const gltfmarker = new maptalks.GLTFMarker(position, {
+    symbol
+}).addTo(gltflayer);
 
-gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+
+//shadow control
+const shadowController = gui.add(options, 'shadow');
+shadowController.onChange(function (value) {
+    gltfmarker.setCastShadow(value);
+});
 `;
 
-export const addMarkerCodes = {
+export const shadowMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

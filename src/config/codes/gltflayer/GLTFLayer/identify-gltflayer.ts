@@ -1,5 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `
+<div id="map" class="container"></div>`;
 
 const cssCode = `html,
 body {
@@ -23,15 +24,24 @@ const symbol = {
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+const gltfmarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
-});
+}).addTo(gltflayer);
 
-gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+
+map.on('click', e => {
+    const picks = gltflayer.identify(e.coordinate);
+    if (picks && picks.length > 0) {
+        const target = picks[0].data;
+        target.setUniform('polygonFill', [0.2, 0.2, 1.0, 1.0]);
+    } else {
+        gltfmarker.setUniform('polygonFill', [1.0, 1.0, 1.0, 1.0]);
+    }
+});
 `;
 
-export const addMarkerCodes = {
+export const identifyGLTFLayerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,
