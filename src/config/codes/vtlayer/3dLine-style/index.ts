@@ -1,3 +1,4 @@
+import { setHeightCodes } from "./set-height";
 import { setTextureCodes } from "./set-texture";
 
 export const threeDLineStyleList = [
@@ -9,5 +10,8 @@ export const threeDLineStyleList = [
   },
   {
     title: "设置高度",
+    html: setHeightCodes.html,
+    css: setHeightCodes.css,
+    js: setHeightCodes.js,
   },
 ];

@@ -2,7 +2,9 @@ import { drawTextCodes } from "./draw-text";
 import { lineBloomCodes } from "./bloom";
 import { lineColorVariesCodes } from "./color-varies";
 import { lineWidthScaleCodes } from "./width-scale";
+import { readColorCodes } from "./read-color";
 import { setTextureCodes } from "./set-texture";
+import { textureAnimationCodes } from "./texture-animation";
 
 export const lineStyleList = [
   {
@@ -19,6 +21,9 @@ export const lineStyleList = [
   },
   {
     title: "从属性数据中读取颜色",
+    html: readColorCodes.html,
+    css: readColorCodes.css,
+    js: readColorCodes.js,
   },
   {
     title: "设置纹理",
@@ -28,6 +33,9 @@ export const lineStyleList = [
   },
   {
     title: "纹理动画",
+    html: textureAnimationCodes.html,
+    css: textureAnimationCodes.css,
+    js: textureAnimationCodes.js,
   },
   {
     title: "开启泛光",

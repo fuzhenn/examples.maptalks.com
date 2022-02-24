@@ -36,7 +36,7 @@ const style = {
           type: 'line-extrusion',
           uv: true,
           tangent: true,
-          altitudeProperty: 'height',
+          altitudeProperty: null,
           minHeightProperty: null,
           altitudeScale: 1,
           defaultAltitude: 40,
