@@ -14,6 +14,11 @@ import { shadowMarkerCodes } from "./GLTFMarker/shadow-marker";
 import { skinningMarkerCodes } from "./GLTFMarker/skinning-marker";
 import { glowMarkerCodes } from "./GLTFMarker/glow-marker";
 import { menuMarkerCodes } from "./GLTFMarker/menu-marker";
+import { anchorZMarkerCodes } from "./GLTFMarker/anchorZ-marker";
+import { fixSizeOnZoomMarkerCodes } from "./GLTFMarker/fixsize-marker";
+import { modelMatrixMarkerCodes } from "./GLTFMarker/modelmatrix-marker";
+import { setAnimationTimeFrameMarkerCodes } from "./GLTFMarker/setAnimationTimeFrame-marker";
+import { propertyMarkerCodes } from "./GLTFMarker/property-marker";
 //GLTFLayer
 import { addToGltfLayerCodes } from "./GLTFLayer/addto-gltflayer";
 import { getMarkerGLTFLayerCodes } from "./GLTFLayer/getmarker-gltflayer";
@@ -33,6 +38,10 @@ import { additemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/additem-multigltf
 import { removeitemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/removeitem-multigltfmarker";
 import { updateitemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/updateitem-multigltfmarker";
 import { mouseeventMultiGLTFMarkerCodes } from "./MultiGLTFMarker/mouseevent-multigltfmarker";
+//Analysis
+import { viewshedAnalysisCodes } from "./Analysis/viewshed-analysis";
+import { floodAnalysisCodes } from "./Analysis/flood-analysis";
+import { skylineAnalysisCodes } from "./Analysis/skyline-analysis";
 
 
 const gltfList =
@@ -137,6 +146,36 @@ const gltfList =
                     html: menuMarkerCodes.html,
                     css: menuMarkerCodes.css,
                     js: menuMarkerCodes.js,
+                },
+                {
+                    title: '1.17 锚点的设置',
+                    html: anchorZMarkerCodes.html,
+                    css: anchorZMarkerCodes.css,
+                    js: anchorZMarkerCodes.js,
+                },
+                {
+                    title: '1.18 固定模型的大小不随地图缩放',
+                    html: fixSizeOnZoomMarkerCodes.html,
+                    css: fixSizeOnZoomMarkerCodes.css,
+                    js: fixSizeOnZoomMarkerCodes.js,
+                },
+                {
+                    title: '1.19 更新模型的ModelMatrix',
+                    html: modelMatrixMarkerCodes.html,
+                    css: modelMatrixMarkerCodes.css,
+                    js: modelMatrixMarkerCodes.js,
+                },
+                {
+                    title: '1.20 setAnimationTimeFrame',
+                    html: setAnimationTimeFrameMarkerCodes.html,
+                    css: setAnimationTimeFrameMarkerCodes.css,
+                    js: setAnimationTimeFrameMarkerCodes.js,
+                },
+                {
+                    title: '1.21 设置/获取属性',
+                    html: propertyMarkerCodes.html,
+                    css: propertyMarkerCodes.css,
+                    js: propertyMarkerCodes.js,
                 }
             ]
         },
@@ -249,6 +288,29 @@ const gltfList =
                     html: mouseeventMultiGLTFMarkerCodes.html,
                     css: mouseeventMultiGLTFMarkerCodes.css,
                     js: mouseeventMultiGLTFMarkerCodes.js,
+                }
+            ]
+        },
+        {
+            title: "4. Analysis示例",
+            children: [
+                {
+                    title: '4.1 可视域分析',
+                    html: viewshedAnalysisCodes.html,
+                    css: viewshedAnalysisCodes.css,
+                    js: viewshedAnalysisCodes.js,
+                },
+                {
+                    title: '4.2 水淹分析',
+                    html: floodAnalysisCodes.html,
+                    css: floodAnalysisCodes.css,
+                    js: floodAnalysisCodes.js,
+                },
+                {
+                    title: '4.3 天际线分析',
+                    html: skylineAnalysisCodes.html,
+                    css: skylineAnalysisCodes.css,
+                    js: skylineAnalysisCodes.js,
                 }
             ]
         }

@@ -23,7 +23,7 @@ const symbol = {
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+const gltfmarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 

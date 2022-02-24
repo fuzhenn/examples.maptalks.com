@@ -47,7 +47,7 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
 //symbol control
-const symbolController = gui.add(options, 'setSymbol');
+const symbolController = gui.add(options, 'setSymbol').name("set symbol");
 symbolController.onChange(function (value) {
     if (value) {
         gltfmarker.setSymbol(newSymbol);
