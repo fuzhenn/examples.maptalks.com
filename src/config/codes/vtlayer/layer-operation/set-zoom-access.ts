@@ -15,7 +15,7 @@ body {
 const jsCode = `const map = new maptalks.Map('map', {
   center: [-74.00912099912109, 40.71107610933129],
   zoom: 16,
-  zoomControl: true, 
+  zoomControl: true,
 });
 
 const vt = new maptalks.VectorTileLayer('vt', {

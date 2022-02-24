@@ -1,5 +1,7 @@
 import { layerOperationList } from "./layer-operation";
 import { layerStyleList } from "./layer-style";
+import { lineStyleList } from "./line-style";
+import { threeDLineStyleList } from "./3dLine-style";
 
 export const vtLayerList = [
   {
@@ -56,40 +58,11 @@ export const vtLayerList = [
       },
       {
         title: "线的样式",
-        children: [
-          {
-            title: "宽度随地图级别缩放",
-          },
-          {
-            title: "颜色随地图级别变化",
-          },
-          {
-            title: "从属性数据中读取颜色",
-          },
-          {
-            title: "设置纹理",
-          },
-          {
-            title: "纹理动画",
-          },
-          {
-            title: "开启泛光",
-          },
-          {
-            title: "沿线绘制文字",
-          },
-        ],
+        children: lineStyleList,
       },
       {
         title: "三维线样式",
-        children: [
-          {
-            title: "设置纹理",
-          },
-          {
-            title: "设置高度",
-          },
-        ],
+        children: threeDLineStyleList,
       },
       {
         title: "面的样式",
