@@ -1,6 +1,7 @@
 import { layerOperationList } from "./layer-operation";
 import { layerStyleList } from "./layer-style";
 import { lineStyleList } from "./line-style";
+import { polygonStyleList } from "./polygon-style";
 import { threeDLineStyleList } from "./3dLine-style";
 
 export const vtLayerList = [
@@ -66,26 +67,7 @@ export const vtLayerList = [
       },
       {
         title: "面的样式",
-        children: [
-          {
-            title: "设置纹理",
-          },
-          {
-            title: "纹理动画",
-          },
-          {
-            title: "设置高度",
-          },
-          {
-            title: "从属性数据中读取颜色",
-          },
-          {
-            title: "在面上绘制文字",
-          },
-          {
-            title: "开启泛光",
-          },
-        ],
+        children: polygonStyleList,
       },
       {
         title: "三维面的样式",
