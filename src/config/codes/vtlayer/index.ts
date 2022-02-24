@@ -3,6 +3,7 @@ import { layerStyleList } from "./layer-style";
 import { lineStyleList } from "./line-style";
 import { polygonStyleList } from "./polygon-style";
 import { threeDLineStyleList } from "./3dLine-style";
+import { threeDPolygonStyleList } from "./3dPolygon-style";
 
 export const vtLayerList = [
   {
@@ -71,26 +72,7 @@ export const vtLayerList = [
       },
       {
         title: "三维面的样式",
-        children: [
-          {
-            title: "设置高度",
-          },
-          {
-            title: "高度和侧面设置不同的纹理",
-          },
-          {
-            title: "顶部纹理与顶面朝向一致",
-          },
-          {
-            title: "隐藏顶面的围栏",
-          },
-          {
-            title: "透明度渐变围栏",
-          },
-          {
-            title: "三维面的进场动画",
-          },
-        ],
+        children: threeDPolygonStyleList,
       },
       {
         title: "面的水面效果",
