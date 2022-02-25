@@ -1,3 +1,4 @@
+import { layerInteractionList } from "./layer-interaction";
 import { layerOperationList } from "./layer-operation";
 import { layerStyleList } from "./layer-style";
 import { lineStyleList } from "./line-style";
@@ -81,26 +82,7 @@ export const vtLayerList = [
       },
       {
         title: "图层交互",
-        children: [
-          {
-            title: "高亮所有数据",
-          },
-          {
-            title: "高亮指定渲染插件的数据",
-          },
-          {
-            title: "单独高亮Feature",
-          },
-          {
-            title: "查询给定坐标上的数据",
-          },
-          {
-            title: "查询给定屏幕坐标上的数据",
-          },
-          {
-            title: "鼠标点选数据",
-          },
-        ],
+        children: layerInteractionList,
       },
     ],
   },

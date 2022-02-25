@@ -1,8 +1,4 @@
-const htmlCode = `<div class="content">
-  <button id="highLightBtn">点击高亮数据</button>
-  <button id="cancelBtn">点击取消高亮</button>
-  <div id="map" class="container"></div>
-</div>`;
+const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
 body {
@@ -12,11 +8,6 @@ body {
 }
 
 .container {
-  width: 100%;
-  height: 100%;
-}
-
-.content {
   width: 100%;
   height: 100%;
 }`;
@@ -39,7 +30,7 @@ const style = {
     {
       "filter": true,
       "renderPlugin": {
-        "dataConfig": {
+      "dataConfig": {
           "type": "fill"
         },
         "sceneConfig": {},
@@ -81,23 +72,6 @@ const style = {
         "lineWidth": 2,
         "visible": true
       }
-    },
-    {
-      "filter": ["==", "$id", 12],
-      "renderPlugin": {
-        "dataConfig": {
-          "type": "fill"
-        },
-        "sceneConfig": {},
-        "type": "fill"
-      },
-      "symbol": {
-        "polygonBloom": false,
-        "polygonFill": '#1bbc9b',
-        "polygonOpacity": 1,
-        "polygonPatternFile": null,
-        "visible": true
-      }
     }
   ]
 };
@@ -106,16 +80,10 @@ geo.setStyle(style);
 const groupLayer = new maptalks.GroupGLLayer('group', [geo]);
 groupLayer.addTo(map);
 
-const highLightBtn = document.getElementById("highLightBtn");
-highLightBtn.addEventListener('click', () => {
-  geo.outline(2, [12]);
-})
-const cancelBtn = document.getElementById("cancelBtn");
-cancelBtn.addEventListener('click', () => {
-  geo.cancelOutline();
-})`;
+const data = geo.identify([114.69,30.78], { tolerance: 3 })
+console.log(data)`;
 
-export const highlightFeatureCodes = {
+export const queryCoordinateCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,
