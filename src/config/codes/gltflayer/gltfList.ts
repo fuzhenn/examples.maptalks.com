@@ -42,6 +42,13 @@ import { mouseeventMultiGLTFMarkerCodes } from "./MultiGLTFMarker/mouseevent-mul
 import { viewshedAnalysisCodes } from "./Analysis/viewshed-analysis";
 import { floodAnalysisCodes } from "./Analysis/flood-analysis";
 import { skylineAnalysisCodes } from "./Analysis/skyline-analysis";
+//weather
+import { fogWeatherCodes } from "./Weather/fog-weather";
+import { rainWeatherCodes } from "./Weather/rain-weather";
+import { snowWeatherCodes } from "./Weather/snow-weather";
+//TransformControl
+import { addTranformControlCodes } from "./TransformControl/addTranformControl";
+
 
 
 const gltfList =
@@ -311,6 +318,40 @@ const gltfList =
                     html: skylineAnalysisCodes.html,
                     css: skylineAnalysisCodes.css,
                     js: skylineAnalysisCodes.js,
+                }
+            ]
+        },
+        {
+            title: "5. 天气系统",
+            children: [
+                {
+                    title: '5.1 雾',
+                    html: fogWeatherCodes.html,
+                    css: fogWeatherCodes.css,
+                    js: fogWeatherCodes.js,
+                },
+                {
+                    title: '5.2 雨',
+                    html: rainWeatherCodes.html,
+                    css: rainWeatherCodes.css,
+                    js: rainWeatherCodes.js,
+                },
+                {
+                    title: '5.3 雪',
+                    html: snowWeatherCodes.html,
+                    css: snowWeatherCodes.css,
+                    js: snowWeatherCodes.js,
+                }
+            ]
+        },
+        {
+            title: "6. TransformControl",
+            children: [
+                {
+                    title: '6.1 控制模型的平移、旋转、缩放',
+                    html: addTranformControlCodes.html,
+                    css: addTranformControlCodes.css,
+                    js: addTranformControlCodes.js,
                 }
             ]
         }

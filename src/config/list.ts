@@ -1,4 +1,5 @@
 import { gltfList } from "./codes/gltflayer/gltfList";
+import { videoLayerList } from "./codes/videoLayer/videoLayerList";
 import { vtLayerList } from "./codes/vtlayer";
 
 interface IListItem {
@@ -10,7 +11,7 @@ interface IListItem {
   children?: IListItem[];
 }
 
-const baseList: IListItem[] = [gltfList, ...vtLayerList];
+const baseList: IListItem[] = [gltfList, videoLayerList, ...vtLayerList];
 
 // 生成 key 值
 function getList(list: IListItem[]) {
