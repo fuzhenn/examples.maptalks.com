@@ -1,3 +1,4 @@
+import { approachAnimationCodes } from "./approach-animation";
 import { diffrentTextureCodes } from "./diffrent-texture";
 import { gradientFenceCodes } from "./gradient-fence";
 import { setHeightCodes } from "./set-height";
@@ -33,5 +34,8 @@ export const threeDPolygonStyleList = [
   },
   {
     title: "三维面的进场动画",
+    html: approachAnimationCodes.html,
+    css: approachAnimationCodes.css,
+    js: approachAnimationCodes.js,
   },
 ];
