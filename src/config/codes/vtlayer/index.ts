@@ -4,6 +4,7 @@ import { lineStyleList } from "./line-style";
 import { polygonStyleList } from "./polygon-style";
 import { threeDLineStyleList } from "./3dLine-style";
 import { threeDPolygonStyleList } from "./3dPolygon-style";
+import { waterStyleList } from "./water-style";
 
 export const vtLayerList = [
   {
@@ -76,17 +77,7 @@ export const vtLayerList = [
       },
       {
         title: "面的水面效果",
-        children: [
-          {
-            title: "水面绘制并开启倒影",
-          },
-          {
-            title: "抬升水面高度",
-          },
-          {
-            title: "水面上绘制文字",
-          },
-        ],
+        children: waterStyleList,
       },
       {
         title: "图层交互",
