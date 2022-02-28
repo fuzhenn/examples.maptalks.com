@@ -49,12 +49,12 @@ polygonFillController.onChange(function (value) {
     gltfmarker.setUniform('polygonFill', [value[0] / 255, value[1] / 255, value[2] / 255, 1.0]);
 });
 
-var metallicFactorController = gui.add(options, 'metallicFactor', 0, 1);
+const metallicFactorController = gui.add(options, 'metallicFactor', 0, 1);
 metallicFactorController.onFinishChange(function (value) {
     gltfmarker.setUniform('metallicFactor', value);
 });
 
-var roughnessFactorController = gui.add(options, 'roughnessFactor', 0, 1);
+const roughnessFactorController = gui.add(options, 'roughnessFactor', 0, 1);
 roughnessFactorController.onFinishChange(function (value) {
     gltfmarker.setUniform('roughnessFactor', value);
 });

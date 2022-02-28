@@ -60,28 +60,28 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
-var rainControl = gui.add(options, 'rain').name('enable rain');
+const rainControl = gui.add(options, 'rain').name('enable rain');
 rainControl.onChange(function (value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.rain.enable = value;
     groupgllayer.setSceneConfig(sceneConfig);
 });
 
-var rainDensityController = gui.add(options, "rainDensity", 500, 10000).name('rain density');
+const rainDensityController = gui.add(options, "rainDensity", 500, 10000).name('rain density');
 rainDensityController.onFinishChange(function (value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.rain.density = value;
     groupgllayer.setSceneConfig(sceneConfig);
 });
 
-var windDirectionXController = gui.add(options, "windDirectionX", -30, 30).name('x direction');
+const windDirectionXController = gui.add(options, "windDirectionX", -30, 30).name('x direction');
 windDirectionXController.onChange(function (value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.rain.windDirectionX = value;
     groupgllayer.setSceneConfig(sceneConfig);
 });
 
-var windDirectionYController = gui.add(options, "windDirectionY", -30, 30).name('y direction');
+const windDirectionYController = gui.add(options, "windDirectionY", -30, 30).name('y direction');
 windDirectionYController.onChange(function (value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.rain.windDirectionY = value;

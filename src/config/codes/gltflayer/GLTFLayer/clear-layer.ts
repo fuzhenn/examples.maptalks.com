@@ -12,7 +12,7 @@ body {
   height: 100%;
 }`;
 
-const jsCode = `var map = new maptalks.Map('map', {
+const jsCode = `const map = new maptalks.Map('map', {
   center: [-0.113049,51.498568],
   zoom: 14,
   pitch: 75,
@@ -22,8 +22,8 @@ const jsCode = `var map = new maptalks.Map('map', {
       attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
   })
 });
-var url = '/resource/gltf/Duck/Duck.glb';
-var symbol = {
+const url = '/resource/gltf/Duck/Duck.glb';
+const symbol = {
   url: url,
   rotation: [90, 0, 0],
   uniforms: {
@@ -31,12 +31,12 @@ var symbol = {
   }
 };
 
-var gltflayer = new maptalks.GLTFLayer('gltf').addTo(map);
-var position = map.getCenter();
-var markers = [];
+const gltflayer = new maptalks.GLTFLayer('gltf').addTo(map);
+const position = map.getCenter();
+const markers = [];
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
-    var gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+    const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
       symbol: symbol
     });
     markers.push(gltfmarker);

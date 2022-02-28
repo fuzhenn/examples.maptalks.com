@@ -29,7 +29,7 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
-var options = {
+const options = {
     'items'  : [
             {item: 'item1', click: function () { alert('Click item1'); }},
         '-',

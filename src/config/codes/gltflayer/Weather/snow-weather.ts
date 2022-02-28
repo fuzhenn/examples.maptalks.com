@@ -23,7 +23,7 @@ const Config = function () {
 };
 const options = new Config();
 const weather = {
-    enable: options.weather,
+    enable: true,
     fog: {
         enable: true,
         start: 0.1,
@@ -53,7 +53,7 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
-var snowControl = gui.add(options, 'snow').name('enable snow');
+const snowControl = gui.add(options, 'snow').name('enable snow');
 snowControl.onChange(function (value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.snow.enable = value;
