@@ -2,8 +2,11 @@ import { addAndRemoveCodes } from "./addAndRemove";
 import { addMarkerCodes } from "./addMarker";
 import { addMultiPointCodes } from "./addMultiPoint";
 import { batchAddCodes } from "./batchAdd";
+import { disableGeoEventsCodes } from "./disableGeoEvents";
+import { disableHitDetectCodes } from "./disableHitDetect";
 import { filterByPropertyCodes } from "./filterByProperty";
 import { getByIdCodes } from "./getById";
+import { getExtentCodes } from "./getExtent";
 import { setZoomBoundaryCodes } from "./setZoomBoundary";
 import { toggleVisibleCodes } from "./toggleVisible";
 
@@ -58,12 +61,21 @@ export const pointLayerList = [
   },
   {
     title: "获取所有图形的Extent",
+    html: getExtentCodes.html,
+    css: getExtentCodes.css,
+    js: getExtentCodes.js,
   },
   {
     title: "禁用图形事件",
+    html: disableGeoEventsCodes.html,
+    css: disableGeoEventsCodes.css,
+    js: disableGeoEventsCodes.js,
   },
   {
     title: "禁用鼠标样式检测",
+    html: disableHitDetectCodes.html,
+    css: disableHitDetectCodes.css,
+    js: disableHitDetectCodes.js,
   },
   {
     title: "设置图层style",
