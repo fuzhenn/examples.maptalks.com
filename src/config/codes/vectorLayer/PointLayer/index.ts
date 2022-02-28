@@ -1,15 +1,32 @@
+import { addAndRemoveCodes } from "./addAndRemove";
+import { addMarkerCodes } from "./addMarker";
+import { setZoomBoundaryCodes } from "./setZoomBoundary";
+import { toggleVisibleCodes } from "./toggleVisible";
+
 export const pointLayerList = [
   {
     title: "图层添加和移除",
+    html: addAndRemoveCodes.html,
+    css: addAndRemoveCodes.css,
+    js: addAndRemoveCodes.js,
   },
   {
     title: "隐藏显示图层",
+    html: toggleVisibleCodes.html,
+    css: toggleVisibleCodes.css,
+    js: toggleVisibleCodes.js,
   },
   {
     title: "图层最小和最大级别",
+    html: setZoomBoundaryCodes.html,
+    css: setZoomBoundaryCodes.css,
+    js: setZoomBoundaryCodes.js,
   },
   {
     title: "添加Marker",
+    html: addMarkerCodes.html,
+    css: addMarkerCodes.css,
+    js: addMarkerCodes.js,
   },
   {
     title: "添加MultiPoint",
