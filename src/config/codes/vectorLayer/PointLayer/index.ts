@@ -1,5 +1,9 @@
 import { addAndRemoveCodes } from "./addAndRemove";
 import { addMarkerCodes } from "./addMarker";
+import { addMultiPointCodes } from "./addMultiPoint";
+import { batchAddCodes } from "./batchAdd";
+import { filterByPropertyCodes } from "./filterByProperty";
+import { getByIdCodes } from "./getById";
 import { setZoomBoundaryCodes } from "./setZoomBoundary";
 import { toggleVisibleCodes } from "./toggleVisible";
 
@@ -30,15 +34,27 @@ export const pointLayerList = [
   },
   {
     title: "添加MultiPoint",
+    html: addMultiPointCodes.html,
+    css: addMultiPointCodes.css,
+    js: addMultiPointCodes.js,
   },
   {
     title: "批量添加图形",
+    html: batchAddCodes.html,
+    css: batchAddCodes.css,
+    js: batchAddCodes.js,
   },
   {
     title: "根据ID获取图形",
+    html: getByIdCodes.html,
+    css: getByIdCodes.css,
+    js: getByIdCodes.js,
   },
   {
     title: "根据属性条件筛选图形",
+    html: filterByPropertyCodes.html,
+    css: filterByPropertyCodes.css,
+    js: filterByPropertyCodes.js,
   },
   {
     title: "获取所有图形的Extent",
