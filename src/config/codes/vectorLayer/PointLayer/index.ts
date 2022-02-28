@@ -7,8 +7,16 @@ import { disableHitDetectCodes } from "./disableHitDetect";
 import { filterByPropertyCodes } from "./filterByProperty";
 import { getByIdCodes } from "./getById";
 import { getExtentCodes } from "./getExtent";
+import { imageMarkerCodes } from "./imageMarker";
+import { multiImageMarkerCodes } from "./multiImageMarker";
+import { setStyleCodes } from "./setStyle";
 import { setZoomBoundaryCodes } from "./setZoomBoundary";
+import { styleScaleCodes } from "./styleScale";
+import { svgPathMarkerCodes } from "./svgPathMarker";
 import { toggleVisibleCodes } from "./toggleVisible";
+import { vectorGradientCodes } from "./vectorGradient";
+import { vectorMarkerCodes } from "./vectorMarker";
+import { vectorPatternCodes } from "./vectorPattern";
 
 export const pointLayerList = [
   {
@@ -79,24 +87,51 @@ export const pointLayerList = [
   },
   {
     title: "设置图层style",
+    html: setStyleCodes.html,
+    css: setStyleCodes.css,
+    js: setStyleCodes.js,
   },
   {
     title: "图层数据整体放大",
+    html: styleScaleCodes.html,
+    css: styleScaleCodes.css,
+    js: styleScaleCodes.js,
   },
   {
     title: "图片标注",
+    html: imageMarkerCodes.html,
+    css: imageMarkerCodes.css,
+    js: imageMarkerCodes.js,
   },
   {
     title: "多图片标注",
+    html: multiImageMarkerCodes.html,
+    css: multiImageMarkerCodes.css,
+    js: multiImageMarkerCodes.js,
   },
   {
     title: "矢量标注",
+    html: vectorMarkerCodes.html,
+    css: vectorMarkerCodes.css,
+    js: vectorMarkerCodes.js,
   },
   {
     title: "矢量标注模式填充",
+    html: vectorPatternCodes.html,
+    css: vectorPatternCodes.css,
+    js: vectorPatternCodes.js,
+  },
+  {
+    title: "矢量标注渐变填充",
+    html: vectorGradientCodes.html,
+    css: vectorGradientCodes.css,
+    js: vectorGradientCodes.js,
   },
   {
     title: "SVG矢量标注",
+    html: svgPathMarkerCodes.html,
+    css: svgPathMarkerCodes.css,
+    js: svgPathMarkerCodes.js,
   },
   {
     title: "标注水平和垂直对齐",
