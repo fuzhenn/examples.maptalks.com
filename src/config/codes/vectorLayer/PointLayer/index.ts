@@ -3,16 +3,20 @@ import { addMarkerCodes } from "./addMarker";
 import { addMultiPointCodes } from "./addMultiPoint";
 import { batchAddCodes } from "./batchAdd";
 import { bigDataCodes } from "./bigData";
-import {collisionCodes} from "./collision"
+import { collisionCodes } from "./collision";
 import { compositeSymbolCodes } from "./compositeSymbol";
 import { disableGeoEventsCodes } from "./disableGeoEvents";
 import { disableHitDetectCodes } from "./disableHitDetect";
 import { filterByPropertyCodes } from "./filterByProperty";
+import { geojsonToGeometryCodes } from "./geojsonToGeometry";
+import {geometryJsonCodes} from "./geometryJson"
+import { geometryToGeojsonCodes } from "./geometryToGeojson";
 import { getByIdCodes } from "./getById";
 import { getExtentCodes } from "./getExtent";
-import {highlightCodes} from "./highlight"
+import { highlightCodes } from "./highlight";
 import { imageMarkerCodes } from "./imageMarker";
 import { imageTextMarkerCodes } from "./imageTextMarker";
+import { layerJsonCodes } from "./layerJson";
 import { markerEventCodes } from "./markerEvent";
 import { markerMapAlignmentCodes } from "./markerMapAlignment";
 import { markerMiddleAlignmentCodes } from "./markerMiddleAlignment";
@@ -247,14 +251,26 @@ export const pointLayerList = [
   },
   {
     title: "数据JSON序列化",
+    html: geometryJsonCodes.html,
+    css: geometryJsonCodes.css,
+    js: geometryJsonCodes.js,
   },
   {
     title: "图层JSON序列化",
+    html: layerJsonCodes.html,
+    css: layerJsonCodes.css,
+    js: layerJsonCodes.js,
   },
   {
     title: "Marker转成GeoJSON",
+    html: geometryToGeojsonCodes.html,
+    css: geometryToGeojsonCodes.css,
+    js: geometryToGeojsonCodes.js,
   },
   {
     title: "GeoJSON转成Marker",
+    html: geojsonToGeometryCodes.html,
+    css: geojsonToGeometryCodes.css,
+    js: geojsonToGeometryCodes.js,
   },
 ];
