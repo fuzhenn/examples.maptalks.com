@@ -52,7 +52,7 @@ loopController.onChange(function (value) {
 });
 const animationListControl = gui.add(options, 'animationList', ['Survey', 'Walk', 'Run']).name('animation list');
 animationListControl.onChange(function(value) {
-    gltfmrker.setCurrentAnimation(value);
+    gltfmarker.setCurrentAnimation(value);
 });
 `;
 
