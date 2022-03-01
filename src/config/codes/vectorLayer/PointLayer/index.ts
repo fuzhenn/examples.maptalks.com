@@ -2,14 +2,17 @@ import { addAndRemoveCodes } from "./addAndRemove";
 import { addMarkerCodes } from "./addMarker";
 import { addMultiPointCodes } from "./addMultiPoint";
 import { batchAddCodes } from "./batchAdd";
+import { compositeSymbolCodes } from "./compositeSymbol";
 import { disableGeoEventsCodes } from "./disableGeoEvents";
 import { disableHitDetectCodes } from "./disableHitDetect";
 import { filterByPropertyCodes } from "./filterByProperty";
 import { getByIdCodes } from "./getById";
 import { getExtentCodes } from "./getExtent";
 import { imageMarkerCodes } from "./imageMarker";
+import { imageTextMarkerCodes } from "./imageTextMarker";
 import { markerMapAlignmentCodes } from "./markerMapAlignment";
 import { markerMiddleAlignmentCodes } from "./markerMiddleAlignment";
+import { markerTextFitCodes } from "./markerTextFit";
 import { multiImageMarkerCodes } from "./multiImageMarker";
 import { rotateMarkerCodes } from "./rotateMarker";
 import { rotateTextCodes } from "./rotateText";
@@ -18,6 +21,7 @@ import { setZoomBoundaryCodes } from "./setZoomBoundary";
 import { styleScaleCodes } from "./styleScale";
 import { svgPathMarkerCodes } from "./svgPathMarker";
 import { toggleVisibleCodes } from "./toggleVisible";
+import {updateSymbolCodes} from "./updateSymbol"
 import { vectorGradientCodes } from "./vectorGradient";
 import { vectorMarkerCodes } from "./vectorMarker";
 import { vectorPatternCodes } from "./vectorPattern";
@@ -163,15 +167,27 @@ export const pointLayerList = [
   },
   {
     title: "带文字的图片标注",
+    html: imageTextMarkerCodes.html,
+    css: imageTextMarkerCodes.css,
+    js: imageTextMarkerCodes.js,
   },
   {
     title: "图标尺寸自动适应文字",
+    html: markerTextFitCodes.html,
+    css: markerTextFitCodes.css,
+    js: markerTextFitCodes.js,
   },
   {
     title: "组合样式",
+    html: compositeSymbolCodes.html,
+    css: compositeSymbolCodes.css,
+    js: compositeSymbolCodes.js,
   },
   {
     title: "样式的部分更新",
+    html: updateSymbolCodes.html,
+    css: updateSymbolCodes.css,
+    js: updateSymbolCodes.js,
   },
   {
     title: "根据zoom设置样式",
