@@ -2,18 +2,23 @@ import { addAndRemoveCodes } from "./addAndRemove";
 import { addMarkerCodes } from "./addMarker";
 import { addMultiPointCodes } from "./addMultiPoint";
 import { batchAddCodes } from "./batchAdd";
+import { bigDataCodes } from "./bigData";
+import {collisionCodes} from "./collision"
 import { compositeSymbolCodes } from "./compositeSymbol";
 import { disableGeoEventsCodes } from "./disableGeoEvents";
 import { disableHitDetectCodes } from "./disableHitDetect";
 import { filterByPropertyCodes } from "./filterByProperty";
 import { getByIdCodes } from "./getById";
 import { getExtentCodes } from "./getExtent";
+import {highlightCodes} from "./highlight"
 import { imageMarkerCodes } from "./imageMarker";
 import { imageTextMarkerCodes } from "./imageTextMarker";
+import { markerEventCodes } from "./markerEvent";
 import { markerMapAlignmentCodes } from "./markerMapAlignment";
 import { markerMiddleAlignmentCodes } from "./markerMiddleAlignment";
 import { markerTextFitCodes } from "./markerTextFit";
-import {mouseIdentifyCodes} from "./mouseIdentify"
+import { mouseHighlightCodes } from "./mouseHighlight";
+import { mouseIdentifyCodes } from "./mouseIdentify";
 import { multiImageMarkerCodes } from "./multiImageMarker";
 import { rotateMarkerCodes } from "./rotateMarker";
 import { rotateTextCodes } from "./rotateText";
@@ -206,6 +211,9 @@ export const pointLayerList = [
   },
   {
     title: "海量点标注性能",
+    html: bigDataCodes.html,
+    css: bigDataCodes.css,
+    js: bigDataCodes.js,
   },
   {
     title: "鼠标点选数据",
@@ -215,15 +223,27 @@ export const pointLayerList = [
   },
   {
     title: "鼠标悬停高亮数据",
+    html: mouseHighlightCodes.html,
+    css: mouseHighlightCodes.css,
+    js: mouseHighlightCodes.js,
   },
   {
     title: "监听Marker事件",
+    html: markerEventCodes.html,
+    css: markerEventCodes.css,
+    js: markerEventCodes.js,
   },
   {
     title: "碰撞检测",
+    html: collisionCodes.html,
+    css: collisionCodes.css,
+    js: collisionCodes.js,
   },
   {
     title: "数据高亮",
+    html: highlightCodes.html,
+    css: highlightCodes.css,
+    js: highlightCodes.js,
   },
   {
     title: "数据JSON序列化",
