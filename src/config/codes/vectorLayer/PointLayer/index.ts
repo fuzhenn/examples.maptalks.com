@@ -8,7 +8,11 @@ import { filterByPropertyCodes } from "./filterByProperty";
 import { getByIdCodes } from "./getById";
 import { getExtentCodes } from "./getExtent";
 import { imageMarkerCodes } from "./imageMarker";
+import { markerMapAlignmentCodes } from "./markerMapAlignment";
+import { markerMiddleAlignmentCodes } from "./markerMiddleAlignment";
 import { multiImageMarkerCodes } from "./multiImageMarker";
+import { rotateMarkerCodes } from "./rotateMarker";
+import { rotateTextCodes } from "./rotateText";
 import { setStyleCodes } from "./setStyle";
 import { setZoomBoundaryCodes } from "./setZoomBoundary";
 import { styleScaleCodes } from "./styleScale";
@@ -135,15 +139,27 @@ export const pointLayerList = [
   },
   {
     title: "标注水平和垂直对齐",
+    html: markerMiddleAlignmentCodes.html,
+    css: markerMiddleAlignmentCodes.css,
+    js: markerMiddleAlignmentCodes.js,
   },
   {
     title: "旋转对齐与倾斜对齐",
+    html: markerMapAlignmentCodes.html,
+    css: markerMapAlignmentCodes.css,
+    js: markerMapAlignmentCodes.js,
   },
   {
     title: "旋转标注",
+    html: rotateMarkerCodes.html,
+    css: rotateMarkerCodes.css,
+    js: rotateMarkerCodes.js,
   },
   {
     title: "旋转文字标注",
+    html: rotateTextCodes.html,
+    css: rotateTextCodes.css,
+    js: rotateTextCodes.js,
   },
   {
     title: "带文字的图片标注",
