@@ -13,6 +13,7 @@ import { imageTextMarkerCodes } from "./imageTextMarker";
 import { markerMapAlignmentCodes } from "./markerMapAlignment";
 import { markerMiddleAlignmentCodes } from "./markerMiddleAlignment";
 import { markerTextFitCodes } from "./markerTextFit";
+import {mouseIdentifyCodes} from "./mouseIdentify"
 import { multiImageMarkerCodes } from "./multiImageMarker";
 import { rotateMarkerCodes } from "./rotateMarker";
 import { rotateTextCodes } from "./rotateText";
@@ -20,8 +21,10 @@ import { setStyleCodes } from "./setStyle";
 import { setZoomBoundaryCodes } from "./setZoomBoundary";
 import { styleScaleCodes } from "./styleScale";
 import { svgPathMarkerCodes } from "./svgPathMarker";
+import { symbolByPropCodes } from "./symbolByProp";
+import { symbolByZoomCodes } from "./symbolByZoom";
 import { toggleVisibleCodes } from "./toggleVisible";
-import {updateSymbolCodes} from "./updateSymbol"
+import { updateSymbolCodes } from "./updateSymbol";
 import { vectorGradientCodes } from "./vectorGradient";
 import { vectorMarkerCodes } from "./vectorMarker";
 import { vectorPatternCodes } from "./vectorPattern";
@@ -191,15 +194,24 @@ export const pointLayerList = [
   },
   {
     title: "根据zoom设置样式",
+    html: symbolByZoomCodes.html,
+    css: symbolByZoomCodes.css,
+    js: symbolByZoomCodes.js,
   },
   {
     title: "根据属性数据设置样式",
+    html: symbolByPropCodes.html,
+    css: symbolByPropCodes.css,
+    js: symbolByPropCodes.js,
   },
   {
     title: "海量点标注性能",
   },
   {
     title: "鼠标点选数据",
+    html: mouseIdentifyCodes.html,
+    css: mouseIdentifyCodes.css,
+    js: mouseIdentifyCodes.js,
   },
   {
     title: "鼠标悬停高亮数据",

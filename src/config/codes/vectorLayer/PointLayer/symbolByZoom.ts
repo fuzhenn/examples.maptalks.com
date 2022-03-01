@@ -1,5 +1,5 @@
 const htmlCode = `<div id="map" class="container"></div>
-<div class="pane"><a href="javascript:updateFill();">Update fill</a></div>`;
+<div class="pane">Size changes with zoom</div>`;
 
 const cssCode = `html,
 body {
@@ -21,16 +21,6 @@ body {
   position: absolute;
   top: 20px;
   right: 20px
-}
-
-.pane a {
-  display: block;
-  color: #fff;
-  text-align: left;
-  padding: 0 10px;
-  min-width: 28px;
-  min-height: 28px;
-  float: left
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {
@@ -50,26 +40,31 @@ const point = new maptalks.PointLayer('point');
 const marker = new maptalks.Marker(
   [-0.113049, 51.49856],
   {
-    symbol: {
-      markerType: 'ellipse',
-      markerFill: 'rgb(135,196,240)',
-      markerWidth: 130,
-      markerHeight: 130,
-      markerLineWidth: 0
-    }
+    symbol: [
+      {
+        markerType: 'ellipse',
+        markerWidth: { stops: [[7, 5], [14, 200]] },
+        markerHeight: { stops: [[7, 5], [14, 200]] },
+        markerFill: '#18987f',
+        markerFillOpacity: 0.6,
+        markerLineColor: '#34495e',
+        markerLineWidth: 5
+      },
+      {
+        textFaceName: 'sans-serif',
+        textName: 'MapTalks',
+        textFill: '#fff',
+        textSize: { stops: [[7, 2], [14, 30]] },
+        textDy: -100,
+      }
+    ]
   }
 ).addTo(point);
-
-function updateFill() {
-  marker.updateSymbol({
-    markerFill: 'rgb(216,115,149)'
-  });
-}
     
 const groupLayer = new maptalks.GroupGLLayer('group', [point]);
 groupLayer.addTo(map);`;
 
-export const updateSymbolCodes = {
+export const symbolByZoomCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,
