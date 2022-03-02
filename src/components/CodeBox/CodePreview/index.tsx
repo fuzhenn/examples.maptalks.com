@@ -1,13 +1,11 @@
 import { IFrame } from "./style";
 import { observer } from "mobx-react-lite";
-import { useRef } from "react";
 import { useStore } from "@/store";
 
 function CodePreview() {
   const store = useStore();
-  const iframeRef = useRef<HTMLIFrameElement>();
 
-  const initial = `<!DOCTYPE html>
+  const doc = `<!DOCTYPE html>
   <html>
   <head>
   <style type="text/css">
@@ -32,7 +30,7 @@ function CodePreview() {
   </body>
   </html>`;
 
-  return <IFrame ref={iframeRef} initialContent={initial}></IFrame>;
+  return <IFrame sandbox="allow-scripts" srcDoc={doc} />;
 }
 
 export default observer(CodePreview);

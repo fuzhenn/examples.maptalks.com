@@ -1,7 +1,6 @@
-import Frame from "react-frame-component";
 import styled from "styled-components";
 
-const IFrame = styled(Frame)`
+const IFrame = styled.iframe`
   flex: 1;
   height: 100%;
 `;
