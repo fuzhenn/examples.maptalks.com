@@ -33,7 +33,7 @@ function CodePreview() {
   </body>
   </html>`;
 
-  return <IFrame sandbox="allow-scripts" srcDoc={doc} />;
+  return <IFrame sandbox="allow-scripts allow-same-origin" srcDoc={doc} />;
 }
 
 export default observer(CodePreview);
