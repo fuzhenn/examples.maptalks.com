@@ -49,7 +49,7 @@ for (let i = 0; i < 3; i++) {
 gltflayer.addGeometry(markers);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
-document.getElementById("clear").onclick = functionr() {
+document.getElementById("clear").onclick = function() {
     gltflayer.clear();
 }
 `;
