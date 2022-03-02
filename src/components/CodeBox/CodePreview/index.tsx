@@ -23,6 +23,9 @@ function CodePreview() {
   ${store.htmlCode}
   <script>
   window.onerror=(message, source, lineno, colno, error) => {
+    if (message.includes("ResizeObserver")) {
+      return;
+    }
     document.body.innerHTML = "<div>" + message +  "</div>"
   }
   ${store.jsCode}
