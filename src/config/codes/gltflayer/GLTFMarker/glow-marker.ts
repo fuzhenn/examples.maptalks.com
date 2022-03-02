@@ -16,18 +16,14 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url = '/resources/gltf/Duck/Duck.glb';
-const symbol = {
-    url: url
-};
-
+sceneConfig.shadow.enable = false;
+map.setZoom(18);
 const position = map.getCenter();
 const glowlayer = new maptalks.GlowMarkerLayer('glow');
 new maptalks.GlowMarker(position, {
     symbol : {
         animation: true,
         bloom: false,
-        rotation: [90, 0, 0],
         uniforms: {
             'radius' : 1.0,
             'color' : [1.0, 0.0, 0.0],

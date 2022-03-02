@@ -21,9 +21,13 @@ const gui = new dat.GUI({ width: 250 });
 const Config = function () {
     this.weather = true;
     this.rain = false;
-    this.rainDensity = 2000;
+    this.rainTexture = 'rain1';
     this.windDirectionX = 0;
     this.windDirectionY = 0;
+};
+const textureMap = {
+    rain1: './resources/images/rain1.png',
+    rain2: './resources/images/rain2.png'
 };
 const options = new Config();
 const weather = {
@@ -36,10 +40,10 @@ const weather = {
     },
     rain: {
         enable: options.rain,
-        density: options.rainDensity,
+        density: 2000,
         windDirectionX: options.windDirectionX,
         windDirectionY: options.windDirectionY,
-        rainTexture: './resources/images/rain.png'
+        rainTexture: textureMap.rain1
     }
 };
 sceneConfig.weather = weather;
@@ -67,10 +71,12 @@ rainControl.onChange(function (value) {
     groupgllayer.setSceneConfig(sceneConfig);
 });
 
-const rainDensityController = gui.add(options, "rainDensity", 500, 10000).name('rain density');
-rainDensityController.onFinishChange(function (value) {
+
+const rainTextureListControl = gui.add(options, 'rainTexture', ['rain1', 'rain2']).name('rain texture list'); 
+rainTextureListControl.onChange(function(value) {
     const sceneConfig = groupgllayer.getSceneConfig();
-    sceneConfig.weather.rain.density = value;
+    sceneConfig.weather.rain.rainTexture = textureMap[value];
+    console.log(sceneConfig.weather.rain);
     groupgllayer.setSceneConfig(sceneConfig);
 });
 
