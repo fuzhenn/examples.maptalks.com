@@ -2,7 +2,7 @@ import { Tabs } from "antd";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 55%;
+  width: 45%;
   height: 100%;
   .cm-theme-dark {
     height: 100%;

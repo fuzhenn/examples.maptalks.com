@@ -25,7 +25,7 @@ const vt = new maptalks.VectorTileLayer('vt', {
 const style = {
   style: [
     {
-      filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+      filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
       renderPlugin: {
         dataConfig: {
           type: 'fill',
@@ -41,7 +41,7 @@ const style = {
       },
     },
     {
-        filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+        filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
         renderPlugin: {
           dataConfig: {
             type: 'fill',
