@@ -17,8 +17,8 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url1 = '/resources/gltf/Duck/Duck.glb';
-const url2 = '/resources/gltf/aatrox/scene.gltf';
+const url1 = '/resources/gltf/alien/alien.glb';
+const url2 = '/resources/gltf/vibut_the_robot/scene.gltf';
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();

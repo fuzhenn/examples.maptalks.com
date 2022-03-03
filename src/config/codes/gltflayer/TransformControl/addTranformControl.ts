@@ -17,7 +17,7 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     url: url
 };

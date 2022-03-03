@@ -28,7 +28,7 @@ input {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url1 = '/resources/gltf/Duck/Duck.glb';
+const url1 = '/resources/gltf/alien/alien.glb';
 const url2 = '/resources/gltf/cube-animation/cube.gltf';
 
 const gltflayer = new maptalks.GLTFLayer('gltf');

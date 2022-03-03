@@ -21,9 +21,9 @@ const Config = function () {
     this.setSymbol = false;
 };
 const options = new Config();
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: '/resources/gltf/Duck/Duck.glb',
+    url: '/resources/gltf/alien/alien.glb',
     rotation: [0, 0, 0],
     uniforms: {
         'polygonFill': [0.8, 0.0, 0.0, 1.0]

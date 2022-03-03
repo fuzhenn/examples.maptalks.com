@@ -56,7 +56,7 @@ const config =  {
 };
 maptalks.GLTFLayer.registerShader('customShader', 'MeshShader', config);
 
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     shader: "customShader",
     url: url,

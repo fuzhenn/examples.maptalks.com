@@ -22,7 +22,7 @@ const Config = function () {
     this.loop = true;
 };
 const options = new Config();
-const url = '/resources/gltf/aatrox/scene.gltf';
+const url = '/resources/gltf/vibut_the_robot/scene.gltf';
 const symbol = {
     url: url,
     shadow: true,

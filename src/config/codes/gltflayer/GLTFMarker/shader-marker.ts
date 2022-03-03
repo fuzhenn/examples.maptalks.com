@@ -21,7 +21,7 @@ const Config = function () {
     this.shaderList = 'pbr';
 };
 const options = new Config();
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     shader: options.shaderList,
     url: url

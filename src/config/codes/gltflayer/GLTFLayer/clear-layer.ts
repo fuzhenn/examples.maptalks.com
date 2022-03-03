@@ -22,7 +22,7 @@ const jsCode = `const map = new maptalks.Map('map', {
       attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
   })
 });
-const url = '/resource/gltf/Duck/Duck.glb';
+const url = '/resource/gltf/alien/alien.glb';
 const symbol = {
   url: url,
   rotation: [90, 0, 0],

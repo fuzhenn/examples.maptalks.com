@@ -25,6 +25,7 @@ const Config = function () {
     this.windDirectionX = 0;
     this.windDirectionY = 0;
 };
+map.getBaseLayer().hide();
 const textureMap = {
     rain1: './resources/images/rain1.png',
     rain2: './resources/images/rain2.png'
@@ -33,7 +34,6 @@ const options = new Config();
 const weather = {
     enable: options.weather,
     fog: {
-        enable: true,
         start: 0.1,
         end: 100,
         color: [0.9, 0.9, 0.9]

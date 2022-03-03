@@ -20,7 +20,7 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url = '/resources/gltf/aatrox/scene.gltf';
+const url = '/resources/gltf/vibut_the_robot/scene.gltf';
 const symbol = {
     url: url,
     animation: true,

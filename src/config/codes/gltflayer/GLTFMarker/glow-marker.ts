@@ -26,7 +26,7 @@ new maptalks.GlowMarker(position, {
         bloom: false,
         uniforms: {
             'radius' : 1.0,
-            'color' : [1.0, 0.0, 0.0],
+            'color' : [0.867, 0.99, 1.0],
             'speed' : 5.0
         }
     }

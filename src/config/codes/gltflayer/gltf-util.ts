@@ -1,7 +1,8 @@
 const map = `const map = new maptalks.Map('map', {
-    center: [-0.113049,51.498568],
-    zoom: 14,
-    pitch: 75,
+    center: [-74.01930247561234, 40.708597936066184],
+    zoom: 17.739089451843377,
+    "bearing": -173.3999999999985,
+    "pitch": 80,
     lights: {
         ambient: {
             resource: {
@@ -13,7 +14,7 @@ const map = `const map = new maptalks.Map('map', {
       directional: {
           color: [1, 1, 1],
           lightColorIntensity: 5000,
-          direction: [-1, -1, -1]
+          direction: [1, -0.4, -1]
       }
     },
     baseLayer: new maptalks.TileLayer('base', {
@@ -81,21 +82,84 @@ const sceneConfig = `const sceneConfig = {
                 ]
             }
         },
-    "ground": {
-        "enable": true,
-        "renderPlugin": {
-            "type": "fill"
-        },
-        "symbol": {
-            "polygonFill": [
-                0.3,
-                0.3,
-                0.3,
-                0.8,
-            ],
-            "polygonOpacity": 0.8,
+        "ground": {
+            "enable": true,
+            "renderPlugin": {
+              "type": "lit"
+            },
+            "symbol": {
+              "polygonFill": [
+                0.54,
+                0.54,
+                0.54,
+                1
+              ],
+              "polygonOpacity": 1,
+              "ssr": false,
+              "material": {
+                "baseColorTexture": null,
+                "baseColorFactor": [
+                  0.4823529411764706,
+                  0.4823529411764706,
+                  0.4823529411764706,
+                  1
+                ],
+                "hsv": [
+                  0,
+                  0,
+                  -0.532
+                ],
+                "baseColorIntensity": 1,
+                "contrast": 1,
+                "outputSRGB": 1,
+                "metallicRoughnessTexture": null,
+                "roughnessFactor": 0.22,
+                "metallicFactor": 0.58,
+                "normalTexture": null,
+                "uvScale": [
+                  1,
+                  1
+                ],
+                "uvOffset": [
+                  0,
+                  0
+                ],
+                "uvRotation": 0,
+                "uvOffsetAnim": [
+                  0,
+                  0
+                ],
+                "normalMapFactor": 1,
+                "normalMapFlipY": 0,
+                "clearCoatThickness": 5,
+                "clearCoatFactor": 0,
+                "clearCoatIor": 1.4,
+                "clearCoatRoughnessFactor": 0.04,
+                "occlusionTexture": null,
+                "emissiveTexture": null,
+                "emissiveFactor": [
+                  0,
+                  0,
+                  0
+                ],
+                "emitColorFactor": 1,
+                "emitMultiplicative": 0,
+                "bumpTexture": null,
+                "albedoPBRFactor": 3.24,
+                "outputLinear": 0,
+                "clearCoatF0": 0.04,
+                "emitColor": [
+                  1,
+                  1,
+                  1
+                ],
+                "bumpScale": 0.02
+              }
+            },
+            "extras": {
+              "currentMaterial": "59bd64ef-4685-45d3-b993-5aaa417d3207"
+            }
         }
-    }
 };`;
 
 export { map, sceneConfig };

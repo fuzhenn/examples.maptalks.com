@@ -22,7 +22,7 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-const url = '/resources/gltf/Duck/Duck.glb';
+const url = '/resources/gltf/alien/alien.glb';
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
