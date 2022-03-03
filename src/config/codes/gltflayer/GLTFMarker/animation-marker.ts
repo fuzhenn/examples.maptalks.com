@@ -13,8 +13,10 @@ body {
     height: 100%;
 }`;
 
+const mapCode = map.replace('bearing:180', 'bearing: 0');
+
 const jsCode = `
-${map}
+${mapCode}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
