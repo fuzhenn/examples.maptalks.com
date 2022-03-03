@@ -50,15 +50,14 @@ const style = {
         textHaloRadius: 0,
         textHorizontalAlignment: 'middle',
         textIgnorePlacement: false,
-        textName: 'maptalks',
+        textName: 'MapTalks',
         textOpacity: 1,
         textPitchAlignment: 'viewport',
-        textPlacement: 'point', //可被改成line
+        textPlacement: 'point', // 可被改成line
         textRotation: 0,
         textRotationAlignment: 'viewport',
         textSize: {
-          type: 'interval',
-          stops: [[16, 30], [18, 60]]
+          stops: [[16, 15], [18, 60]]
         },
         textSpacing: 250,
         textStyle: 'normal',

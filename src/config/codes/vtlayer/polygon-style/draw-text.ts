@@ -71,7 +71,7 @@ const style = {
         textPlacement: 'point',
         textRotation: 0,
         textRotationAlignment: 'viewport',
-        textSize: 30,
+        textSize: 15,
         textSpacing: 250,
         textStyle: 'normal',
         textVerticalAlignment: 'middle',

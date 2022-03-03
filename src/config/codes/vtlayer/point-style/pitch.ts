@@ -46,8 +46,8 @@ const style = {
           markerFile: null,
           markerFill: [0.53, 0.77, 0.94, 1],
           markerFillOpacity: 1,
-          markerHeight: 20,
-          markerWidth: 20,
+          markerHeight: 80,
+          markerWidth: 80,
           markerHorizontalAlignment: 'middle',
           markerIgnorePlacement: false,
           markerLineColor: [0.2, 0.29, 0.39, 1],
@@ -61,6 +61,8 @@ const style = {
           markerSpacing: 0,
           markerType: 'ellipse',
           markerVerticalAlignment: 'middle',
+          textName: "MapTalks",
+          textSize: 15,
         }
       ]      
     }

@@ -46,8 +46,8 @@ const style = {
           markerFile: null,
           markerFill: [0.53, 0.77, 0.94, 1],
           markerFillOpacity: 1,
-          markerHeight: 20,
-          markerWidth: 20,
+          markerHeight: 30,
+          markerWidth: 30,
           markerHorizontalAlignment: 'middle',
           markerIgnorePlacement: false,
           markerLineColor: [0.2, 0.29, 0.39, 1],
@@ -60,7 +60,9 @@ const style = {
           markerRotationAlignment: 'map',
           markerSpacing: 0,
           markerType: 'pin',
-          markerVerticalAlignment: 'middle',
+          markerVerticalAlignment: 'bottom',
+          textName: "MapTalks",
+          textSize: 15,
         }
       ]      
     }
