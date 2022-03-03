@@ -39,7 +39,7 @@ const skylineAnalysis = new maptalksgl.SkylineAnalysis({
     lineColor: [1.0, 0.2, 0.0],
     lineWidth: 1
 });
-skylineAnalysis.addTo(groupgllayer);
+skylineAnalysis.addTo(groupGLLayer);
 `;
 
 export const skylineAnalysisCodes = {

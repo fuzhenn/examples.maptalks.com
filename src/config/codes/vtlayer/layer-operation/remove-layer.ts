@@ -47,7 +47,9 @@ const vt = new maptalks.VectorTileLayer('vt', {
   spatialReference: 'preset-vt-3857',
 });
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
+const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
+
+const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
 groupLayer.addTo(map);
 
 function removeLayer() {

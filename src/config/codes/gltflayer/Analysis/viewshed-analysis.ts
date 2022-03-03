@@ -30,7 +30,7 @@ map.setCenter([0, 0]);
 const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
-    scale: [5, 5, 5]
+    scale: [8, 8, 8]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
@@ -52,7 +52,7 @@ const viewshedAnalysis = new maptalksgl.ViewshedAnalysis({
     verticalAngle,
     horizonAngle
 });
-viewshedAnalysis.addTo(groupgllayer);
+viewshedAnalysis.addTo(groupGLLayer);
 
 const verticalAngleController = gui.add(options, 'verticalAngle', 0, 90);
 verticalAngleController.onChange(function (value) {

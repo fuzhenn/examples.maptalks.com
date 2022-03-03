@@ -18,14 +18,14 @@ ${map}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
-    this.waterHeight = 5;
+    this.waterHeight = 10;
     this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
 };
 const options = new Config();
 const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
-    scale: [5, 5, 5]
+    scale: [15, 15, 15]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
@@ -41,7 +41,7 @@ const floodAnalysis = new maptalksgl.FloodAnalysis({
     waterHeight: options.waterHeight,
     waterColor: [0.1, 0.5, 0.6]
 });
-floodAnalysis.addTo(groupgllayer);
+floodAnalysis.addTo(groupGLLayer);
 
 const waterHeightController = gui.add(options, 'waterHeight', 0, 20);
 waterHeightController.onChange(function (value) {
