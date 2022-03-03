@@ -1,7 +1,7 @@
-const htmlCode = `<div class="content">
-  <button id="highLightBtn">点击高亮所有数据</button>
-  <button id="cancelBtn">点击取消高亮</button>
-  <div id="map" class="container"></div>
+const htmlCode = `<div id="map" class="container"></div>
+<div class="pane">
+  <a href="javascript:highlightAll();">hightlight all</a>
+  <a href="javascript:cancel();">cancel hightlight</a>
 </div>`;
 
 const cssCode = `html,
@@ -16,47 +16,59 @@ body {
   height: 100%;
 }
 
-.content {
-  width: 100%;
-  height: 100%;
+.pane {
+  line-height: 25px;
+  z-index: 10;
+  position: absolute;
+  top: 20px;
+  right: 20px
 }
-`;
+  
+.pane a {
+  display: block;
+  text-align: left;
+  padding: 0 10px;
+  margin-left: 6px;
+  min-width: 28px;
+  min-height: 25px;
+  float: left;
+  color: #000;
+  background: #efefef;
+  border: 1px solid #000;
+  text-decoration: none;
+}`;
 
-const jsCode = `const map = new maptalks.Map('map', {
+const jsCode = `const map = new maptalks.Map("map", {
   center: [-74.00912099912109, 40.71107610933129],
   zoom: 16,
 });
     
-const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
-  spatialReference: 'preset-vt-3857',
+const vt = new maptalks.VectorTileLayer("vt", {
+  urlTemplate: "http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt",
+  spatialReference: "preset-vt-3857",
 });
   
 const style = {
   style: [
     {
-      filter : [
-        'all',
-        ['==', '$layer', 'internal-road'],
-        ['==', '$type', 'LineString'],
-      ],
+      filter: ["all", ["==", "$layer", "internal-road"], ["==", "$type", "LineString"]],
       renderPlugin: {
         dataConfig: {
-          type: 'line',
+          type: "line",
         },
         sceneConfig: {},
-        type: 'line',
+        type: "line",
       },
       symbol: {
         lineBloom: false,
-        lineCap: 'butt',
-        lineColor: '#34495e',
+        lineCap: "butt",
+        lineColor: "#212922",
         lineDasharray: [0, 0, 0, 0],
         lineDashColor: [1, 1, 1, 0],
         lineDx: 0,
         lineDy: 0,
         lineGapWidth: 0,
-        lineJoin: 'miter',
+        lineJoin: "miter",
         lineOpacity: 1,
         linePatternAnimSpeed: 0,
         linePatternFile: null,
@@ -67,26 +79,54 @@ const style = {
       },
     },
     {
-      filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+      filter : ["all", ["==", "$layer", "building"], ["==", "$type", "Polygon"]],
       renderPlugin: {
         dataConfig: {
-          type: 'fill',
+          type: "fill",
         },
         sceneConfig: {},
-        type: 'fill',
+        type: "fill",
       },
       symbol: {
         polygonBloom: false,
-        polygonFill: 'rgb(135, 196, 240)',
+        polygonFill: "#2e7e57",
         polygonOpacity: 1,
         polygonPatternFile: null,
       },
-    }
+    },
+    {
+      filter : ["all", ["==", "$layer", "building"], ["==", "$type", "Polygon"]],
+      renderPlugin: {
+        dataConfig: {
+          type: "line",
+        },
+        sceneConfig: {},
+        type: "line",
+      },
+      symbol: {
+        lineBloom: false,
+        lineCap: "butt",
+        lineColor: "#bababa",
+        lineDasharray: [0, 0, 0, 0],
+        lineDashColor: [1, 1, 1, 0],
+        lineDx: 0,
+        lineDy: 0,
+        lineGapWidth: 0,
+        lineJoin: "miter",
+        lineOpacity: 1,
+        linePatternAnimSpeed: 0,
+        linePatternFile: null,
+        lineStrokeWidth: 0,
+        lineStrokeColor: [0, 0, 0, 0],
+        lineJoinPatternMode: 0,
+        lineWidth: 3,
+      },
+    },
   ]
 };
 vt.setStyle(style);
     
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {
+const groupLayer = new maptalks.GroupGLLayer("group", [vt], {
     // 需要先开启后处理中的outline属性
   sceneConfig:{
     postProcess: {
@@ -125,9 +165,9 @@ const groupLayer = new maptalks.GroupGLLayer('group', [vt], {
     },
     ground: {
       enable: true,
-      renderPlugin: { type: 'fill' },
+      renderPlugin: { type: "fill" },
       symbol: {
-        polygonFill: [0.54, 0.54, 0.54, 1],
+        polygonFill: [0.2666667, 0.2666667, 0.2666667, 1],
         polygonOpacity: 1,
       },
     },
@@ -135,14 +175,13 @@ const groupLayer = new maptalks.GroupGLLayer('group', [vt], {
 });
 groupLayer.addTo(map);
 
-const highLightBtn = document.getElementById("highLightBtn");
-highLightBtn.addEventListener('click', () => {
+function highlightAll() {
   vt.outlineAll();
-})
-const cancelBtn = document.getElementById("cancelBtn");
-cancelBtn.addEventListener('click', () => {
+}
+
+function cancel() {
   vt.cancelOutline();
-})`;
+}`;
 
 export const highlightAllDataCodes = {
   html: htmlCode,

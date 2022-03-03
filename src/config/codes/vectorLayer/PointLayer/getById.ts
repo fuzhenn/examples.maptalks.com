@@ -1,7 +1,7 @@
-const htmlCode = `<div class="content">
-  <button id="get100Btn">Get Id of 100</button>
-  <button id="get200Btn">Get Id of 200</button>
-  <div id="map" class="container"></div>
+const htmlCode = `<div id="map" class="container"></div>
+<div class="pane">
+  <a href="javascript:get100();">Get Id of 100</a>
+  <a href="javascript:get200();">Get Id of 200</a>
 </div>`;
 
 const cssCode = `html,
@@ -16,9 +16,26 @@ body {
   height: 100%;
 }
 
-.content {
-  width: 100%;
-  height: 100%;
+.pane {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  line-height: 25px;
+  z-index: 10;
+}
+  
+.pane a {
+  display: block;
+  float: left;
+  text-align: left;
+  margin-left: 6px;
+  padding: 0 10px;
+  min-width: 28px;
+  min-height: 25px;
+  color: #000;
+  text-decoration: none;
+  background: #efefef;
+  border: 1px solid #000;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {
@@ -96,20 +113,19 @@ point.addGeometry([marker1, marker2, marker3])
 const groupLayer = new maptalks.GroupGLLayer('group', [point]);
 groupLayer.addTo(map);
 
-const get100Btn = document.getElementById("get100Btn");
-const get200Btn = document.getElementById("get200Btn");
-get100Btn.addEventListener("click", () => {
+function get100() {
   const marker =  point.getGeometryById(100);
   marker.updateSymbol({
     markerFill: '#f00'
   });
-});
-get200Btn.addEventListener("click", () => {
+}
+
+function get200() {
   const marker =  point.getGeometryById(200);
   marker.updateSymbol({
     markerFill: '#f00'
   });
-});`;
+}`;
 
 export const getByIdCodes = {
   html: htmlCode,
