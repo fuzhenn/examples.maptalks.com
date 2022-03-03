@@ -127,7 +127,7 @@ const style = {
 vt.setStyle(style);
     
 const groupLayer = new maptalks.GroupGLLayer("group", [vt], {
-    // 需要先开启后处理中的outline属性
+  // 需要先开启后处理中的outline属性
   sceneConfig:{
     postProcess: {
       enable: true,
