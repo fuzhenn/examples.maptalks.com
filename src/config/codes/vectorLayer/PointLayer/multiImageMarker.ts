@@ -24,15 +24,21 @@ const marker = new maptalks.Marker(
   {
     symbol: [
       {
-        markerFile: '/resources/textures/figure.jpg',
+        markerFile: '/resources/images/base.jpg',
         markerWidth: 40,
         markerHeight: 40,
         markerDx: 0,
         markerDy: 0,
-        markerOpacity: 1
+        markerOpacity: 1,
+        markerHorizontalAlignment: 'middle',
+        markerVerticalAlignment: 'middle',
       },
       {
-        markerFile: '/resources/textures/grain.jpg',
+        markerFile: '/resources/images/flower.jpg',
+        markerWidth: 25,
+        markerHeight: 25,
+        markerHorizontalAlignment: 'middle',
+        markerVerticalAlignment: 'middle',
       }
     ]
   }

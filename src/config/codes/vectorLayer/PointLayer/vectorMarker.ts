@@ -24,9 +24,9 @@ const marker = new maptalks.Marker(
   {
     symbol: {
       markerType: 'ellipse',
-      markerFill: 'rgb(135,196,240)',
+      markerFill: '#22be9e',
       markerFillOpacity: 1,
-      markerLineColor: '#34495e',
+      markerLineColor: '#fff',
       markerLineWidth: 3,
       markerLineOpacity: 1,
       markerLineDasharray:[],

@@ -23,7 +23,7 @@ const marker = new maptalks.Marker(
   [-74.00912099912109, 40.71107610933129],
   {
     symbol: {
-      markerFile: '/resources/textures/figure.jpg',
+      markerFile: '/resources/images/base.jpg',
       markerWidth: 40,
       markerHeight: 40,
       markerDx: 0,
