@@ -19,23 +19,25 @@ body {
 }
 
 .pane {
-  background: #34495e;
-  line-height: 28px;
-  color: #fff;
-  z-index: 10;
   position: absolute;
   top: 20px;
-  right: 20px
+  right: 20px;
+  line-height: 25px;
+  z-index: 10;
 }
-
+  
 .pane a {
   display: block;
-  color: #fff;
+  float: left;
   text-align: left;
+  margin-left: 6px;
   padding: 0 10px;
   min-width: 28px;
-  min-height: 28px;
-  float: left
+  min-height: 25px;
+  color: #000;
+  text-decoration: none;
+  background: #efefef;
+  border: 1px solid #000;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {

@@ -1,4 +1,5 @@
 import { map, sceneConfig } from '../gltf-util';
+
 const htmlCode = `
 <div id="map" class="container"></div>
 <div class="pane">click the map and then identify a gltfmarker by coordinate</div>`;
