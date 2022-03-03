@@ -50,12 +50,12 @@ polygonFillController.onChange(function (value) {
 });
 
 const metallicFactorController = gui.add(options, 'metallicFactor', 0, 1);
-metallicFactorController.onFinishChange(function (value) {
+metallicFactorController.onChange(function (value) {
     gltfmarker.setUniform('metallicFactor', value);
 });
 
 const roughnessFactorController = gui.add(options, 'roughnessFactor', 0, 1);
-roughnessFactorController.onFinishChange(function (value) {
+roughnessFactorController.onChange(function (value) {
     gltfmarker.setUniform('roughnessFactor', value);
 });
 `;
