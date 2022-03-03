@@ -1,7 +1,7 @@
-const htmlCode = `<div class="content">
-  <button id="highLightBtn">点击高亮数据</button>
-  <button id="cancelBtn">点击取消高亮</button>
-  <div id="map" class="container"></div>
+const htmlCode = `<div id="map" class="container"></div>
+<div class="pane">
+  <a href="javascript:highlight();">highlight</a>
+  <a href="javascript:cancel();">cancel hightlight</a>
 </div>`;
 
 const cssCode = `html,
@@ -16,21 +16,38 @@ body {
   height: 100%;
 }
 
-.content {
-  width: 100%;
-  height: 100%;
+.pane {
+  line-height: 25px;
+  z-index: 10;
+  position: absolute;
+  top: 20px;
+  right: 20px
+}
+  
+.pane a {
+  display: block;
+  text-align: left;
+  padding: 0 10px;
+  margin-left: 6px;
+  min-width: 28px;
+  min-height: 25px;
+  float: left;
+  color: #000;
+  background: #efefef;
+  border: 1px solid #000;
+  text-decoration: none;
 }`;
 
-const jsCode = `const map = new maptalks.Map('map', {
+const jsCode = `const map = new maptalks.Map("map", {
   center: [-74.00912099912109, 40.71107610933129],
   zoom: 16,
 });
   
-const geo = new maptalks.GeoJSONVectorTileLayer('geo', {
-  data: '/resources/geojson/area.geojson'
+const geo = new maptalks.GeoJSONVectorTileLayer("geo", {
+  data: "/resources/geojson/area.geojson"
 });
 
-geo.on('dataload', e => {
+geo.on("dataload", e => {
   map.fitExtent(e.extent)
 });
 
@@ -47,7 +64,7 @@ const style = {
       },
       "symbol": {
         "polygonBloom": false,
-        "polygonFill": 'rgb(135,196,240)',
+        "polygonFill": "#577570",
         "polygonOpacity": 1,
         "polygonPatternFile": null,
         "visible": true
@@ -65,7 +82,7 @@ const style = {
       "symbol": {
         "lineBloom": false,
         "lineCap": "butt",
-        "lineColor": '#34495e',
+        "lineColor": "#d0d0d0",
         "lineDasharray": [0, 0, 0, 0],
         "lineDashColor": [1, 1, 1, 0],
         "lineDx": 0,
@@ -93,7 +110,7 @@ const style = {
       },
       "symbol": {
         "polygonBloom": false,
-        "polygonFill": '#1bbc9b',
+        "polygonFill": "#2e7e57",
         "polygonOpacity": 1,
         "polygonPatternFile": null,
         "visible": true
@@ -103,17 +120,62 @@ const style = {
 };
 geo.setStyle(style);
   
-const groupLayer = new maptalks.GroupGLLayer('group', [geo]);
+const groupLayer = new maptalks.GroupGLLayer("group", [geo], {
+  // 需要先开启后处理中的outline属性
+  sceneConfig:{
+    postProcess: {
+      enable: true,
+      antialias: {
+        enable: true,
+        taa: true,
+        jitterRatio: 0.25,
+      },
+      ssr: {
+        enable: true,
+      },
+      bloom: {
+        enable: true,
+        threshold: 0,
+        factor: 1,
+        radius: 0.02,
+      },
+      ssao: {
+        enable: true,
+        bias: 0.08,
+        radius: 0.08,
+        intensity: 1.5,
+      },
+      sharpen: {
+        enable: false,
+        factor: 0.2,
+      },
+      outline: {
+        enable: true,
+        outlineFactor: 0.3,
+        highlightFactor: 0.2,
+        outlineWidth: 1,
+        outlineColor: [1, 1, 0],
+      },
+    },
+    ground: {
+      enable: true,
+      renderPlugin: { type: "fill" },
+      symbol: {
+        polygonFill: [0.2666667, 0.2666667, 0.2666667, 1],
+        polygonOpacity: 1,
+      },
+    },
+  }
+});
 groupLayer.addTo(map);
 
-const highLightBtn = document.getElementById("highLightBtn");
-highLightBtn.addEventListener('click', () => {
+function highlight() {
   geo.outline(2, [12]);
-})
-const cancelBtn = document.getElementById("cancelBtn");
-cancelBtn.addEventListener('click', () => {
+}
+
+function cancel() {
   geo.cancelOutline();
-})`;
+}`;
 
 export const highlightFeatureCodes = {
   html: htmlCode,

@@ -1,6 +1,6 @@
-const htmlCode = `<div class="content">
-  <button id="setStyleBtn">set style</button>
-  <div id="map" class="container"></div>
+const htmlCode = `<div id="map" class="container"></div>
+<div class="pane">
+  <a href="javascript:setStyle();">set style</a>
 </div>`;
 
 const cssCode = `html,
@@ -15,9 +15,26 @@ body {
   height: 100%;
 }
 
-.content {
-  width: 100%;
-  height: 100%;
+.pane {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  line-height: 25px;
+  z-index: 10;
+}
+  
+.pane a {
+  display: block;
+  float: left;
+  text-align: left;
+  margin-left: 6px;
+  padding: 0 10px;
+  min-width: 28px;
+  min-height: 25px;
+  color: #000;
+  text-decoration: none;
+  background: #efefef;
+  border: 1px solid #000;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {
@@ -52,8 +69,7 @@ const marker = new maptalks.MultiPoint(
 const groupLayer = new maptalks.GroupGLLayer('group', [point]);
 groupLayer.addTo(map);
 
-const setStyleBtn = document.getElementById("setStyleBtn");
-setStyleBtn.addEventListener("click", () => {
+function setStyle() {
   point.setStyle([
     {
       filter: true,
@@ -63,7 +79,7 @@ setStyleBtn.addEventListener("click", () => {
       }
     }
   ]);
-});`;
+}`;
 
 export const setStyleCodes = {
   html: htmlCode,
