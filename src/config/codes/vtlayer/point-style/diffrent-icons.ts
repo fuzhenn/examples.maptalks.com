@@ -47,10 +47,25 @@ const style = {
         markerDx: 0,
         markerDy: 0,
         markerFile: null,
-        markerFill: [0.53, 0.77, 0.94, 1],
+        markerFill: {
+          type: 'categorical',
+          property: 'name',
+          default: [0.53, 0.77, 0.94, 1],
+          stops: [['江汉区', [0.53, 0.77, 0.94, 1]], ['青山区', 'ff8a00']]
+        },
         markerFillOpacity: 1,
-        markerHeight: 20,
-        markerWidth: 20,
+        markerHeight: {
+          type: 'categorical',
+          property: 'name',
+          default: 20,
+          stops: [['江汉区', 20], ['青山区', 30]]
+        },
+        markerWidth: {
+          type: 'categorical',
+          property: 'name',
+          default: 20,
+          stops: [['江汉区', 20], ['青山区', 30]]
+        },
         markerHorizontalAlignment: 'middle',
         markerIgnorePlacement: false,
         markerLineColor: [0.2, 0.29, 0.39, 1],
@@ -66,7 +81,7 @@ const style = {
           type: 'categorical',
           property: 'name',
           default: 'ellipse',
-          stops: [["江汉区", "rectangle"], ["青山区", "pin"]]
+          stops: [["江汉区", "ellipse"], ["青山区", "pin"]]
         },
         markerVerticalAlignment: 'middle',
       } 

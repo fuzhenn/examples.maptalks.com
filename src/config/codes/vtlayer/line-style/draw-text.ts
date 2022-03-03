@@ -88,10 +88,10 @@ const style = {
         textName: '{name}',
         textOpacity: 1,
         textPitchAlignment: 'viewport',
-        textPlacement: 'point', //可被改成line
+        textPlacement: 'line', // 可被改成line
         textRotation: 0,
         textRotationAlignment: 'viewport',
-        textSize: 30,
+        textSize: 15,
         textSpacing: 250,
         textStyle: 'normal',
         textVerticalAlignment: 'middle',

@@ -11,12 +11,6 @@ export const polygonStyleList = [
     js: setTextureCodes.js,
   },
   {
-    title: "纹理动画",
-  },
-  {
-    title: "设置高度",
-  },
-  {
     title: "从属性数据中读取颜色",
     html: readColorCodes.html,
     css: readColorCodes.css,
