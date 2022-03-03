@@ -1,15 +1,15 @@
 const map = `const map = new maptalks.Map('map', {
-    center: [-74.01930247561234, 40.708597936066184],
-    zoom: 17.739089451843377,
-    "bearing": -173.3999999999985,
-    "pitch": 80,
+    center: [-0.113049,51.498568],
+    zoom: 14,
+    pitch: 75,
+    bearing:180,
     lights: {
         ambient: {
             resource: {
                 url: './resources/hdr/env.hdr'
             },
             color: [1, 1, 1],
-            exposure: 2
+            exposure: 1
       },
       directional: {
           color: [1, 1, 1],
@@ -28,58 +28,30 @@ const map = `const map = new maptalks.Map('map', {
 const sceneConfig = `const sceneConfig = {
     "environment": {
         "enable": true,
-        "mode": 0,
-        "level": 0,
-        "brightness": 0
+        "mode": 1,
+        "level": 1,
+        "brightness": 1
     },
     "shadow": {
-        "type": "esm",
         "enable": true,
-        "quality": "high",
         "opacity": 0.5,
-        "color": [
-            0,
-            0,
-            0
-        ],
-        "blurOffset": 1
+        "color": [0, 0, 0]
     },
     "postProcess": {
             "enable": true,
             "antialias": {
-                "enable": true,
-                "taa": true,
-                "jitterRatio": 0.25
+              "enable": true,
+              "taa": true,
+              "jitterRatio": 0.25
             },
             "ssr": {
-                "enable": true
+              "enable": true
             },
             "bloom": {
-                "enable": true,
-                "threshold": 0.1,
-                "factor": 0.5,
-                "radius": 0.3
-            },
-            "ssao": {
-                "enable": true,
-                "bias": 0.08,
-                "radius": 0.08,
-                "intensity": 1.5
-            },
-            "sharpen": {
-                "enable": false,
-                "factor": 0.2
+                "enable": true
             },
             "outline": {
-                "enable": true,
-                "outlineFactor": 0.5,
-                "highlightFactor": 0.5,
-                "outlineWidth": 2,
-                "outlineColor": [
-                    0,
-                    0,
-                    1
-                ]
+                "enable": true
             }
         },
         "ground": {
@@ -88,76 +60,13 @@ const sceneConfig = `const sceneConfig = {
               "type": "lit"
             },
             "symbol": {
-              "polygonFill": [
-                0.54,
-                0.54,
-                0.54,
-                1
-              ],
               "polygonOpacity": 1,
-              "ssr": false,
               "material": {
-                "baseColorTexture": null,
-                "baseColorFactor": [
-                  0.4823529411764706,
-                  0.4823529411764706,
-                  0.4823529411764706,
-                  1
-                ],
-                "hsv": [
-                  0,
-                  0,
-                  -0.532
-                ],
-                "baseColorIntensity": 1,
-                "contrast": 1,
-                "outputSRGB": 1,
-                "metallicRoughnessTexture": null,
+                "baseColorFactor": [0.4823529411764706, 0.4823529411764706, 0.4823529411764706, 1],
+                "hsv": [0, 0, -0.532],
                 "roughnessFactor": 0.22,
-                "metallicFactor": 0.58,
-                "normalTexture": null,
-                "uvScale": [
-                  1,
-                  1
-                ],
-                "uvOffset": [
-                  0,
-                  0
-                ],
-                "uvRotation": 0,
-                "uvOffsetAnim": [
-                  0,
-                  0
-                ],
-                "normalMapFactor": 1,
-                "normalMapFlipY": 0,
-                "clearCoatThickness": 5,
-                "clearCoatFactor": 0,
-                "clearCoatIor": 1.4,
-                "clearCoatRoughnessFactor": 0.04,
-                "occlusionTexture": null,
-                "emissiveTexture": null,
-                "emissiveFactor": [
-                  0,
-                  0,
-                  0
-                ],
-                "emitColorFactor": 1,
-                "emitMultiplicative": 0,
-                "bumpTexture": null,
-                "albedoPBRFactor": 3.24,
-                "outputLinear": 0,
-                "clearCoatF0": 0.04,
-                "emitColor": [
-                  1,
-                  1,
-                  1
-                ],
-                "bumpScale": 0.02
+                "metallicFactor": 0.58
               }
-            },
-            "extras": {
-              "currentMaterial": "59bd64ef-4685-45d3-b993-5aaa417d3207"
             }
         }
 };`;

@@ -24,16 +24,15 @@ const Config = function () {
     this.rotationX = 0;
     this.rotationY = 0;
     this.rotationZ = 0;
-    this.scaleX = 1;
-    this.scaleY = 1;
-    this.scaleZ = 1;
+    this.scaleX = 2;
+    this.scaleY = 2;
+    this.scaleZ = 2;
 };
 const options = new Config();
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     url: url,
     shadow: true,
-    scale: [2, 2, 2],
     translation: [options.translationX, options.translationY, options.translationZ],
     rotation: [options.rotationX, options.rotationY, options.rotationZ],
     scale: [options.scaleX, options.scaleY, options.scaleZ]

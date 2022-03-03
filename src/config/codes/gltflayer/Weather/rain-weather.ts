@@ -34,6 +34,7 @@ const options = new Config();
 const weather = {
     enable: options.weather,
     fog: {
+        enable: true,
         start: 0.1,
         end: 100,
         color: [0.9, 0.9, 0.9]

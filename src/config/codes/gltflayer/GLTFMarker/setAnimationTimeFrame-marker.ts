@@ -1,6 +1,7 @@
 import { map, sceneConfig } from '../gltf-util';
 
 const htmlCode = `<div id="map" class="container"></div>
+<div id="info"></div>
 <div class="pane"><a href="javascript:setAnimationTimeFrame();">对于动画模型根据指定的时间戳, 获取模型node上的矩阵</a></div>`;
 
 const cssCode = `html,
@@ -44,7 +45,9 @@ const url = '/resources/gltf/vibut_the_robot/scene.gltf';
 const symbol = {
     url: url,
     animation: true,
-    loop: true
+    loop: true,
+    scale: [2, 2, 2],
+    rotation: [0, 0, 180]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
@@ -61,7 +64,7 @@ function setAnimationTimeFrame() {
     const renderer = gltflayer.getRenderer();
     const meshes = renderer.getMarkerMeshes(gltfmarker);
     const nodeMatrix = meshes[0].nodeMatrix;
-    alert(nodeMatrix);
+    document.getElementById('info').innerHTML = '[' + nodeMatrix + ']';
 }
 `;
 
