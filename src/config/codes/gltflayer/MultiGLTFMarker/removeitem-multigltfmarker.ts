@@ -47,8 +47,8 @@ const symbol = {
 };
 const position = map.getCenter();
 const data = [];
-for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
+for (let i = -3; i < 3; i++) {
+    for (let j = -3; j < 3; j++) {
         data.push({
             coordinates : position.add(i * 0.01, j * 0.01),
             scale : [1, 1, 1],
@@ -56,14 +56,14 @@ for (let i = 0; i < 3; i++) {
         });
     }
 }
-const gltflayer = new maptalks.GLTFLayer('gltf');
-const multigltfmarker = new maptalks.MultiGLTFMarker(data, {
+const gltfLayer = new maptalks.GLTFLayer('gltf');
+const multiGLTFMarker = new maptalks.MultiGLTFMarker(data, {
     symbol: symbol
-}).addTo(gltflayer);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+}).addTo(gltfLayer);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 function removeItem() {
     const index = 1;
-    multigltfmarker.removeData(index);
+    multiGLTFMarker.removeData(index);
 }
 `;
 

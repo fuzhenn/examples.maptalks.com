@@ -38,21 +38,21 @@ const symbol = {
     url: url
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const markers = [];
 for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-        const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
             id: i + "_" + j,
             symbol: symbol
         });
-        markers.push(gltfmarker);
+        markers.push(gltfMarker);
     }
 }
 
-gltflayer.addGeometry(markers);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(markers);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 let selectedOne = null;
 
@@ -60,10 +60,10 @@ function markerChange(value) {
     if (selectedOne) {
         selectedOne.setUniform('polygonFill', [1, 1, 1, 1]);  
     }
-    const gltfmarker = gltflayer.getGeometryById(value);
-    if (gltfmarker) {
-        gltfmarker.setUniform('polygonFill', [0.6, 0, 0, 1]);
-        selectedOne = gltfmarker;
+    const gltfMarker = gltfLayer.getGeometryById(value);
+    if (gltfMarker) {
+        gltfMarker.setUniform('polygonFill', [0.6, 0, 0, 1]);
+        selectedOne = gltfMarker;
     }
 }
 `;

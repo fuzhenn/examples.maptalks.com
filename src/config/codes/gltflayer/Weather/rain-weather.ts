@@ -25,7 +25,6 @@ const Config = function () {
     this.windDirectionX = 0;
     this.windDirectionY = 0;
 };
-map.getBaseLayer().hide();
 const textureMap = {
     rain1: './resources/images/rain1.png',
     rain2: './resources/images/rain2.png'
@@ -56,43 +55,43 @@ const symbol = {
     scale: [5, 5, 5]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 
-gltflayer.addGeometry(gltfmarker);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(gltfMarker);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const rainControl = gui.add(options, 'rain').name('enable rain');
 rainControl.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.rain.enable = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 
 const rainTextureListControl = gui.add(options, 'rainTexture', ['rain1', 'rain2']).name('rain texture list'); 
 rainTextureListControl.onChange(function(value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.rain.rainTexture = textureMap[value];
     console.log(sceneConfig.weather.rain);
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const windDirectionXController = gui.add(options, "windDirectionX", -30, 30).name('x direction');
 windDirectionXController.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.rain.windDirectionX = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const windDirectionYController = gui.add(options, "windDirectionY", -30, 30).name('y direction');
 windDirectionYController.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.rain.windDirectionY = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 `;
 

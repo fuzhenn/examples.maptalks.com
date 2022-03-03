@@ -22,8 +22,8 @@ const symbol = {
 };
 const position = map.getCenter();
 const data = [];
-for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 5; j++) {
+for (let i = -3; i < 3; i++) {
+    for (let j = -3; j < 3; j++) {
         data.push({
             coordinates : position.add(i * 0.01, j * 0.01),
             translation : [0, 0, 0],
@@ -33,11 +33,11 @@ for (let i = 0; i < 5; i++) {
         });
     }
 }
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const groupgltfmarker = new maptalks.MultiGLTFMarker(data, {
     symbol: symbol
-}).addTo(gltflayer);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+}).addTo(gltfLayer);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const addToMultiGLTFMarkerCodes = {

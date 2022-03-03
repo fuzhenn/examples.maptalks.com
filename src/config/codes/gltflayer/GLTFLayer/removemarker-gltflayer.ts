@@ -38,26 +38,26 @@ const symbol = {
     url: url
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const markers = [];
 for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-        const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
             id: i + "_" + j,
             symbol: symbol
         });
-        markers.push(gltfmarker);
+        markers.push(gltfMarker);
     }
 }
 
-gltflayer.addGeometry(markers);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(markers);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 function markerChange(value) {
-    const gltfmarker = gltflayer.getGeometryById(value);
-    if (gltfmarker) {
-        gltflayer.removeGeometry(gltfmarker);
+    const gltfMarker = gltfLayer.getGeometryById(value);
+    if (gltfMarker) {
+        gltfLayer.removeGeometry(gltfMarker);
     }
 }
 `;

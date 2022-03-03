@@ -38,57 +38,57 @@ const symbol = {
     scale: [options.scaleX, options.scaleY, options.scaleZ]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const translation = gui.addFolder('translation');
 translation.open();
 const transControllerX = translation.add(options, 'translationX', -10, 10);
 transControllerX.onChange(function (value) {
-    gltfmarker.setTranslation([value, transControllerY.getValue(), transControllerZ.getValue()]);
+    gltfMarker.setTranslation([value, transControllerY.getValue(), transControllerZ.getValue()]);
 });
 const transControllerY = translation.add(options, 'translationY', -10, 10);
 transControllerY.onChange(function (value) {
-    gltfmarker.setTranslation([transControllerX.getValue(), value, transControllerZ.getValue()]);
+    gltfMarker.setTranslation([transControllerX.getValue(), value, transControllerZ.getValue()]);
 });
 const transControllerZ = translation.add(options, 'translationZ', -10, 10);
 transControllerZ.onChange(function (value) {
-    gltfmarker.setTranslation([transControllerX.getValue(), transControllerY.getValue(), value]);
+    gltfMarker.setTranslation([transControllerX.getValue(), transControllerY.getValue(), value]);
 });
 
 const rotation = gui.addFolder('rotation');
 rotation.open();
 const rotationControllerAxisX = rotation.add(options, 'rotationX', -90, 90);
 rotationControllerAxisX.onChange(function (value) {
-    gltfmarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
+    gltfMarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
 });
 const rotationControllerAxisY = rotation.add(options, 'rotationY', -90, 90);
 rotationControllerAxisY.onChange(function (value) {
-    gltfmarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
+    gltfMarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
 });
 const rotationControllerAxisZ = rotation.add(options, 'rotationZ', -90, 90);
 rotationControllerAxisZ.onChange(function (value) {
-    gltfmarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
+    gltfMarker.setRotation([rotationControllerAxisX.getValue(), rotationControllerAxisY.getValue(), rotationControllerAxisZ.getValue()]);
 });
 
 const scale = gui.addFolder('scale');
 scale.open();
 const scaleControllerX = scale.add(options, 'scaleX', 0.1, 20);
 scaleControllerX.onChange(function (value) {
-    gltfmarker.setScale([value, scaleControllerY.getValue(), scaleControllerZ.getValue()]);
+    gltfMarker.setScale([value, scaleControllerY.getValue(), scaleControllerZ.getValue()]);
 });
 const scaleControllerY = scale.add(options, 'scaleY', 0.1, 20);
 scaleControllerY.onChange(function (value) {
-    gltfmarker.setScale([scaleControllerX.getValue(), value, scaleControllerZ.getValue()]);
+    gltfMarker.setScale([scaleControllerX.getValue(), value, scaleControllerZ.getValue()]);
 });
 const scaleControllerZ = scale.add(options, 'scaleZ', 0.1, 20);
 scaleControllerZ.onChange(function (value) {
-    gltfmarker.setScale([scaleControllerX.getValue(), scaleControllerY.getValue(), value]);
+    gltfMarker.setScale([scaleControllerX.getValue(), scaleControllerY.getValue(), value]);
 });
 `;
 

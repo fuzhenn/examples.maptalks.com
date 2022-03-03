@@ -2,7 +2,7 @@ const map = `const map = new maptalks.Map('map', {
     center: [-0.113049,51.498568],
     zoom: 14,
     pitch: 75,
-    bearing:180,
+    bearing: 180,
     lights: {
         ambient: {
             resource: {
@@ -16,12 +16,7 @@ const map = `const map = new maptalks.Map('map', {
           lightColorIntensity: 5000,
           direction: [1, -0.4, -1]
       }
-    },
-    baseLayer: new maptalks.TileLayer('base', {
-        urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        subdomains: ['a','b','c','d'],
-        attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
-    })
+    }
 });
 `;
 
@@ -42,7 +37,7 @@ const sceneConfig = {
         symbol: {
           polygonOpacity: 1,
           material: {
-            baseColorFactor: [0.4823529411764706, 0.4823529411764706, 0.4823529411764706, 1],
+            baseColorFactor: [0.48235, 0.48235, 0.48235, 1],
             hsv: [0, 0, -0.532],
             roughnessFactor: 0.22,
             metallicFactor: 0.58

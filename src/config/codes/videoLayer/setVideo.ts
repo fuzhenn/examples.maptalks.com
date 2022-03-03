@@ -39,7 +39,7 @@ const videoSurface = new maptalks.VideoSurface([[111.73424 - ratio , 30.43545796
 const videoLayer = new maptalks.VideoLayer('video');
 videoSurface.addTo(videoLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}).addTo(map);
 
 const videoListControl = gui.add(options, 'videoList', ['test1', 'test2']).name('video list');
 videoListControl.onFinishChange(function(value) {

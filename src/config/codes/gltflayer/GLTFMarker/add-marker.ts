@@ -22,14 +22,14 @@ const symbol = {
     scale: [2, 2, 2]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 
-gltflayer.addGeometry(gltfmarker);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(gltfMarker);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const addMarkerCodes = {

@@ -196,13 +196,13 @@ const gltfList =
                     js: addToGltfLayerCodes.js,
                 },
                 {
-                    title: '2.2 根据id查找gltfmarker',
+                    title: '2.2 根据id查找GLTFMarker',
                     html: getMarkerGLTFLayerCodes.html,
                     css: getMarkerGLTFLayerCodes.css,
                     js: getMarkerGLTFLayerCodes.js,
                 },
                 {
-                    title: '2.3 移除某个gltfmarker',
+                    title: '2.3 移除某个GLTFMarker',
                     html: removeMarkerGLTFLayerCodes.html,
                     css: removeMarkerGLTFLayerCodes.css,
                     js: removeMarkerGLTFLayerCodes.js,
@@ -232,7 +232,7 @@ const gltfList =
                     js: styleGLTFLayerCodes.js,
                 },
                 {
-                    title: '2.8 识别图层内的gltfmarker',
+                    title: '2.8 识别图层内的GLTFMarker',
                     html: identifyGLTFLayerCodes.html,
                     css: identifyGLTFLayerCodes.css,
                     js: identifyGLTFLayerCodes.js,

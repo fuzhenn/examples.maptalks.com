@@ -35,28 +35,28 @@ const symbol = {
     }
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 //matrial control
 const polygonFillController = gui.addColor(options, 'polygonFill');
 polygonFillController.onChange(function (value) {
-    gltfmarker.setUniform('polygonFill', [value[0] / 255, value[1] / 255, value[2] / 255, 1.0]);
+    gltfMarker.setUniform('polygonFill', [value[0] / 255, value[1] / 255, value[2] / 255, 1.0]);
 });
 
 const metallicFactorController = gui.add(options, 'metallicFactor', 0, 1);
 metallicFactorController.onChange(function (value) {
-    gltfmarker.setUniform('metallicFactor', value);
+    gltfMarker.setUniform('metallicFactor', value);
 });
 
 const roughnessFactorController = gui.add(options, 'roughnessFactor', 0, 1);
 roughnessFactorController.onChange(function (value) {
-    gltfmarker.setUniform('roughnessFactor', value);
+    gltfMarker.setUniform('roughnessFactor', value);
 });
 `;
 

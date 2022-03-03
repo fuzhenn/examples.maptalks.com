@@ -31,22 +31,22 @@ const symbol = {
   }
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf').addTo(map);
+const gltfLayer = new maptalks.GLTFLayer('gltf').addTo(map);
 const position = map.getCenter();
 const markers = [];
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
-    const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+    const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
       symbol: symbol
     });
-    markers.push(gltfmarker);
+    markers.push(gltfMarker);
   }
 }
 
-gltflayer.addMarker(markers);
+gltfLayer.addMarker(markers);
 
 setTimeout(() => {
-  gltflayer.clear();
+  gltfLayer.clear();
 }, 2000);`;
 
 export const clearLayerCodes = {

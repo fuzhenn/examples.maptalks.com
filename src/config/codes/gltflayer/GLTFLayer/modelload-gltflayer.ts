@@ -36,26 +36,26 @@ ${sceneConfig}
 const url1 = '/resources/gltf/alien/alien.glb';
 const url2 = '/resources/gltf/vibut_the_robot/scene.gltf';
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker1 = new maptalks.GLTFMarker(position, {
+const gltfMarker1 = new maptalks.GLTFMarker(position, {
     symbol: {
         url: url1
     }
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const gltfmarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
+const gltfMarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
     symbol: {
         url: url2,
         animation: true,
         loop: true
     }
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-gltflayer.on('modelload', () => {
+gltfLayer.on('modelload', () => {
     document.getElementById('info').innerHTML = 'all gltf models has been loaded';
 });
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const modelloadGLTFLayerCodes = {

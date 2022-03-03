@@ -43,20 +43,30 @@ body {
   border: 1px solid #000;
 }`;
 
+const mapCode = map
+    .replace('bearing: 180', 'bearing: 0')
+    .replace('pitch: 75', 'pitch: 0')
+    .replace('zoom: 14', 'zoom: 14')
+    .replace('center: [-0.113049,51.498568]', 'center: [111.74424, 30.425457967790365]');
+
 const jsCode = `
-${map}
-${sceneConfig}
-map.setCenter([111.74424, 30.425457967790365]);
-map.setZoom(13);
+${mapCode}
 const ratio = (48 / 27) * 0.01;
-const videoSurface = new maptalks.VideoSurface([[111.73424 - ratio , 30.435457967790365, 1],[111.75424 + ratio, 30.435457967790365, 1],[111.75424 + ratio, 30.415457967790365, 1],[111.73424 - ratio, 30.415457967790365, 1]], {
+const videoSurface = new maptalks.VideoSurface([
+    [111.73424 - ratio, 30.435457967790365, 1],
+    [111.75424 + ratio, 30.435457967790365, 1],
+    [111.75424 + ratio, 30.415457967790365, 1],
+    [111.73424 - ratio, 30.415457967790365, 1]
+], {
     url: '/resources/videos/test1.mp4',
     opacity: 1
 });
 const videoLayer = new maptalks.VideoLayer('video');
 videoSurface.addTo(videoLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}).addTo(map);
+${sceneConfig}
+
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}).addTo(map);
 
 function play() {
     videoSurface.play();
