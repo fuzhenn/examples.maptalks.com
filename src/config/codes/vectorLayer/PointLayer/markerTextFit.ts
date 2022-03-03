@@ -32,19 +32,15 @@ const marker = new maptalks.Marker(
     properties: {
       name: 'Hello MapTalks'
     },
-    symbol: [
-      {
-        markerFile: 'resources/markers/3.png',
-        markerTextFit: true,
-        markerTextFitPadding: [0, 0, 0, 0]
-      },
-      {
-        textFaceName: 'sans-serif',
-        textName: '{name}',
-        textSize: 20,
-        textDy: 24
-      }
-    ]
+    symbol: {
+      markerFile: 'resources/markers/3.png',
+      markerTextFit: 'both',
+      markerTextFitPadding: [0, 0, 0, 0],
+      textFaceName: "sans-serif",
+      textName: "{name}",
+      textSize: 20,
+      textDy: 24,
+    }
   }
 ).addTo(point);
     
