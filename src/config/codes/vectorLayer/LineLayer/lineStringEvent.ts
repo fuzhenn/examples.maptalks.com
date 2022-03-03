@@ -1,4 +1,5 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container"></div>
+<div id="info"></div>`;
 
 const cssCode = `html,
 body {
@@ -10,7 +11,20 @@ body {
 .container {
     width: 100%;
     height: 100%;
-}`;
+}
+
+#info {
+    position: fixed;
+    background-color: rgba(13, 13, 13, 0.5);
+    padding: 10px 10px 10px 10px;
+    font: 13px bold sans-serif;
+    color: #fff;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 70px;
+    overflow: hidden
+  }`;
 
 const jsCode = `
 const map = new maptalks.Map('map', {
@@ -35,6 +49,7 @@ const line = new maptalks.LineString([
 }).addTo(lineLayer);
 
 line.on('click', () => {
+    document.getElementById('info').innerHTML = nodeMatrix;
     alert('listen click event');
 });
 

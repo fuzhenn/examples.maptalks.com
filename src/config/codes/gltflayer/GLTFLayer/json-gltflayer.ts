@@ -33,6 +33,7 @@ const map1 = new maptalks.Map('map1', {
     center: [-0.113049,51.498568],
     zoom: 14,
     pitch: 75,
+    bearing: 180,
     lights: {
         ambient: {
             resource: {

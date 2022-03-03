@@ -1,7 +1,7 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `
 <div id="map" class="container"></div>
-<input type="button" id="showhide" value="show layer"></input>
+<div class="pane"><a href="javascript:show();">show gltflayer</a></div>
 `;
 
 const cssCode = `html,
@@ -16,13 +16,8 @@ body {
     height: 100%;
 }
 
-input {
-    float: right;
-    position:absolute;
-    right: 10px;
-    top: 10px;
-    width: 80px;
-}
+.pane{background:#34495e;line-height:28px;color:#fff;z-index:10;position:absolute;top:40px;right:20px}
+.pane a{display:block;color:#fff;text-align:left;padding:0 10px;min-width:28px;min-height:28px;float:left}
 `;
 
 const jsCode = `
@@ -46,7 +41,7 @@ const gltfmarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
 
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer1, gltflayer2], {sceneConfig}).addTo(map);
 
-document.getElementById("showhide").onclick = function() {
+function show() {
     if (gltflayer1.isVisible()) {
         gltflayer1.hide();
     } else {

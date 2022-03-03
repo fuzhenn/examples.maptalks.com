@@ -28,7 +28,8 @@ const symbol = {
     shadow: true,
     animation: options.animation,
     loop: options.loop,
-    scale: [2, 2, 2]
+    scale: [2, 2, 2],
+    rotation: [0, 0, 180]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');

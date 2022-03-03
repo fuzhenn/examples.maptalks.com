@@ -25,6 +25,7 @@ const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     url: '/resources/gltf/alien/alien.glb',
     rotation: [0, 0, 0],
+    scale: [2, 2, 2],
     uniforms: {
         'polygonFill': [0.8, 0.0, 0.0, 1.0]
     }
@@ -32,6 +33,7 @@ const symbol = {
 const newSymbol = {
     url: '/resources/gltf/Fox/Fox.gltf',
     rotation: [0, 0, 90],
+    scale: [2, 2, 2],
     animation: true,
     loop: true,
     uniforms: {

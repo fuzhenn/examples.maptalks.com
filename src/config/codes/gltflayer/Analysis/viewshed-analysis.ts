@@ -23,6 +23,7 @@ const gui = new dat.GUI({ width: 250 });
 const Config = function () {
     this.verticalAngle = 60;
     this.horizonalAngle = 30;
+    this.eyePos = 20;
 };
 const options = new Config();
 map.setCenter([0, 0]);
@@ -41,7 +42,7 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
-const eyePos = [0.02, 0, 0];
+const eyePos = [options.eyePos / 1000, 0, 0];
 const lookPoint = [0, 0, 0];
 const verticalAngle = options.verticalAngle;
 const horizonAngle = options.horizonalAngle;
@@ -56,23 +57,31 @@ viewshedAnalysis.addTo(groupgllayer);
 const verticalAngleController = gui.add(options, 'verticalAngle', 0, 90);
 verticalAngleController.onChange(function (value) {
     viewshedAnalysis.update('verticalAngle', value);
-    updateHelpLines(value, options.horizonalAngle);
+    updateHelpLines(value, options.horizonalAngle, options.eyePos / 1000);
 });
 const horizonalAngleController = gui.add(options, 'horizonalAngle', 0, 90);
 horizonalAngleController.onChange(function (value) {
     viewshedAnalysis.update('horizonAngle', value);
-    updateHelpLines(options.verticalAngle, value);
+    updateHelpLines(options.verticalAngle, value, options.eyePos / 1000);
 });
 
-updateHelpLines(options.verticalAngle, options.horizonalAngle);
+const eyePosController = gui.add(options, 'eyePos', 10, 100);
+eyePosController.onChange(function (value) {
+    viewshedAnalysis.update('eyePos', [value / 1000, 0, 0]);
+    updateHelpLines(options.verticalAngle, options.horizonalAngle, value / 1000);
+});
 
-function updateHelpLines(verticalAngle, horizonalAngle) {
+gltflayer.on('modelload', () => {
+    updateHelpLines(options.verticalAngle, options.horizonalAngle, options.eyePos / 1000);
+});
+
+function updateHelpLines(verticalAngle, horizonalAngle, eyePosition) {
     let vLayer = map.getLayer('vLayer');
     if (!vLayer) {
         vLayer = new maptalks.VectorLayer('vLayer', { enableAltitude : true }).addTo(map)
     }
     vLayer.clear();
-    const dHorizon = Math.tan(Math.PI * horizonalAngle / 360) * 0.02;
+    const dHorizon = Math.tan(Math.PI * horizonalAngle / 360) * eyePosition;
     const left = [0, -dHorizon], right = [0, dHorizon];
     const symbol = {
         'lineColor' : '#1bbc9b',
@@ -80,26 +89,26 @@ function updateHelpLines(verticalAngle, horizonalAngle) {
         'lineWidth' : 2
     };
     const height = 1200 * Math.tan(Math.PI * verticalAngle / 360);
-    const leftup = new maptalks.LineString([[0.02, 0], left],{
+    const leftup = new maptalks.LineString([[eyePosition, 0], left],{
         symbol,
         properties : {
             'altitude' : [0, height]
         },
     }).addTo(vLayer);
-    const rightup = new maptalks.LineString([[0.02, 0], right],{
+    const rightup = new maptalks.LineString([[eyePosition, 0], right],{
         symbol,
         properties : {
             'altitude' : [0, height]
         },
     }).addTo(vLayer);
 
-    const leftbottom = new maptalks.LineString([[0.02, 0], left],{
+    const leftbottom = new maptalks.LineString([[eyePosition, 0], left],{
         symbol,
         properties : {
             'altitude' : [0, -height]
         },
     }).addTo(vLayer);
-    const rightbottom = new maptalks.LineString([[0.02, 0], right],{
+    const rightbottom = new maptalks.LineString([[eyePosition, 0], right],{
         symbol,
         properties : {
             'altitude' : [0, -height]
@@ -112,7 +121,7 @@ function updateHelpLines(verticalAngle, horizonalAngle) {
             'altitude' : [height, height, -height, -height, height]
         },
     }).addTo(vLayer);
-    const centerMarker = new maptalks.Marker(eyePos, {
+    const centerMarker = new maptalks.Marker([eyePosition, 0], {
         symbol: {
             markerFile: '/resources/images/eye.png',
             markerWidth: 32,

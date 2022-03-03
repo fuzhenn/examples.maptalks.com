@@ -24,7 +24,8 @@ const options = new Config();
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
     shader: options.shaderList,
-    url: url
+    url: url,
+    scale: [2, 2, 2]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');

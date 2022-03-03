@@ -1,8 +1,5 @@
 import { map, sceneConfig } from '../gltf-util';
-const htmlCode = `<div id="map" class="container"></div>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/gl@0.66.0/dist/maptalksgl.js"></script>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/gltf-layer/dist/maptalks.gltf.js"></script>
-`;
+const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
 body {
@@ -19,7 +16,10 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-map.setCenter([0, 0]);
+//fit view
+map.setCenter([-0.09119584357631538, 51.532773817207584]);
+map.setZoom(15.864715607101017);
+map.setPitch(80);
 const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
@@ -37,7 +37,7 @@ const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig})
 
 const skylineAnalysis = new maptalksgl.SkylineAnalysis({
     lineColor: [1.0, 0.2, 0.0],
-    lineWidth: 1.8
+    lineWidth: 1
 });
 skylineAnalysis.addTo(groupgllayer);
 `;

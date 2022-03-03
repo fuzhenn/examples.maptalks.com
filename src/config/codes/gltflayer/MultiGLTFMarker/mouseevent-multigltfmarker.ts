@@ -1,5 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container"></div>
+<div id="info"></div>`;
 
 const cssCode = `html,
 body {
@@ -11,7 +12,21 @@ body {
 .container {
     width: 100%;
     height: 100%;
-}`;
+}
+
+#info {
+    position: fixed;
+    background-color: rgba(13, 13, 13, 0.5);
+    padding: 10px 10px 10px 10px;
+    font: 13px bold sans-serif;
+    color: #fff;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 70px;
+    overflow: hidden
+  }
+`;
 
 const jsCode = `
 ${map}
@@ -39,7 +54,7 @@ const multigltfmarker = new maptalks.MultiGLTFMarker(data, {
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
 
 multigltfmarker.on('click', e => {
-    alert(e.pickingId);
+    document.getElementById('info').innerHTML = 'clicked picking id:' + e.pickingId;
 });
 multigltfmarker.on('mousemove', e => {
     const index = e.target.getIndexByPickingId(e.pickingId);
