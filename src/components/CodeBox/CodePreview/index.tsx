@@ -14,7 +14,7 @@ function CodePreview() {
   <link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
   <script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@maptalks/gl/dist/maptalksgl.js"></script>
-  <script type="text/javascript" src="http://localhost/vt/packages/vt/dist/maptalks.vt.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@maptalks/vt/dist/maptalks.vt.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@maptalks/gltf-layer/dist/maptalks.gltf.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@maptalks/geojson-bbox/dist/bbox.umd"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui/build/dat.gui.min.js"></script>
