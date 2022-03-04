@@ -22,21 +22,21 @@ const symbol = {
     scale: [2, 2, 2]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-gltfmarker.setInfoWindow({
+gltfMarker.setInfoWindow({
     'title': 'GLTFMarker InfoWindow',
     'content': 'Click on marker to open.',
     'dy': -20,
     'dx': 15
 });
   
-gltfmarker.openInfoWindow();
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfMarker.openInfoWindow();
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const infowindowMarkerCodes = {

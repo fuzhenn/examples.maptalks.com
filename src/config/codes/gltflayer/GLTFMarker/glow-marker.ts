@@ -32,7 +32,7 @@ new maptalks.GlowMarker(position, {
     }
 }).addTo(glowlayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [glowlayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [glowlayer], {sceneConfig}).addTo(map);
 `;
 
 export const glowMarkerCodes = {

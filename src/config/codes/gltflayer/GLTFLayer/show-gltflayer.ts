@@ -28,18 +28,18 @@ const symbol = {
     url: url
 };
 
-const gltflayer1 = new maptalks.GLTFLayer('gltf1');
-const gltflayer2 = new maptalks.GLTFLayer('gltf2');
+const gltfLayer1 = new maptalks.GLTFLayer('gltf1');
+const gltfLayer2 = new maptalks.GLTFLayer('gltf2');
 const position = map.getCenter();
-const gltfmarker1 = new maptalks.GLTFMarker(position, {
+const gltfMarker1 = new maptalks.GLTFMarker(position, {
     symbol: symbol
 }).addTo(gltflayer1);
 
-const gltfmarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
+const gltfMarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
     symbol: symbol
 }).addTo(gltflayer2);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer1, gltflayer2], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltflayer1, gltflayer2], {sceneConfig}).addTo(map);
 
 function show() {
     if (gltflayer1.isVisible()) {

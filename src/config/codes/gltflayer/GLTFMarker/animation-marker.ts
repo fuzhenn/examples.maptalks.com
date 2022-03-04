@@ -13,8 +13,10 @@ body {
     height: 100%;
 }`;
 
+const mapCode = map.replace('bearing: 180', 'bearing: 0');
+
 const jsCode = `
-${map}
+${mapCode}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
@@ -33,26 +35,26 @@ const symbol = {
     scale: [2, 2, 2]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 //animation control
 const animationController = gui.add(options, 'animation');
 animationController.onChange(function (value) {
-    gltfmarker.setAnimation(value);
+    gltfMarker.setAnimation(value);
 });
 const loopController = gui.add(options, 'loop');
 loopController.onChange(function (value) {
-    gltfmarker.setAnimationLoop(value);
+    gltfMarker.setAnimationLoop(value);
 });
 const animationListControl = gui.add(options, 'animationList', ['Survey', 'Walk', 'Run']).name('animation list');
 animationListControl.onChange(function(value) {
-    gltfmarker.setCurrentAnimation(value);
+    gltfMarker.setCurrentAnimation(value);
 });
 `;
 

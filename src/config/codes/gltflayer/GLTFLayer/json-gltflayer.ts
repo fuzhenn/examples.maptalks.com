@@ -21,13 +21,13 @@ const symbol = {
     url: url
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const map1 = new maptalks.Map('map1', {
     center: [-0.113049,51.498568],
@@ -54,10 +54,10 @@ const map1 = new maptalks.Map('map1', {
         attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
     })
 });
-const json = gltflayer.toJSON();
+const json = gltfLayer.toJSON();
       
 const layer = maptalks.GLTFLayer.fromJSON(json);
-const groupgllayer1 = new maptalks.GroupGLLayer('gl', [layer], {sceneConfig}).addTo(map1);
+const groupGLLayer1 = new maptalks.GroupGLLayer('gl', [layer], {sceneConfig}).addTo(map1);
 `;
 
 export const jsonGLTFLayerCodes = {

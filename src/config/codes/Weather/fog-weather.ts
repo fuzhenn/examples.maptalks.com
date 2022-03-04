@@ -26,7 +26,6 @@ const Config = function () {
     this.fogColor = [0.9 * 255, 0.9 * 255, 0.9 * 255];
     this.baseMap = false;
 };
-map.getBaseLayer().hide();
 const options = new Config();
 const weather = {
     enable: options.weather,
@@ -46,48 +45,48 @@ const symbol = {
     scale: [5, 5, 5]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 
-gltflayer.addGeometry(gltfmarker);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(gltfMarker);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const weatherControl = gui.add(options, 'weather').name('enable weather');
 weatherControl.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.enable = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const fogControl = gui.add(options, 'fog').name('enable fog');
 fogControl.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.fog.enable = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const startControl = gui.add(options, 'fogStart', 0.1, 10).name('start diatance');
 startControl.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.fog.start = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const endControl = gui.add(options, 'fogEnd', 2.0, 100).name('end distance');
 endControl.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.fog.end = value;
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const fogColorController = gui.addColor(options, 'fogColor').name('fog color');
 fogColorController.onChange(function (value) {
-    const sceneConfig = groupgllayer.getSceneConfig();
+    const sceneConfig = groupGLLayer.getSceneConfig();
     sceneConfig.weather.fog.color = getColor(value);
-    groupgllayer.setSceneConfig(sceneConfig);
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 
 const baseMapController = gui.add(options, 'baseMap').name('show baseMap');

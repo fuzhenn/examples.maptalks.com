@@ -37,8 +37,8 @@ const symbol = {
 };
 const position = map.getCenter();
 const data = [];
-for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 5; j++) {
+for (let i = -3; i < 3; i++) {
+    for (let j = -3; j < 3; j++) {
         data.push({
             coordinates : position.add(i * 0.01, j * 0.01),
             translation : [0, 0, 0],
@@ -47,22 +47,24 @@ for (let i = 0; i < 5; i++) {
         });
     }
 }
-const gltflayer = new maptalks.GLTFLayer('gltf');
-const multigltfmarker = new maptalks.MultiGLTFMarker(data, {
+const gltfLayer = new maptalks.GLTFLayer('gltf');
+const multiGLTFMarker = new maptalks.MultiGLTFMarker(data, {
     symbol: symbol
-}).addTo(gltflayer);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+}).addTo(gltfLayer);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
-multigltfmarker.on('click', e => {
-    document.getElementById('info').innerHTML = 'clicked picking id:' + e.pickingId;
+document.getElementById('info').innerHTML = '请用鼠标悬停和点击模型。'
+
+multiGLTFMarker.on('click', e => {
+    document.getElementById('info').innerHTML = '点击模型的id:' + e.pickingId;
 });
-multigltfmarker.on('mousemove', e => {
+multiGLTFMarker.on('mousemove', e => {
     const index = e.target.getIndexByPickingId(e.pickingId);
-    multigltfmarker.updateData(index, 'color', [0.0, 0.2, 0.8, 1.0]);
+    multiGLTFMarker.updateData(index, 'color', [0.0, 0.2, 0.8, 1.0]);
 });
-multigltfmarker.on('mouseleave', e => {
+multiGLTFMarker.on('mouseleave', e => {
     const index = e.target.getIndexByPickingId(e.pickingId);
-    multigltfmarker.updateData(index, 'color', [1.0, 0.0, 0.0, 1.0]);
+    multiGLTFMarker.updateData(index, 'color', [1.0, 0.0, 0.0, 1.0]);
 });
 `;
 

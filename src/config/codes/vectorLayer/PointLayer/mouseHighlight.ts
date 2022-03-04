@@ -14,13 +14,14 @@ body {
 }
 
 .pane {
-  background: #34495e;
   line-height: 28px;
-  color: #fff;
+  color: #000;
   z-index: 10;
   position: absolute;
   top: 20px;
-  right: 20px
+  right: 20px;
+  background: #efefef;
+  border: 1px solid #000;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {

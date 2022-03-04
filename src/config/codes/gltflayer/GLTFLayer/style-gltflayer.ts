@@ -25,22 +25,22 @@ ${sceneConfig}
 const url1 = '/resources/gltf/alien/alien.glb';
 const url2 = '/resources/gltf/cube-animation/cube.gltf';
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const markers = [];
 for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-        const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
             properties: {
                 num: (i + j) * 0.1
             }
         });
-        markers.push(gltfmarker);
+        markers.push(gltfMarker);
     }
 }
 
-gltflayer.addGeometry(markers);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(markers);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const style = [{
     "filter": ["<", "num", 0.2],
@@ -64,7 +64,7 @@ const style = [{
 ];
 
 function setStyle() {
-    gltflayer.setStyle(style);
+    gltfLayer.setStyle(style);
 }
 `;
 

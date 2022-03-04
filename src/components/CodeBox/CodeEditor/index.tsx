@@ -11,6 +11,8 @@ import { useStore } from "@/store";
 
 const { TabPane } = StyledTabs;
 
+const JS_POSTFIX = '\n\n\n\n\n\n\n\n\n\n\n\n';
+
 function CodeEditor() {
   const store = useStore();
 
@@ -25,7 +27,7 @@ function CodeEditor() {
       if (codes.html || codes.css || codes.js) {
         store.setHtmlCode(codes.html ?? "");
         store.setCssCode(codes.css ?? "");
-        store.setJsCode(codes.js ?? "");
+        store.setJsCode(codes.js ? codes.js + JS_POSTFIX : "");
       }
     }
   }, [store.currentKey]);

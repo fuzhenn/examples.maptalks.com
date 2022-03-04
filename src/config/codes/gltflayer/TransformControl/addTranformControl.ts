@@ -22,14 +22,14 @@ const symbol = {
     url: url
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
 });
 
-gltflayer.addGeometry(gltfmarker);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfLayer.addGeometry(gltfMarker);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const transformControl = new maptalks.TransformControl();
 transformControl.addTo(map);
@@ -43,7 +43,7 @@ transformControl.on('transformend', e => {
 });
 
 map.on('dom:click', e => {
-    const identifyData = e.coordinate ? groupgllayer.identify(e.coordinate, { layers: [gltflayer], orderByCamera: true })[0] : groupgllayer.identifyAtPoint(e.containerPoint, { layers: [gltflayer], orderByCamera: true})[0];
+    const identifyData = e.coordinate ? groupGLLayer.identify(e.coordinate, { layers: [gltfLayer], orderByCamera: true })[0] : groupGLLayer.identifyAtPoint(e.containerPoint, { layers: [gltfLayer], orderByCamera: true})[0];
     const target = identifyData && identifyData.data;
     console.log(target);
     if (target) {

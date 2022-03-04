@@ -1,4 +1,5 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container"></div>
+<div class="info" id="info"></div>`;
 
 const cssCode = `html,
 body {
@@ -10,6 +11,18 @@ body {
 .container {
   width: 100%;
   height: 100%;
+}
+
+.info {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  min-height: 40px;
+  max-width: 200px;
+  font-size: 12px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  background: #efefef;
 }`;
 
 const jsCode = `const map = new maptalks.Map("map", {
@@ -128,7 +141,12 @@ groupLayer.addTo(map);
 
 map.on("click", e => {
   const data = geo.identify(e.coordinate)
-  console.log(data)
+  const info = document.getElementById("info");
+  if (data.length === 0) {
+    info.innerHTML = "No Data";
+  } else {
+    info.innerHTML = JSON.stringify(data);
+  }
 })`;
 
 export const mouseCodes = {

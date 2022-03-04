@@ -1,7 +1,8 @@
 import { map, sceneConfig } from '../gltf-util';
+
 const htmlCode = `
 <div id="map" class="container"></div>
-<div class="pane">点击地图，识别地图上的GLTFMarker</div>`;
+<div class="pane">点击地图查询模型</div>`;
 
 const cssCode = `html,
 body {
@@ -26,21 +27,21 @@ const symbol = {
     url: url
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 map.on('click', e => {
-    const picks = gltflayer.identify(e.coordinate);
+    const picks = gltfLayer.identify(e.coordinate);
     if (picks && picks.length > 0) {
         const target = picks[0].data;
         target.setUniform('polygonFill', [0.2, 0.2, 1.0, 1.0]);
     } else {
-        gltfmarker.setUniform('polygonFill', [1.0, 1.0, 1.0, 1.0]);
+        gltfMarker.setUniform('polygonFill', [1.0, 1.0, 1.0, 1.0]);
     }
 });
 `;

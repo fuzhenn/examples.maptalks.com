@@ -32,22 +32,22 @@ const symbol = {
     rotation: [0, 0, 180]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 //animation control
 const animationController = gui.add(options, 'animation');
 animationController.onChange(function (value) {
-    gltfmarker.setAnimation(value);
+    gltfMarker.setAnimation(value);
 });
 const loopController = gui.add(options, 'loop');
 loopController.onChange(function (value) {
-    gltfmarker.setAnimationLoop(value);
+    gltfMarker.setAnimationLoop(value);
 });
 `;
 

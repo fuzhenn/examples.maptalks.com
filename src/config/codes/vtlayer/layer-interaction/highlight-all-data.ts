@@ -17,25 +17,25 @@ body {
 }
 
 .pane {
-  line-height: 25px;
-  z-index: 10;
   position: absolute;
   top: 20px;
-  right: 20px
+  right: 20px;
+  line-height: 25px;
+  z-index: 10;
 }
   
 .pane a {
   display: block;
+  float: left;
   text-align: left;
-  padding: 0 10px;
   margin-left: 6px;
+  padding: 0 10px;
   min-width: 28px;
   min-height: 25px;
-  float: left;
   color: #000;
+  text-decoration: none;
   background: #efefef;
   border: 1px solid #000;
-  text-decoration: none;
 }`;
 
 const jsCode = `const map = new maptalks.Map("map", {
@@ -127,7 +127,7 @@ const style = {
 vt.setStyle(style);
     
 const groupLayer = new maptalks.GroupGLLayer("group", [vt], {
-    // 需要先开启后处理中的outline属性
+  // 需要先开启后处理中的outline属性
   sceneConfig:{
     postProcess: {
       enable: true,

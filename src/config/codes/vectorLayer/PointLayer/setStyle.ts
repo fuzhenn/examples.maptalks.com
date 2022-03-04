@@ -49,7 +49,7 @@ point.setStyle([
     symbol: {
       textFaceName: 'sans-serif',
       textName: 'MapTalks',
-      textFill: '#34495e',
+      textFill: '#22be9e',
       textHorizontalAlignment: 'right',
       textSize: 40
     }
@@ -66,7 +66,52 @@ const marker = new maptalks.MultiPoint(
   ]
 ).addTo(point);
   
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer("group", [point], {
+  sceneConfig:{
+    postProcess: {
+      enable: true,
+      antialias: {
+        enable: true,
+        taa: true,
+        jitterRatio: 0.25,
+      },
+      ssr: {
+        enable: true,
+      },
+      bloom: {
+        enable: true,
+        threshold: 0,
+        factor: 1,
+        radius: 0.02,
+      },
+      ssao: {
+        enable: true,
+        bias: 0.08,
+        radius: 0.08,
+        intensity: 1.5,
+      },
+      sharpen: {
+        enable: false,
+        factor: 0.2,
+      },
+      outline: {
+        enable: true,
+        outlineFactor: 0.3,
+        highlightFactor: 0.2,
+        outlineWidth: 1,
+        outlineColor: [1, 1, 0],
+      },
+    },
+    ground: {
+      enable: true,
+      renderPlugin: { type: "fill" },
+      symbol: {
+        polygonFill: [0.2666667, 0.2666667, 0.2666667, 1],
+        polygonOpacity: 1,
+      },
+    },
+  }
+});
 groupLayer.addTo(map);
 
 function setStyle() {
@@ -75,7 +120,8 @@ function setStyle() {
       filter: true,
       symbol: {
         textName: 'Style',
-        textFill: '#f00'
+        textFill: '#f00',
+        textSize: 40
       }
     }
   ]);

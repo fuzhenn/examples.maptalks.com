@@ -25,7 +25,7 @@ const vt = new maptalks.VectorTileLayer('vt', {
 const style = {
   style: [
     {
-      filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+      filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
       renderPlugin: {
         dataConfig: {
           type: 'point',
@@ -91,7 +91,9 @@ const style = {
 };
 vt.setStyle(style);
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
+const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
+
+const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
 groupLayer.addTo(map);`;
 
 export const combineIconAndTextCodes = {

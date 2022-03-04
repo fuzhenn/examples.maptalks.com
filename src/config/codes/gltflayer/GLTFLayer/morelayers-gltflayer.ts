@@ -25,13 +25,13 @@ const symbol = {
 const position = map.getCenter();
 const layers = [];
 for (let i = 0; i < 5; i++) {
-    const gltflayer = new maptalks.GLTFLayer('gltf_' + i);
-    const gltfmarker = new maptalks.GLTFMarker(position.add(i * 0.01, 0), {
+    const gltfLayer = new maptalks.GLTFLayer('gltf_' + i);
+    const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01, 0), {
         symbol: symbol
-    }).addTo(gltflayer);
-    layers.push(gltflayer);
+    }).addTo(gltfLayer);
+    layers.push(gltfLayer);
 }
-const groupgllayer = new maptalks.GroupGLLayer('gl', layers, {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', layers, {sceneConfig}).addTo(map);
 `;
 
 export const moreGLTFLayerCodes = {

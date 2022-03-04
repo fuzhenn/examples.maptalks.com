@@ -25,7 +25,7 @@ const vt = new maptalks.VectorTileLayer('vt', {
 const style = {
   style: [
     {
-      filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+      filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
       renderPlugin: {
         dataConfig: {
           type: 'fill',
@@ -41,7 +41,7 @@ const style = {
       },
     },
     {
-        filter : ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+        filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
         renderPlugin: {
           dataConfig: {
             type: 'fill',
@@ -61,7 +61,9 @@ const style = {
 const compressedStyle = maptalks.VectorTileLayer.compressStyleJSON(style);
 vt.setStyle(compressedStyle);
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
+const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
+
+const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
 groupLayer.addTo(map);`;
 
 export const compressVtStyleCodes = {

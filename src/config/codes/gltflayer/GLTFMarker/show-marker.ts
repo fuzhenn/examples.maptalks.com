@@ -28,21 +28,21 @@ const symbol = {
     scale: [2, 2, 2]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol
-}).addTo(gltflayer);
+}).addTo(gltfLayer);
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 //visible control
 const visibleController = gui.add(options, 'visible');
 visibleController.onChange(function (value) {
     if (!value) {
-        gltfmarker.hide();
+        gltfMarker.hide();
     } else {
-        gltfmarker.show();
+        gltfMarker.show();
     }
 });
 `;

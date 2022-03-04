@@ -1,4 +1,8 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container"></div>
+<div class="pane">
+  <a href="javascript:query();">query</a>
+</div>
+<div class="info" id="info"></div>`;
 
 const cssCode = `html,
 body {
@@ -10,6 +14,40 @@ body {
 .container {
   width: 100%;
   height: 100%;
+}
+
+.pane {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  line-height: 25px;
+  z-index: 10;
+}
+  
+.pane a {
+  display: block;
+  float: left;
+  text-align: left;
+  margin-left: 6px;
+  padding: 0 10px;
+  min-width: 28px;
+  min-height: 25px;
+  color: #000;
+  text-decoration: none;
+  background: #efefef;
+  border: 1px solid #000;
+}
+
+.info {
+  position: absolute;
+  top: 56px;
+  right: 20px;
+  min-height: 70px;
+  max-width: 200px;
+  font-size: 12px;
+  line-height: 1.5;
+  word-wrap:break-word;
+  background: #efefef;
 }`;
 
 const jsCode = `const map = new maptalks.Map("map", {
@@ -126,8 +164,11 @@ const groupLayer = new maptalks.GroupGLLayer("group", [geo], {
 });
 groupLayer.addTo(map);
 
-const data = geo.identify([114.69,30.78], { tolerance: 3 })
-console.log(data)`;
+function query() {
+  const data = geo.identify([114.69, 30.78], { tolerance: 1 })
+  const info = document.getElementById("info");
+  info.innerHTML = JSON.stringify(data);
+}`;
 
 export const queryCoordinateCodes = {
   html: htmlCode,

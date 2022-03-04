@@ -22,15 +22,15 @@ const symbol = {
     scale: [2, 2, 2]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
     symbol: symbol
-}).addTo(gltflayer);
-const copyOne = gltfmarker.copy().addTo(gltflayer);
+}).addTo(gltfLayer);
+const copyOne = gltfMarker.copy().addTo(gltfLayer);
 copyOne.setCoordinates(position.add(0.01, 0));
 
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const copyMarkerCodes = {
