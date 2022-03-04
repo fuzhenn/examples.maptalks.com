@@ -48,30 +48,30 @@ const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const markers = [];
 for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
-            symbol: {
-                url
-            },
-            properties: {
-                num: (i + j) * 0.1
-            }
-        });
-        markers.push(gltfMarker);
-    }
+  for (let j = 0; j < 3; j++) {
+    const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.015, j * 0.01 - 0.015), {
+      symbol: {
+        url
+      },
+      properties: {
+        num: (i + j) * 0.1
+      }
+    });
+    markers.push(gltfMarker);
+  }
 }
 
 gltfLayer.addGeometry(markers);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 function filter() {
-    gltfLayer.filter(['>=', 'num', 0.2]).forEach(function (gltfMarker) {
-        gltfMarker.updateSymbol({
-            uniforms: {
-                polygonFill: [0.8, 0.1, 0.1, 1.0]
-            }
-        });
+  gltfLayer.filter(['>=', 'num', 0.2]).forEach(function (gltfMarker) {
+    gltfMarker.updateSymbol({
+      uniforms: {
+        polygonFill: [0.8, 0.1, 0.1, 1.0]
+      }
     });
+  });
 }`;
 
 export const filterGLTFLayerCodes = {

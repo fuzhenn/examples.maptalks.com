@@ -59,8 +59,8 @@ const videoSurface = new maptalks.VideoSurface([
   [111.75424 + ratio, 30.415457967790365, 1],
   [111.73424 - ratio, 30.415457967790365, 1]
 ], {
-    url: '/resources/videos/test1.mp4',
-    opacity: 1
+  url: '/resources/videos/test1.mp4',
+  opacity: 1
 });
 const videoLayer = new maptalks.VideoLayer('video');
 videoSurface.addTo(videoLayer);
@@ -70,11 +70,11 @@ ${sceneConfigCode}
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}).addTo(map);
 
 function startEdit() {
-    videoSurface.startEdit();
+  videoSurface.startEdit();
 }
 
 function endEdit() {
-    videoSurface.endEdit();
+  videoSurface.endEdit();
 }`;
 
 export const editVideoLayerCodes = {

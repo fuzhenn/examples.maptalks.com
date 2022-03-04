@@ -4,28 +4,28 @@ const htmlCode = `<div id="map" class="container"></div>
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #info {
-    position: fixed;
-    background-color: rgba(13, 13, 13, 0.5);
-    padding: 10px 10px 10px 10px;
-    font: 13px bold sans-serif;
-    color: #fff;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 70px;
-    overflow: hidden
-  }
+  position: fixed;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 10px 10px 10px 10px;
+  font: 13px bold sans-serif;
+  color: #fff;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  overflow: hidden
+}
 `;
 
 const jsCode = `
@@ -33,38 +33,38 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url
+  url: url
 };
 const position = map.getCenter();
 const data = [];
 for (let i = -3; i < 3; i++) {
-    for (let j = -3; j < 3; j++) {
-        data.push({
-            coordinates : position.add(i * 0.01, j * 0.01),
-            translation : [0, 0, 0],
-            rotation : [0, 0, Math.random() * 90],
-            scale : [1, 1, 1]
-        });
-    }
+  for (let j = -3; j < 3; j++) {
+    data.push({
+      coordinates : position.add(i * 0.01, j * 0.01),
+      translation : [0, 0, 0],
+      rotation : [0, 0, Math.random() * 90],
+      scale : [1, 1, 1]
+    });
+  }
 }
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const multiGLTFMarker = new maptalks.MultiGLTFMarker(data, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltfLayer);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 document.getElementById('info').innerHTML = '请用鼠标悬停和点击模型。'
 
 multiGLTFMarker.on('click', e => {
-    document.getElementById('info').innerHTML = '点击模型的id:' + e.pickingId;
+  document.getElementById('info').innerHTML = '点击模型的id:' + e.pickingId;
 });
 multiGLTFMarker.on('mousemove', e => {
-    const index = e.target.getIndexByPickingId(e.pickingId);
-    multiGLTFMarker.updateData(index, 'color', [0.0, 0.2, 0.8, 1.0]);
+  const index = e.target.getIndexByPickingId(e.pickingId);
+  multiGLTFMarker.updateData(index, 'color', [0.0, 0.2, 0.8, 1.0]);
 });
 multiGLTFMarker.on('mouseleave', e => {
-    const index = e.target.getIndexByPickingId(e.pickingId);
-    multiGLTFMarker.updateData(index, 'color', [1.0, 0.0, 0.0, 1.0]);
+  const index = e.target.getIndexByPickingId(e.pickingId);
+  multiGLTFMarker.updateData(index, 'color', [1.0, 0.0, 0.0, 1.0]);
 });
 `;
 

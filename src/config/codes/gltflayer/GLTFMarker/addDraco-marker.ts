@@ -5,14 +5,14 @@ const htmlCode = `<div id="map" class="container"></div>
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }`;
 
 const jsCode = `
@@ -20,14 +20,14 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/car/car-draco.gltf';
 const symbol = {
-    url: url,
-    scale: [2, 2, 2]
+  url: url,
+  scale: [2, 2, 2]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfmarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 });
 
 gltflayer.addGeometry(gltfmarker);

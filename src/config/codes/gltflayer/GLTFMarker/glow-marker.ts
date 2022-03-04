@@ -3,14 +3,14 @@ const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }`;
 
 const jsCode = `
@@ -21,15 +21,15 @@ map.setZoom(18);
 const position = map.getCenter();
 const glowlayer = new maptalks.GlowMarkerLayer('glow');
 new maptalks.GlowMarker(position, {
-    symbol : {
-        animation: true,
-        bloom: false,
-        uniforms: {
-            'radius' : 1.0,
-            'color' : [0.867, 0.99, 1.0],
-            'speed' : 5.0
-        }
+  symbol : {
+    animation: true,
+    bloom: false,
+    uniforms: {
+      'radius' : 1.0,
+      'color' : [0.867, 0.99, 1.0],
+      'speed' : 5.0
     }
+  }
 }).addTo(glowlayer);
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [glowlayer], {sceneConfig}).addTo(map);

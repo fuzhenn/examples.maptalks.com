@@ -6,14 +6,14 @@ const htmlCode = `
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .pane{background:#34495e;line-height:28px;color:#fff;z-index:10;position:absolute;top:40px;right:20px}
@@ -24,25 +24,25 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url
+  url: url
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfMarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltfLayer);
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 map.on('click', e => {
-    const picks = gltfLayer.identify(e.coordinate);
-    if (picks && picks.length > 0) {
-        const target = picks[0].data;
-        target.setUniform('polygonFill', [0.2, 0.2, 1.0, 1.0]);
-    } else {
-        gltfMarker.setUniform('polygonFill', [1.0, 1.0, 1.0, 1.0]);
-    }
+  const picks = gltfLayer.identify(e.coordinate);
+  if (picks && picks.length > 0) {
+    const target = picks[0].data;
+    target.setUniform('polygonFill', [0.2, 0.2, 1.0, 1.0]);
+  } else {
+    gltfMarker.setUniform('polygonFill', [1.0, 1.0, 1.0, 1.0]);
+  }
 });
 `;
 
