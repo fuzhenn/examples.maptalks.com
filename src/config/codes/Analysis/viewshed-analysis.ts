@@ -1,4 +1,4 @@
-import { map, sceneConfig } from '../gltf-util';
+import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/gl@0.66.0/dist/maptalksgl.js"></script>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/gltf-layer/dist/maptalks.gltf.js"></script>

@@ -1,7 +1,7 @@
 const htmlCode = `<div id="map" class="container"></div>
 <div class="pane">
-  <a href="javascript:addLayer();">add layer</a>
-  <a href="javascript:removeLayer();">remove layer</a>
+  <a href="javascript:addLayer();">添加图层</a>
+  <a href="javascript:removeLayer();">移除图层</a>
 </div>`;
 
 const cssCode = `html,

@@ -1,7 +1,7 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `
 <div id="map" class="container"></div>
-<div class="pane"><a href="javascript:setStyle();">set style for layer</a></div>
+<div class="pane"><a href="javascript:setStyle();">为图层设置样式</a></div>
 `;
 
 const cssCode = `html,

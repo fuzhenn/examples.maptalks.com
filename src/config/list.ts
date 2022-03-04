@@ -2,6 +2,8 @@ import { gltfList } from "./codes/gltflayer/gltfList";
 import { vectorLayerList } from "./codes/vectorLayer";
 import { videoLayerList } from "./codes/videoLayer/videoLayerList";
 import { vtLayerList } from "./codes/vtlayer";
+import { weatherList } from "./codes/Weather/weatherList";
+import { analysisList } from "./codes/Analysis/analysisList";
 
 interface IListItem {
   title: string;
@@ -13,10 +15,12 @@ interface IListItem {
 }
 
 const baseList: IListItem[] = [
-  gltfList,
-  videoLayerList,
   ...vtLayerList,
   ...vectorLayerList,
+  gltfList,
+  videoLayerList,
+  analysisList,
+  weatherList
 ];
 
 // 生成 key 值

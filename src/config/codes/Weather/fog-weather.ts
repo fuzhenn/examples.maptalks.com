@@ -1,4 +1,4 @@
-import { map, sceneConfig } from '../gltf-util';
+import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,

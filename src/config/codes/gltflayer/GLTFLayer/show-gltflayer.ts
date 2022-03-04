@@ -1,7 +1,7 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `
 <div id="map" class="container"></div>
-<div class="pane"><a href="javascript:show();">show gltflayer</a></div>
+<div class="pane"><a href="javascript:show();">显示图层</a></div>
 `;
 
 const cssCode = `html,

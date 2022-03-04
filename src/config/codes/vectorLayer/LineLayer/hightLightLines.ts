@@ -1,7 +1,7 @@
 const htmlCode = `<div id="map" class="container"></div>
 <div class="pane">
-<a href="javascript:hightlight();">hightlight all</a>
-<a href="javascript:cancelHightlight();">cancel hightlight</a>
+<a href="javascript:hightlight();">高亮所有矢量线</a>
+<a href="javascript:cancelHightlight();">取消高亮</a>
 </div>`;
 
 const cssCode = `html,

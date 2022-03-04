@@ -1,6 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
-<div class="pane"><a href="javascript:removeItem();">remove an item</a></div>
+<div class="pane"><a href="javascript:removeItem();">移除一个数据项</a></div>
 `;
 
 const cssCode = `html,

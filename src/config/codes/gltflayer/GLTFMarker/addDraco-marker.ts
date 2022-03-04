@@ -1,5 +1,7 @@
 import { map, sceneConfig } from '../gltf-util';
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container"></div>
+<script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
+`;
 
 const cssCode = `html,
 body {
@@ -16,14 +18,10 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-//fit view
-map.setCenter([-0.09119584357631538, 51.532773817207584]);
-map.setZoom(15.864715607101017);
-map.setPitch(80);
-const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
+const url = '/resources/gltf/car/car-draco.gltf';
 const symbol = {
     url: url,
-    scale: [5, 5, 5]
+    scale: [2, 2, 2]
 };
 
 const gltflayer = new maptalks.GLTFLayer('gltf');
@@ -34,15 +32,9 @@ const gltfmarker = new maptalks.GLTFMarker(position, {
 
 gltflayer.addGeometry(gltfmarker);
 const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
-
-const skylineAnalysis = new maptalksgl.SkylineAnalysis({
-    lineColor: [1.0, 0.2, 0.0],
-    lineWidth: 1
-});
-skylineAnalysis.addTo(groupgllayer);
 `;
 
-export const skylineAnalysisCodes = {
+export const addDracoMarkerCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

@@ -1,4 +1,4 @@
-import { map, sceneConfig } from '../gltf-util';
+import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
@@ -77,7 +77,6 @@ const rainTextureListControl = gui.add(options, 'rainTexture', ['rain1', 'rain2'
 rainTextureListControl.onChange(function(value) {
     const sceneConfig = groupgllayer.getSceneConfig();
     sceneConfig.weather.rain.rainTexture = textureMap[value];
-    console.log(sceneConfig.weather.rain);
     groupgllayer.setSceneConfig(sceneConfig);
 });
 

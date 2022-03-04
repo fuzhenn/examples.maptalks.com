@@ -1,9 +1,9 @@
 import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
 <div class="pane">
-<a href="javascript:play();">play</a>
-<a href="javascript:pause();">pause</a>
-<a href="javascript:audio();">audio</a>
+<a href="javascript:play();">播放</a>
+<a href="javascript:pause();">停止</a>
+<a href="javascript:audio();">声音</a>
 </div>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
 `;
