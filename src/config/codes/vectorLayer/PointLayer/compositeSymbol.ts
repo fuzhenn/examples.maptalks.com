@@ -24,7 +24,7 @@ const jsCode = `const map = new maptalks.Map('map', {
 
 const center = map.getCenter();
     
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
   
 const marker = new maptalks.Marker(
   map.getCenter(),
@@ -72,9 +72,9 @@ const marker = new maptalks.Marker(
       }
     ]
   }
-).addTo(point);
+).addTo(pointLayer);
     
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);`;
 
 export const compositeSymbolCodes = {

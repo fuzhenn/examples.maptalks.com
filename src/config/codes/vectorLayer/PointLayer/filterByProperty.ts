@@ -13,6 +13,7 @@ body {
 .container {
   width: 100%;
   height: 100%;
+  background: #444;
 }
 
 .pane {
@@ -42,7 +43,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoom: 14,
 });
   
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const marker1 = new maptalks.Marker(
   [121.475542, 31.233812],
@@ -116,58 +117,13 @@ const marker3 = new maptalks.Marker(
   }
 );
 
-point.addGeometry([marker1, marker2, marker3])
+pointLayer.addGeometry([marker1, marker2, marker3])
 
-const groupLayer = new maptalks.GroupGLLayer("group", [point], {
-  sceneConfig:{
-    postProcess: {
-      enable: true,
-      antialias: {
-        enable: true,
-        taa: true,
-        jitterRatio: 0.25,
-      },
-      ssr: {
-        enable: true,
-      },
-      bloom: {
-        enable: true,
-        threshold: 0,
-        factor: 1,
-        radius: 0.02,
-      },
-      ssao: {
-        enable: true,
-        bias: 0.08,
-        radius: 0.08,
-        intensity: 1.5,
-      },
-      sharpen: {
-        enable: false,
-        factor: 0.2,
-      },
-      outline: {
-        enable: true,
-        outlineFactor: 0.3,
-        highlightFactor: 0.2,
-        outlineWidth: 1,
-        outlineColor: [1, 1, 0],
-      },
-    },
-    ground: {
-      enable: true,
-      renderPlugin: { type: "fill" },
-      symbol: {
-        polygonFill: [0.2666667, 0.2666667, 0.2666667, 1],
-        polygonOpacity: 1,
-      },
-    },
-  }
-});
+const groupLayer = new maptalks.GroupGLLayer("group", [pointLayer]);
 groupLayer.addTo(map);;
 
 function selectData() {
-  point.filter(['>=', 'count', 200]).forEach((feature) => {
+  pointLayer.filter(['>=', 'count', 200]).forEach((feature) => {
     feature.updateSymbol({
       markerFill: '#f00'
     });

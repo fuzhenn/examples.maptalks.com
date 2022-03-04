@@ -50,7 +50,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   })
 });
 
-const point = new maptalks.PointLayer('point', {
+const pointLayer = new maptalks.PointLayer('point', {
   collision: true
 });
 
@@ -75,28 +75,28 @@ for (let i = 0; i <= 5000; i++) {
   }));
 }
 
-point.addGeometry(markers);
+pointLayer.addGeometry(markers);
 
 function openCollision() {
     console.log(111)
-  point.options.sceneConfig.collision = true;
-  point.getRenderer().setToRedraw();
+  pointLayer.options.sceneConfig.collision = true;
+  pointLayer.getRenderer().setToRedraw();
 }
 
 function closeCollision() {
-  point.options.sceneConfig.collision = false
-  point.getRenderer().setToRedraw();
+  pointLayer.options.sceneConfig.collision = false
+  pointLayer.getRenderer().setToRedraw();
 }
 
 function openFading() {
-  point.options.sceneConfig.fading = true
+  pointLayer.options.sceneConfig.fading = true
 }
 
 function closeFading() {
-  point.options.sceneConfig.fading = false
+  pointLayer.options.sceneConfig.fading = false
 }
 
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);`;
 
 export const collisionCodes = {

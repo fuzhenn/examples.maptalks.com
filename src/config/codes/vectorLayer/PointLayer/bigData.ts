@@ -22,7 +22,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   })
 });
     
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const center = map.getCenter();
 const width = 0.055;
@@ -45,9 +45,9 @@ for (let i = 0; i <= 50000; i++) {
   }));
 }
 
-point.addGeometry(markers);
+pointLayer.addGeometry(markers);
     
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);`;
 
 export const bigDataCodes = {
