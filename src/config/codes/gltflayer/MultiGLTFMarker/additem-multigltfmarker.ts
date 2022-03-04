@@ -47,10 +47,10 @@ const symbol = {
 };
 const position = map.getCenter();
 const data = [];
-for (let i = -3; i < 3; i++) {
-  for (let j = -3; j < 3; j++) {
+for (let i = -2; i < 3; i++) {
+  for (let j = -2; j < 3; j++) {
     data.push({
-      coordinates : position.add(i * 0.01, j * 0.01),
+      coordinates : position.add(i * 0.01 - 0.018, j * 0.01),
       scale : [1, 1, 1],
       color: [1, 1, 1, 1]
     });
@@ -63,7 +63,7 @@ const multiGLTFMarker = new maptalks.MultiGLTFMarker(data, {
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 function addItem() {
   multiGLTFMarker.addData({
-    coordinates : position.add(-0.02, 0.01),
+    coordinates : position.add(-0.02, -0.02),
     translation : [0, 0, 0],
     rotation : [0, 0, 0],
     scale : [2, 2, 2],

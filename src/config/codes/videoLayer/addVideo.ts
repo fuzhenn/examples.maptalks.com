@@ -45,7 +45,7 @@ body {
 
 const mapCode = map
   .replace('bearing: 180', 'bearing: 0')
-  .replace('pitch: 75', 'pitch: 0')
+  .replace('pitch: 80', 'pitch: 0')
   .replace('zoom: 14', 'zoom: 14')
   .replace('center: [-0.113049,51.498568]', 'center: [111.74424, 30.425457967790365]');
 

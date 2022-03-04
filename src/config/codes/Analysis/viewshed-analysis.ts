@@ -15,9 +15,11 @@ body {
   width: 100%;
   height: 100%;
 }`;
-
+const mapCode = map
+  .replace('bearing: 180', 'bearing: -93')
+  .replace('pitch: 80', 'pitch: 24.8');
 const jsCode = `
-${map}
+${mapCode}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {

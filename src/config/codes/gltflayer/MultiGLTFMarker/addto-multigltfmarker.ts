@@ -22,19 +22,18 @@ const symbol = {
 };
 const position = map.getCenter();
 const data = [];
-for (let i = -3; i < 3; i++) {
-  for (let j = -3; j < 3; j++) {
+for (let i = -2; i < 3; i++) {
+  for (let j = -2; j < 3; j++) {
     data.push({
-      coordinates: position.add(i * 0.01, j * 0.01),
+      coordinates: position.add(i * 0.01 - 0.018, j * 0.01),
       translation: [0, 0, 0],
-      rotation: [0, 0, Math.random() * 90],
       scale: [1, 1, 1]
     });
   }
 }
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const groupgltfmarker = new maptalks.MultiGLTFMarker(data, {
-  symbol: symbol
+    symbol: symbol
 }).addTo(gltfLayer);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;

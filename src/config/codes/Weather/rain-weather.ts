@@ -13,9 +13,11 @@ body {
 }
 #map { width: 100%; height: 100%; background-color: black }
 `;
-
+const mapCode = map
+  .replace('bearing: 180', 'bearing: 210')
+  .replace('center: [-0.113049,51.498568]', 'center: [-0.12416643731910426,51.52260565445428]');
 const jsCode = `
-${map}
+${mapCode}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
@@ -52,7 +54,12 @@ const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
   url: url,
   shadow: true,
-  scale: [5, 5, 5]
+  scale: [12, 12, 12],
+  translation: [0, -50, -5],
+  uniforms: {
+    metallicFactor: 1,
+    roughnessFactor: 0,
+  }
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');

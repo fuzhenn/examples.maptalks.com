@@ -45,7 +45,6 @@ transformControl.on('transformend', e => {
 map.on('dom:click', e => {
   const identifyData = e.coordinate ? groupGLLayer.identify(e.coordinate, { layers: [gltfLayer], orderByCamera: true })[0] : groupGLLayer.identifyAtPoint(e.containerPoint, { layers: [gltfLayer], orderByCamera: true})[0];
   const target = identifyData && identifyData.data;
-  console.log(target);
   if (target) {
     transformControl.enable();
     transformControl.transform(target);
