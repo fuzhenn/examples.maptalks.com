@@ -22,7 +22,7 @@ body {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 70px;
+  height: 50px;
   overflow: hidden
 }`;
 
@@ -49,7 +49,7 @@ const line = new maptalks.LineString([
 }).addTo(lineLayer);
 
 line.on('click', () => {
-  document.getElementById('info').innerHTML = nodeMatrix;
+  document.getElementById('info').innerHTML = '响应鼠标点击事件';
 });
 
 const groupLayer = new maptalks.GroupGLLayer('group', [lineLayer]).addTo(map);

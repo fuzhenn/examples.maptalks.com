@@ -25,8 +25,8 @@ const baseList: IListItem[] = [
   weatherList,
   ...threeDTilesLayerList,
   {
-    title: "three插件",
-    href: "https://maptalks.org/maptalks.three/demo/index.html",
+    title: "THREE图层插件",
+    href: "https://github.com/maptalks/maptalks.three",
   },
 ];
 

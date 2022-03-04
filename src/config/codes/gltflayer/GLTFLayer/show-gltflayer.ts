@@ -33,19 +33,19 @@ const gltfLayer2 = new maptalks.GLTFLayer('gltf2');
 const position = map.getCenter();
 const gltfMarker1 = new maptalks.GLTFMarker(position, {
   symbol: symbol
-}).addTo(gltflayer1);
+}).addTo(gltfLayer1);
 
 const gltfMarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
   symbol: symbol
-}).addTo(gltflayer2);
+}).addTo(gltfLayer2);
 
-const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltflayer1, gltflayer2], {sceneConfig}).addTo(map);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer1, gltfLayer2], {sceneConfig}).addTo(map);
 
 function show() {
-  if (gltflayer1.isVisible()) {
-    gltflayer1.hide();
+  if (gltfLayer1.isVisible()) {
+    gltfLayer1.hide();
   } else {
-    gltflayer1.show();
+    gltfLayer1.show();
   }
 }
 `;

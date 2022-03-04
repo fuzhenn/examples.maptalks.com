@@ -23,7 +23,7 @@ body {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 70px;
+  height: 50px;
   overflow: hidden
 }`;
 
@@ -43,15 +43,17 @@ const gltfMarker = new maptalks.GLTFMarker(position, {
 }).addTo(gltfLayer);
 
 gltfMarker.on('click', e => {
-  document.getElementById('info').innerHTML = 'click event';
+  document.getElementById('info').innerHTML = 'click事件';
 });
 gltfMarker.on('mousemove', e => {
   map.setCursor('url(/resources/images/cursor.png) 9 0, auto');
   gltfMarker.setUniform('polygonFill', [0.0, 0.8, 0.0, 1.0]);
+  document.getElementById('info').innerHTML = 'mousemove事件';
 });
 gltfMarker.on('mouseleave', e => {
   map.resetCursor();
   gltfMarker.setUniform('polygonFill', [1, 1, 1, 1.0]);
+  document.getElementById('info').innerHTML = 'mouseleave事件';
 });
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
