@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -18,7 +19,7 @@ const jsCode = `const map = new maptalks.Map('map', {
 });
 
 const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
 });
 
@@ -39,27 +40,10 @@ const style = {
       },
       symbol: [
         {
-          markerBloom: false,
-          markerAllowOverlap: false,
-          markerDx: 0,
           markerDy: -4.5,
           markerFile: 'resources/markers/avatar.jpg',
-          markerFillOpacity: 1,
           markerHeight: 21,
-          markerWidth: 21,
-          markerHorizontalAlignment: 'middle',
-          markerIgnorePlacement: false,
-          markerLineColor: [0.2, 0.29, 0.39, 1],
-          markerLineDasharray: [0, 0, 0, 0],
-          markerLineOpacity: 1,
-          markerLineWidth: 0,
-          markerOpacity: 1,
-          markerPitchAlignment: 'viewport',
-          markerPlacement: 'point',
-          markerRotationAlignment: 'viewport',
-          markerSpacing: 0,
-          markerType: null,
-          markerVerticalAlignment: 'middle',
+          markerWidth: 21
         },
         {
           markerFile: 'resources/markers/marker.png',
@@ -72,9 +56,7 @@ const style = {
 };
 vt.setStyle(style);
 
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
-
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const combineIconsCodes = {

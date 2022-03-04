@@ -1,4 +1,4 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container" style="background-color: #444444"></div>`;
 
 const cssCode = `html,
 body {
@@ -17,8 +17,35 @@ const jsCode = `const map = new maptalks.Map('map', {
     zoom: 16,
   });
   
+  const style = {
+    style: [
+      {
+        filter: true,
+        renderPlugin: {
+          dataConfig: {
+            type: 'point',
+          },
+          sceneConfig: {
+            collision: true,
+            fading: true,
+            depthFunc: 'always',
+          },
+          type: 'icon',
+        },
+        symbol: {
+          markerType: 'ellipse',
+          markerFill: '#1bbc9b',
+          markerFillOpacity: 1,
+          markerHeight: 21,
+          markerWidth: 21
+        }
+      }
+    ]
+  };
+
   const geo = new maptalks.GeoJSONVectorTileLayer('geo', {
-    data: '/resources/geojson/area.geojson'
+    data: '/resources/geojson/area.geojson',
+    style
   });
 
   geo.on('dataload', e => {

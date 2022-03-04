@@ -28,7 +28,7 @@ export const layerOperationList = [
     js: loadRemoteGeoDataCodes.js,
   },
   {
-    title: "转换函数把远程JSON数据转成GeoJSON",
+    title: "数据转换函数",
     html: convertedGeoDataCodes.html,
     css: convertedGeoDataCodes.css,
     js: convertedGeoDataCodes.js,
@@ -40,7 +40,7 @@ export const layerOperationList = [
     js: setLayerZoomBoundaryCodes.js,
   },
   {
-    title: "设置图层的最大可访问级别",
+    title: "图层的最大可访问级别",
     html: setLayerZoomAccessCodes.html,
     css: setLayerZoomAccessCodes.css,
     js: setLayerZoomAccessCodes.js,

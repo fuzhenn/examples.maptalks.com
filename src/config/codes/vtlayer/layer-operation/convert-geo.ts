@@ -1,4 +1,4 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id="map" class="container" style="background-color: #444444"></div>`;
 
 const cssCode = `html,
 body {
@@ -17,24 +17,28 @@ const jsCode = `const map = new maptalks.Map("map", {
   zoom: 16,
 });
   
-const geo = new maptalks.GeoJSONVectorTileLayer("geo", {
-  data: {
-    properties: {
-      adcode: "110000",
-      name: "北京市",
-      center: [116.405285, 39.904989],
-      centroid: [116.41995, 40.18994],
-      childrenNum: 16,
-      level: "province",
-      parent: { adcode: 100000 },
-      subFeatureIndex: 0,
-      acroutes: [100000]
-    },
-    geometry: {
-      type: "Point",
-      coordinates: [116.405285, 39.904989]
-    }
+// 输入的数据不是GeoJSON数据
+const data = {
+  properties: {
+    adcode: "110000",
+    name: "北京市",
+    center: [116.405285, 39.904989],
+    centroid: [116.41995, 40.18994],
+    childrenNum: 16,
+    level: "province",
+    parent: { adcode: 100000 },
+    subFeatureIndex: 0,
+    acroutes: [100000]
   },
+  geometry: {
+    type: "Point",
+    coordinates: [116.405285, 39.904989]
+  }
+};
+
+const geo = new maptalks.GeoJSONVectorTileLayer("geo", {
+  data,
+  // 数据转换函数
   convertFn: function convert(data) {
     return {
       type: "FeatureCollection",
@@ -65,27 +69,11 @@ geo.setStyle({
         type: "icon",
       },
       symbol: {
-        markerBloom: false,
-        markerAllowOverlap: false,
-        markerDx: 0,
-        markerDy: 0,
-        markerFile: null,
+        markerType: 'ellipse',
+        markerFill: '#1bbc9b',
         markerFillOpacity: 1,
         markerHeight: 21,
-        markerWidth: 21,
-        markerHorizontalAlignment: "middle",
-        markerIgnorePlacement: false,
-        markerLineColor: [0.2, 0.29, 0.39, 1],
-        markerLineDasharray: [0, 0, 0, 0],
-        markerLineOpacity: 1,
-        markerLineWidth: 0,
-        markerOpacity: 1,
-        markerPitchAlignment: "viewport",
-        markerPlacement: "point",
-        markerRotationAlignment: "viewport",
-        markerSpacing: 0,
-        markerType: "ellipse",
-        markerVerticalAlignment: "middle",
+        markerWidth: 21
       }
     }
   ]
