@@ -43,13 +43,13 @@ const map1 = new maptalks.Map('map1', {
   })
 });
   
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const marker = new maptalks.Marker(c, {
   properties: {
     name: 'point marker'
   }
-}).addTo(point);
+}).addTo(pointLayer);
   
 marker.setSymbol({
   textFaceName: 'sans-serif',
@@ -58,12 +58,12 @@ marker.setSymbol({
   textSize: 40
 })
   
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);
 
-const point1 = new maptalks.PointLayer('point1');
-maptalks.Geometry.fromJSON(marker.toJSON()).addTo(point1);
-const groupLayer1 = new maptalks.GroupGLLayer('group1', [point1]);
+const pointLayer1 = new maptalks.PointLayer('point1');
+maptalks.Geometry.fromJSON(marker.toJSON()).addTo(pointLayer1);
+const groupLayer1 = new maptalks.GroupGLLayer('group1', [pointLayer1]);
 groupLayer1.addTo(map1);`;
 
 export const geometryJsonCodes = {

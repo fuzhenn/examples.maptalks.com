@@ -22,7 +22,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   })
 });
   
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const json = {
   type: 'Feature',
@@ -35,7 +35,7 @@ const json = {
   }
 };
 
-const marker = maptalks.GeoJSON.toGeometry(json).addTo(point);
+const marker = maptalks.GeoJSON.toGeometry(json).addTo(pointLayer);
 
 marker.setSymbol({
   textFaceName: 'sans-serif',
@@ -44,7 +44,7 @@ marker.setSymbol({
   textSize: 40
 })
   
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);`;
 
 export const geojsonToGeometryCodes = {

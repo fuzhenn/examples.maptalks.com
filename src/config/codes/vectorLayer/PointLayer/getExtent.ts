@@ -10,6 +10,7 @@ body {
 .container {
   width: 100%;
   height: 100%;
+  background: #444;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {

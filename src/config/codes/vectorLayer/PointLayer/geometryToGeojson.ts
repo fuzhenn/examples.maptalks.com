@@ -36,13 +36,13 @@ const jsCode = `const map = new maptalks.Map('map', {
   })
 });
   
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const marker = new maptalks.Marker([-0.113049,51.498568], {
   properties: {
     name: 'point marker'
   }
-}).addTo(point);
+}).addTo(pointLayer);
 
 marker.setSymbol({
   textFaceName: 'sans-serif',
@@ -53,7 +53,7 @@ marker.setSymbol({
 
 document.getElementById('info').innerHTML = JSON.stringify(marker.toGeoJSON());
   
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const groupLayer = new maptalks.GroupGLLayer('group', [pointLayer]);
 groupLayer.addTo(map);`;
 
 export const geometryToGeojsonCodes = {

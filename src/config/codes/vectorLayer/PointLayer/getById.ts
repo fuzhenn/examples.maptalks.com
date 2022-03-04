@@ -14,6 +14,7 @@ body {
 .container {
   width: 100%;
   height: 100%;
+  background: #444;
 }
 
 .pane {
@@ -43,7 +44,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoom: 14,
 });
   
-const point = new maptalks.PointLayer('point');
+const pointLayer = new maptalks.PointLayer('point');
 
 const marker1 = new maptalks.Marker(
   [121.475542, 31.233812],
@@ -108,9 +109,9 @@ const marker3 = new maptalks.Marker(
   }
 );
 
-point.addGeometry([marker1, marker2, marker3])
+pointLayer.addGeometry([marker1, marker2, marker3])
 
-const groupLayer = new maptalks.GroupGLLayer("group", [point], {
+const groupLayer = new maptalks.GroupGLLayer("group", [pointLayer], {
   sceneConfig:{
     postProcess: {
       enable: true,
@@ -159,14 +160,14 @@ const groupLayer = new maptalks.GroupGLLayer("group", [point], {
 groupLayer.addTo(map);
 
 function get100() {
-  const marker =  point.getGeometryById(100);
+  const marker =  pointLayer.getGeometryById(100);
   marker.updateSymbol({
     markerFill: '#f00'
   });
 }
 
 function get200() {
-  const marker =  point.getGeometryById(200);
+  const marker =  pointLayer.getGeometryById(200);
   marker.updateSymbol({
     markerFill: '#f00'
   });
