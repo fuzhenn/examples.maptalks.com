@@ -33,18 +33,11 @@ const line = new maptalks.LineString(
     symbol:{
       'linePatternFile': '/resources/images/pattern.png',
       'linePatternDx': 0,
-      'lineWidth': 10
+      'lineWidth': 10,
+      'linePatternAnimSpeed': 0.5
     }
   }
 ).addTo(lineLayer);
-
-line.animate({
-  symbol: {
-    linePatternDx: 20
-  }
-}, {
-  repeat: true
-});
   
 const groupLayer = new maptalks.GroupGLLayer('group', [lineLayer]).addTo(map);`;
 

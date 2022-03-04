@@ -1,5 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
+<div id="mask" class="overlay">loading.....</div>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
 `;
 
@@ -13,7 +14,22 @@ body {
 .container {
   width: 100%;
   height: 100%;
-}`;
+}
+
+.overlay {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  text-align:center;
+  line-height:1000px;
+  font-size: 10em;
+  font-color: #ffffff;
+}
+
+`;
 
 const jsCode = `
 ${map}
@@ -21,17 +37,21 @@ ${sceneConfig}
 const url = '/resources/gltf/car/car-draco.gltf';
 const symbol = {
   url: url,
-  scale: [2, 2, 2]
+  scale: [6, 6, 6]
 };
 
-const gltflayer = new maptalks.GLTFLayer('gltf');
+const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
-const gltfmarker = new maptalks.GLTFMarker(position, {
+const gltfMarker = new maptalks.GLTFMarker(position, {
   symbol: symbol
 });
 
-gltflayer.addGeometry(gltfmarker);
-const groupgllayer = new maptalks.GroupGLLayer('gl', [gltflayer], {sceneConfig}).addTo(map);
+gltfMarker.on('load', () => {
+  document.body.removeChild(document.getElementById('mask'));
+});
+
+gltfLayer.addGeometry(gltfMarker);
+const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;
 
 export const addDracoMarkerCodes = {
