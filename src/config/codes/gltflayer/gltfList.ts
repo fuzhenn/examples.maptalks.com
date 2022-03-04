@@ -135,12 +135,12 @@ const gltfList =
           css: skinningMarkerCodes.css,
           js: skinningMarkerCodes.js,
         },
-        {
-          title: '发光环',
-          html: glowMarkerCodes.html,
-          css: glowMarkerCodes.css,
-          js: glowMarkerCodes.js,
-        },
+        // {
+        //   title: '发光环',
+        //   html: glowMarkerCodes.html,
+        //   css: glowMarkerCodes.css,
+        //   js: glowMarkerCodes.js,
+        // },
         {
           title: '右键菜单',
           html: menuMarkerCodes.html,
