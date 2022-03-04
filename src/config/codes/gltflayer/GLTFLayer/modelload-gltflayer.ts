@@ -25,7 +25,7 @@ body {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 70px;
+  height: 50px;
   overflow: hidden
 }
 `;
@@ -53,7 +53,7 @@ const gltfMarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
 }).addTo(gltfLayer);
 
 gltfLayer.on('modelload', () => {
-  document.getElementById('info').innerHTML = 'all gltf models has been loaded';
+  document.getElementById('info').innerHTML = '所有模型载入完成';
 });
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 `;

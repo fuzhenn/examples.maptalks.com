@@ -18,8 +18,8 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-  url: url,[
-  scale: [2, 2, 2]]
+  url: url,
+  scale: [2, 2, 2]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');

@@ -1,5 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
+<div id="info"></div>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/transform-control/dist/transform-control.js"></script>`;
 
 const cssCode = `html,
@@ -12,6 +13,19 @@ body {
 .container {
   width: 100%;
   height: 100%;
+}
+
+#info {
+  position: fixed;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 10px 10px 10px 10px;
+  font: 13px bold sans-serif;
+  color: #fff;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 50px;
+  overflow: hidden
 }`;
 
 const jsCode = `
@@ -19,7 +33,8 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-  url: url
+  url: url,
+  scale: [2, 2, 2]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
@@ -39,7 +54,7 @@ transformControl.on('transforming', e => {
 });
 
 transformControl.on('transformend', e => {
-  console.log('transform end');
+  document.getElementById('info').innerHTML = '操控模型完成事件';
 });
 
 map.on('dom:click', e => {

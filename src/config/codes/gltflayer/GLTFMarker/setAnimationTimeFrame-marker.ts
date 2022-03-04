@@ -18,7 +18,7 @@ body {
 
 .pane {
   position: absolute;
-  top: 20px;
+  top: 70px;
   right: 20px;
   line-height: 25px;
   z-index: 10;
@@ -36,6 +36,19 @@ body {
   text-decoration: none;
   background: #efefef;
   border: 1px solid #000;
+}
+
+#info {
+  position: fixed;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 10px 10px 10px 10px;
+  font: 13px bold sans-serif;
+  color: #fff;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 50px;
+  overflow: hidden
 }`;
 
 const jsCode = `
@@ -64,7 +77,7 @@ function setAnimationTimeFrame() {
   const renderer = gltfLayer.getRenderer();
   const meshes = renderer.getMarkerMeshes(gltfMarker);
   const nodeMatrix = meshes[0].nodeMatrix;
-  document.getElementById('info').innerHTML = '[' + nodeMatrix + ']';
+  document.getElementById('info').innerHTML = '矩阵:[' + nodeMatrix + ']';
 }
 `;
 

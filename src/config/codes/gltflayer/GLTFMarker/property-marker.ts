@@ -23,7 +23,7 @@ body {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 70px;
+  height: 50px;
   overflow: hidden
 }
 `;
