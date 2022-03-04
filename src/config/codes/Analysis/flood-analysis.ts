@@ -51,8 +51,15 @@ const waterColorController = gui.addColor(options, 'waterColor');
 waterColorController.onChange(function (value) {
     floodAnalysis.update('waterColor', [value[0] / 255, value[1] / 255, value[2] / 255]);
 });
-`;
 
+map.setCenter(new maptalks.Coordinate([-0.12791737312272744,51.52082639594201]));
+// setInterval(function() {
+//     const center = map.getCenter();
+//     const zoom = map.getZoom();
+//     const pitch = map.getPitch();
+//     console.log('center:' + center.x + ',' + center.y + ', zoom:' + zoom + ', pitch:' + pitch);
+// }, 500);
+`;
 export const floodAnalysisCodes = {
   html: htmlCode,
   css: cssCode,

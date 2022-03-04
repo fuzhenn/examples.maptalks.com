@@ -13,10 +13,8 @@ body {
     height: 100%;
 }`;
 
-const mapCode = map.replace('bearing: 180', 'bearing: 0');
-
 const jsCode = `
-${mapCode}
+${map}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
@@ -32,7 +30,8 @@ const symbol = {
     animation: options.animation,
     animationName: options.animationList, //first animation default
     loop: options.loop,
-    scale: [2, 2, 2]
+    scale: [2, 2, 2],
+    rotation: [0, 0, 180]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');

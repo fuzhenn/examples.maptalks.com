@@ -20,7 +20,7 @@ ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
     this.weather = true;
-    this.rain = false;
+    this.rain = true;
     this.rainTexture = 'rain1';
     this.windDirectionX = 0;
     this.windDirectionY = 0;

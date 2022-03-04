@@ -41,7 +41,8 @@ const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
     shadow: true,
-    scale: [5, 5, 5]
+    scale: [5, 5, 5],
+    translation:[0, 0, -2.3]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');

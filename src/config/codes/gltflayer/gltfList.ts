@@ -178,7 +178,7 @@ const gltfList =
                     js: propertyMarkerCodes.js,
                 },
                 {
-                    title: '1.22 添加drac压缩模型',
+                    title: '1.22 添加draco压缩模型',
                     html: addDracoMarkerCodes.html,
                     css: addDracoMarkerCodes.css,
                     js: addDracoMarkerCodes.js,
