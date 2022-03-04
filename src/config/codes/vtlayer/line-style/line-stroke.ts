@@ -15,48 +15,48 @@ body {
 
 const jsCode = `const map = new maptalks.Map('map', {
   center: [-74.00912099912109, 40.71107610933129],
-  zoom: 16,
+  zoom: 17,
+  zoomControl: true,
 });
-
+  
 const vt = new maptalks.VectorTileLayer('vt', {
   urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
 });
 
+// 地图放大到18级或以上变为黄色
 const style = {
   style: [
     {
-      filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
+      filter : [
+        'all',
+        ['==', '$layer', 'internal-road'],
+        ['==', '$type', 'LineString'],
+      ],
       renderPlugin: {
         dataConfig: {
-          type: 'point',
+          type: 'line',
         },
-        sceneConfig: {
-          collision: true,
-          fading: true,
-          depthFunc: 'always',
-        },
-        type: 'text',
+        sceneConfig: {},
+        type: 'line',
       },
       symbol: {
-        // 从数据的name中读取文字
-        textName: '{name}',
-        textFaceName: 'Microsoft YaHei,sans-serif',
-        textFill: [1, 1, 1, 1],
-        textHaloFill: [1, 1, 1, 1],
-        textHaloOpacity: 1,
-        textHaloRadius: 0,
-        textSize: 20
-      },     
+      	// 中间颜色设为了透明
+        lineColor: [0.73, 0.73, 0.73, 0],
+        lineWidth: 6,
+        lineStrokeColor: [1, 1, 1, 1],
+        lineStrokeWidth: 1,
+        
+      },
     }
   ]
 };
 vt.setStyle(style);
-
+  
 const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
-export const readTextCodes = {
+export const lineStrokeCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -38,22 +39,13 @@ const style = {
         type: 'line',
       },
       symbol: {
-        lineBloom: false,
-        lineCap: 'butt',
-        lineColor: [0.73, 0.73, 0.73, 1],
-        lineDasharray: [0, 0, 0, 0],
-        lineDashColor: [1, 1, 1, 0],
-        lineDx: 0,
-        lineDy: 0,
-        lineGapWidth: 0,
-        lineJoin: 'miter',
-        lineOpacity: 1,
-        linePatternAnimSpeed: 1,
-        linePatternFile: '/resources/textures/figure.jpg',
-        lineStrokeWidth: 0,
-        lineStrokeColor: [0, 0, 0, 0],
-        lineJoinPatternMode: 0,
-        lineWidth: 10,
+        linePatternAnimSpeed: 0.5,
+        // lineJoin处的模型填充方式，0则lineJoin为连续绘制纹理，为1则设为图片第一个像素处的颜色。
+        lineJoinPatternMode: 1,
+        linePatternFile: '/resources/textures/arrow.png',
+        // 填充图片之间的间隔宽度，单位为填充图片宽度的倍数
+        linePatternGap: 3,
+        lineWidth: 8
       },
     }
   ]

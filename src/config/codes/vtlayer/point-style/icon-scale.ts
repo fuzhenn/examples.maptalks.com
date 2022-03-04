@@ -46,12 +46,8 @@ const style = {
             stops: [[16, 20], [18, 40]]
           },
           markerFill: [0.53, 0.77, 0.94, 1],
-          markerFillOpacity: 1,
           markerLineColor: [0.2, 0.29, 0.39, 1],
-          markerLineDasharray: [0, 0, 0, 0],
-          markerLineOpacity: 1,
-          markerLineWidth: 3,
-          markerOpacity: 1,
+          markerLineWidth: 3
         }
       ]      
     }

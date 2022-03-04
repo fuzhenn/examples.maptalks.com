@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -22,6 +23,8 @@ const vt = new maptalks.VectorTileLayer('vt', {
   urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
 });
+
+//不同级别设置了不同的线宽，并线性变化
 
 const style = {
   style: [
@@ -39,24 +42,9 @@ const style = {
         type: 'line',
       },
       symbol: {
-        lineBloom: false,
-        lineCap: 'butt',
         lineColor: [0.73, 0.73, 0.73, 1],
-        lineDasharray: [0, 0, 0, 0],
-        lineDashColor: [1, 1, 1, 0],
-        lineDx: 0,
-        lineDy: 0,
-        lineGapWidth: 0,
-        lineJoin: 'miter',
-        lineOpacity: 1,
-        linePatternAnimSpeed: 0,
-        linePatternFile: null,
-        lineStrokeWidth: 0,
-        lineStrokeColor: [0, 0, 0, 0],
-        lineJoinPatternMode: 0,
         lineWidth: {
-          type: 'interval',
-          stops: [[16, 2], [18, 20]]
+          stops: [[12, 1], [20, 10]]
         },
       },
     }
@@ -64,9 +52,7 @@ const style = {
 };
 vt.setStyle(style);
   
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
-
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const lineWidthScaleCodes = {

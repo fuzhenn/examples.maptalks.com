@@ -15,14 +15,11 @@ body {
 
 const jsCode = `const map = new maptalks.Map('map', {
   center: [-74.00912099912109, 40.71107610933129],
-  zoom: 16,
+  zoom: 17,
   zoomControl: true,
 });
 
-const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
-  spatialReference: 'preset-vt-3857',
-});
+//缩放地图，文字大小随级别放大缩小
 
 const style = {
   style: [
@@ -40,40 +37,27 @@ const style = {
         type: 'text',
       },
       symbol: {
-        textBloom: false,
-        textAllowOverlap: false,
-        textDx: 0,
-        textDy: 0,
         textFaceName: 'Microsoft YaHei,sans-serif',
         textFill: [0, 0, 0, 1],
         textHaloFill: [1, 1, 1, 1],
         textHaloOpacity: 1,
-        textHaloRadius: 0,
-        textHorizontalAlignment: 'middle',
-        textIgnorePlacement: false,
+        textHaloRadius: 1,
         textName: 'MapTalks',
-        textOpacity: 1,
-        textPitchAlignment: 'viewport',
-        textPlacement: 'point', // 可被改成line
-        textRotation: 0,
-        textRotationAlignment: 'viewport',
         textSize: {
           stops: [[16, 15], [18, 60]]
-        },
-        textSpacing: 250,
-        textStyle: 'normal',
-        textVerticalAlignment: 'middle',
-        textWeight: 'normal',
-        textWrapWidth: 240,
+        }
       },     
     }
   ]
 };
-vt.setStyle(style);
 
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
+const vt = new maptalks.VectorTileLayer('vt', {
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
+  spatialReference: 'preset-vt-3857',
+  style
+});
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const textScaleCodes = {

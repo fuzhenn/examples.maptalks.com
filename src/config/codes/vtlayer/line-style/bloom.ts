@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -39,21 +40,9 @@ const style = {
       },
       symbol: {
         lineBloom: true, // true:开启泛光 false:关闭泛光
-        lineCap: 'butt',
         lineColor: [0.73, 0.73, 0.73, 1],
-        lineDasharray: [0, 0, 0, 0],
-        lineDashColor: [1, 1, 1, 0],
-        lineDx: 0,
-        lineDy: 0,
-        lineGapWidth: 0,
-        lineJoin: 'miter',
         lineOpacity: 1,
-        linePatternAnimSpeed: 0,
-        linePatternFile: null,
-        lineStrokeWidth: 0,
-        lineStrokeColor: [0, 0, 0, 0],
-        lineJoinPatternMode: 0,
-        lineWidth: 10,
+        lineWidth: 3
       },
     }
   ]
@@ -65,46 +54,13 @@ const groupLayer = new maptalks.GroupGLLayer('group', [vt], {
   sceneConfig:{
     postProcess: {
       enable: true,
-      antialias: {
-        enable: true,
-        taa: true,
-        jitterRatio: 0.25,
-      },
-      ssr: {
-        enable: true,
-      },
       bloom: {
         enable: true,
         threshold: 0,
         factor: 1,
         radius: 0.02,
-      },
-      ssao: {
-        enable: true,
-        bias: 0.08,
-        radius: 0.08,
-        intensity: 1.5,
-      },
-      sharpen: {
-        enable: false,
-        factor: 0.2,
-      },
-      outline: {
-        enable: true,
-        outlineFactor: 0.3,
-        highlightFactor: 0.2,
-        outlineWidth: 1,
-        outlineColor: [1, 1, 0],
-      },
-    },
-    ground: {
-      enable: true,
-      renderPlugin: { type: 'fill' },
-      symbol: {
-        polygonFill: [0.54, 0.54, 0.54, 1],
-        polygonOpacity: 1,
-      },
-    },
+      }
+    }
   }
 });
 groupLayer.addTo(map);`;

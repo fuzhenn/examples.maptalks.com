@@ -8,10 +8,10 @@ export const threeDLineStyleList = [
     css: setTextureCodes.css,
     js: setTextureCodes.js,
   },
-  {
-    title: "设置高度",
-    html: setHeightCodes.html,
-    css: setHeightCodes.css,
-    js: setHeightCodes.js,
-  },
+  // {
+  //   title: "设置高度",
+  //   html: setHeightCodes.html,
+  //   css: setHeightCodes.css,
+  //   js: setHeightCodes.js,
+  // },
 ];

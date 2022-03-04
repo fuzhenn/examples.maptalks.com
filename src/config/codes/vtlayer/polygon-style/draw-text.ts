@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -35,7 +36,7 @@ const style = {
       },
       symbol: {
         polygonBloom: false,
-        polygonFill: [0.345, 0.345, 0.502, 1],
+        polygonFill: '#577570',
         polygonOpacity: 1,
         polygonPatternFile: null,
       },
@@ -54,29 +55,13 @@ const style = {
         type: 'text',
       },
       symbol: {
-        textBloom: false,
-        textAllowOverlap: false,
-        textDx: 0,
-        textDy: 0,
         textFaceName: 'Microsoft YaHei,sans-serif',
-        textFill: [0, 0, 0, 1],
-        textHaloFill: [1, 1, 1, 1],
-        textHaloOpacity: 1,
-        textHaloRadius: 0,
-        textHorizontalAlignment: 'middle',
-        textIgnorePlacement: false,
         textName: '{name}',
-        textOpacity: 1,
-        textPitchAlignment: 'viewport',
+        textPitchAlignment: 'map',
         textPlacement: 'point',
-        textRotation: 0,
-        textRotationAlignment: 'viewport',
-        textSize: 15,
-        textSpacing: 250,
-        textStyle: 'normal',
-        textVerticalAlignment: 'middle',
-        textWeight: 'normal',
-        textWrapWidth: 240,
+        textSize: 12,
+        textFill: '#fff',
+        textWrapWidth: 40
       },
     },
   ]

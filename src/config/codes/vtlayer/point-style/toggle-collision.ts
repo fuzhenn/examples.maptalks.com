@@ -66,28 +66,15 @@ const style = {
       },
       symbol: [
         {
-          markerBloom: false,
-          markerAllowOverlap: false,
-          markerDx: 0,
-          markerDy: 0,
-          markerFile: null,
+          markerType: 'ellipse',
           markerFill: [0.53, 0.77, 0.94, 1],
           markerFillOpacity: 1,
           markerHeight: 20,
           markerWidth: 20,
-          markerHorizontalAlignment: 'middle',
-          markerIgnorePlacement: false,
           markerLineColor: [0.2, 0.29, 0.39, 1],
-          markerLineDasharray: [0, 0, 0, 0],
           markerLineOpacity: 1,
           markerLineWidth: 3,
-          markerOpacity: 1,
-          markerPitchAlignment: 'viewport',
-          markerPlacement: 'point',
-          markerRotationAlignment: 'viewport',
-          markerSpacing: 0,
-          markerType: 'ellipse',
-          markerVerticalAlignment: 'middle',
+          markerPlacement: 'vertex'
         }
       ]      
     }
@@ -95,21 +82,19 @@ const style = {
 };
 vt.setStyle(style);
 
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
-
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);
 
 function open() {
   vt.updateSceneConfig(0, {
     collision: true,
-  })
+  });
 }
 
 function close() {
   vt.updateSceneConfig(0, {
     collision: false,
-  })
+  });
 }`;
 
 export const toggleCollisionCodes = {

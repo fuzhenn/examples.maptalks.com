@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444,
   width: 100%;
   height: 100%;
 }`;
@@ -48,39 +49,11 @@ const style = {
         },
       },
       symbol: {
-        bloom: false,
-        ssr: false,
         lineWidth: 20,
         lineOpacity: 1,
         material: {
           baseColorTexture: '/resources/textures/figure.jpg',
-          baseColorFactor: [1, 1, 1, 1],
-          hsv: [0, 0, 0],
-          baseColorIntensity: 1,
-          contrast: 1,
-          outputSRGB: 1,
-          metallicRoughnessTexture: null,
-          roughnessFactor: 1,
-          metallicFactor: 1,
-          normalTexture: null,
-          noiseTexture: null,
-          uvScale: [1, 1],
-          uvOffset: [0, 0],
-          uvRotation: 0,
-          uvOffsetAnim: [0, 0],
-          normalMapFactor: 1,
-          normalMapFlipY: 0,
-          bumpTexture: null,
-          bumpScale: 0.02,
-          clearCoatThickness: 5,
-          clearCoatFactor: 0,
-          clearCoatIor: 1.4,
-          clearCoatRoughnessFactor: 0.04,
-          occlusionTexture: null,
-          emissiveTexture: null,
-          emissiveFactor: [0, 0, 0],
-          emitColorFactor: 1,
-          emitMultiplicative: 0,
+          baseColorFactor: [1, 1, 1, 1]
         },
       },
     }

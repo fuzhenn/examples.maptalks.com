@@ -19,11 +19,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoomControl: true,
 });
 
-const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
-  spatialReference: 'preset-vt-3857',
-  collisionScope: 'map' // 跨图层的碰撞检测
-});
+// 只在16级上显示
 
 const style = {
   style: [
@@ -46,37 +42,25 @@ const style = {
           default: false,
           stops: [[16, true]]
         },
-        markerBloom: false,
-        markerAllowOverlap: false,
-        markerDx: 0,
-        markerDy: 0,
-        markerFile: null,
-        markerFill: [0.53, 0.77, 0.94, 1],
-        markerFillOpacity: 1,
+        markerType: 'ellipse',
         markerHeight: 20,
         markerWidth: 20,
-        markerHorizontalAlignment: 'middle',
-        markerIgnorePlacement: false,
+        markerFill: [0.53, 0.77, 0.94, 1],        
         markerLineColor: [0.2, 0.29, 0.39, 1],
-        markerLineDasharray: [0, 0, 0, 0],
-        markerLineOpacity: 1,
-        markerLineWidth: 3,
-        markerOpacity: 1,
-        markerPitchAlignment: 'viewport',
-        markerPlacement: 'point',
-        markerRotationAlignment: 'viewport',
-        markerSpacing: 0,
-        markerType: 'ellipse',
-        markerVerticalAlignment: 'middle',
+        markerLineWidth: 3
       }      
     }
   ]
 };
-vt.setStyle(style);
 
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
+const vt = new maptalks.VectorTileLayer('vt', {
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
+  spatialReference: 'preset-vt-3857',
+  style
+});
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const displayAtLevelCodes = {

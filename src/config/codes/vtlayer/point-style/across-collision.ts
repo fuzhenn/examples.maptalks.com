@@ -18,11 +18,17 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoom: 16,
 });
 
+// 通过设置collisionScope为map，实现vt和points图层的跨图层碰撞检测
+
 const vt = new maptalks.VectorTileLayer('vt', {
   urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
-  collisionScope: 'map' // 跨图层的碰撞检测
+  collisionScope: 'map' 
 });
+
+const points = new maptalks.PointLayer('point', { collision: true, collisionScope: 'map' });
+
+points.addGeometry(new maptalks.Marker(map.getCenter()));
 
 const style = {
   style: [
@@ -41,38 +47,21 @@ const style = {
       },
       symbol: [
         {
-          markerBloom: false,
-          markerAllowOverlap: false,
-          markerDx: 0,
-          markerDy: 0,
-          markerFile: null,
           markerFill: [0.53, 0.77, 0.94, 1],
-          markerFillOpacity: 1,
           markerHeight: 20,
           markerWidth: 20,
-          markerHorizontalAlignment: 'middle',
-          markerIgnorePlacement: false,
           markerLineColor: [0.2, 0.29, 0.39, 1],
-          markerLineDasharray: [0, 0, 0, 0],
-          markerLineOpacity: 1,
           markerLineWidth: 3,
-          markerOpacity: 1,
-          markerPitchAlignment: 'viewport',
-          markerPlacement: 'point',
-          markerRotationAlignment: 'viewport',
-          markerSpacing: 0,
-          markerType: 'ellipse',
-          markerVerticalAlignment: 'middle',
+          markerType: 'ellipse'
         }
       ]      
     }
   ]
 };
+
 vt.setStyle(style);
 
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
-
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [points, vt]);
 groupLayer.addTo(map);`;
 
 export const acrosCollisionCodes = {

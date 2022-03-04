@@ -40,30 +40,18 @@ const style = {
       },
       symbol: [
         {
-          markerBloom: false,
-          markerAllowOverlap: false,
-          markerDx: 0,
-          markerDy: 0,
-          markerFile: null,
+          markerType: 'ellipse',
+          markerHeight: 80,
+          markerWidth: 80,
           markerFill: [0.53, 0.77, 0.94, 1],
-          markerFillOpacity: 1,
-          markerHeight: 30,
-          markerWidth: 30,
-          markerHorizontalAlignment: 'middle',
-          markerIgnorePlacement: false,
           markerLineColor: [0.2, 0.29, 0.39, 1],
           markerLineDasharray: [0, 0, 0, 0],
-          markerLineOpacity: 1,
           markerLineWidth: 3,
-          markerOpacity: 1,
-          markerPitchAlignment: 'viewport',
-          markerPlacement: 'point',
           markerRotationAlignment: 'map',
-          markerSpacing: 0,
-          markerType: 'pin',
-          markerVerticalAlignment: 'bottom',
+          
           textName: "MapTalks",
           textSize: 15,
+          textRotationAlignment: 'map'
         }
       ]      
     }

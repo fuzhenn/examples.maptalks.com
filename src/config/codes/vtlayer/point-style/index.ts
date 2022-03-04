@@ -72,12 +72,12 @@ export const pointStyleList = [
     css: readTextCodes.css,
     js: readTextCodes.js,
   },
-  {
-    title: "开启和关闭碰撞检测",
-    html: toggleCollisionCodes.html,
-    css: toggleCollisionCodes.css,
-    js: toggleCollisionCodes.js,
-  },
+  // {
+  //   title: "开启和关闭碰撞检测",
+  //   html: toggleCollisionCodes.html,
+  //   css: toggleCollisionCodes.css,
+  //   js: toggleCollisionCodes.js,
+  // },
   {
     title: "跨图层的碰撞检测",
     html: acrosCollisionCodes.html,

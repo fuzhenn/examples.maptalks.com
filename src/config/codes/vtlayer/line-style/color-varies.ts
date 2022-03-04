@@ -8,13 +8,14 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {
   center: [-74.00912099912109, 40.71107610933129],
-  zoom: 16,
+  zoom: 17,
   zoomControl: true,
 });
   
@@ -23,6 +24,7 @@ const vt = new maptalks.VectorTileLayer('vt', {
   spatialReference: 'preset-vt-3857',
 });
 
+// 地图放大到18级或以上变为黄色
 const style = {
   style: [
     {
@@ -39,8 +41,6 @@ const style = {
         type: 'line',
       },
       symbol: {
-        lineBloom: false,
-        lineCap: 'butt',
         lineColor: {
           type: 'interval',
           stops: [
@@ -48,28 +48,14 @@ const style = {
             [18, [0.58, 0.52, 0.37, 1]]
           ]
         },
-        lineDasharray: [0, 0, 0, 0],
-        lineDashColor: [1, 1, 1, 0],
-        lineDx: 0,
-        lineDy: 0,
-        lineGapWidth: 0,
-        lineJoin: 'miter',
-        lineOpacity: 1,
-        linePatternAnimSpeed: 0,
-        linePatternFile: null,
-        lineStrokeWidth: 0,
-        lineStrokeColor: [0, 0, 0, 0],
-        lineJoinPatternMode: 0,
-        lineWidth: 10,
+        lineWidth: 4
       },
     }
   ]
 };
 vt.setStyle(style);
   
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
-
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const lineColorVariesCodes = {

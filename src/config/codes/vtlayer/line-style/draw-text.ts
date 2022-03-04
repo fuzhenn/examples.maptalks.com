@@ -8,13 +8,14 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
 
 const jsCode = `const map = new maptalks.Map('map', {
   center: [-74.00912099912109, 40.71107610933129],
-  zoom: 16,
+  zoom: 17,
 });
   
 const vt = new maptalks.VectorTileLayer('vt', {
@@ -38,22 +39,8 @@ const style = {
         type: 'line',
       },
       symbol: {
-        lineBloom: false,
-        lineCap: 'butt',
-        lineColor: [0.73, 0.73, 0.73, 1],
-        lineDasharray: [0, 0, 0, 0],
-        lineDashColor: [1, 1, 1, 0],
-        lineDx: 0,
-        lineDy: 0,
-        lineGapWidth: 0,
-        lineJoin: 'miter',
-        lineOpacity: 1,
-        linePatternAnimSpeed: 0,
-        linePatternFile: null,
-        lineStrokeWidth: 0,
-        lineStrokeColor: [0, 0, 0, 0],
-        lineJoinPatternMode: 0,
-        lineWidth: 10,
+        lineColor: [0.43, 0.43, 0.43, 1],
+        lineWidth: 6,
       },
     },
     {
@@ -74,38 +61,21 @@ const style = {
         type: 'text',
       },
       symbol: {
-        textBloom: false,
-        textAllowOverlap: false,
-        textDx: 0,
-        textDy: 0,
         textFaceName: 'Microsoft YaHei,sans-serif',
-        textFill: [0, 0, 0, 1],
-        textHaloFill: [1, 1, 1, 1],
-        textHaloOpacity: 1,
-        textHaloRadius: 0,
-        textHorizontalAlignment: 'middle',
-        textIgnorePlacement: false,
+        textFill: [1, 1, 1, 1],
         textName: '{name}',
-        textOpacity: 1,
-        textPitchAlignment: 'viewport',
-        textPlacement: 'line', // 可被改成line
-        textRotation: 0,
-        textRotationAlignment: 'viewport',
+        textPlacement: 'line',
         textSize: 15,
-        textSpacing: 250,
-        textStyle: 'normal',
-        textVerticalAlignment: 'middle',
-        textWeight: 'normal',
-        textWrapWidth: 240,
+        // 两个文字之间的间隔
+        textSpacing: 250
       },
     }
   ]
 };
 vt.setStyle(style);
   
-const sceneConfig = {postProcess: {enable: true, antialias: {enable: true}}};
 
-const groupLayer = new maptalks.GroupGLLayer('group', [vt], {sceneConfig});
+const groupLayer = new maptalks.GroupGLLayer('group', [vt]);
 groupLayer.addTo(map);`;
 
 export const drawTextCodes = {
