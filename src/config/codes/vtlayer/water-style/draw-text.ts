@@ -51,6 +51,7 @@ const vt = new maptalks.VectorTileLayer('vt', {
 
 const style = {
   style: [
+    // 水面效果
     {
       filter: ['all', ['==', '$layer', 'water'], ['==', '$type', 'Polygon']],
       renderPlugin: {
@@ -73,6 +74,7 @@ const style = {
         waterDirection: 0,
       },
     },
+    // 水面文字
     {
       filter: ['all', ['==', '$layer', 'water'], ['==', '$type', 'Polygon']],
       renderPlugin: {
@@ -82,34 +84,17 @@ const style = {
         sceneConfig: {
           collision: true,
           fading: true,
-          depthFunc: 'always',
+          depthFunc: '<=',
         },
         type: 'text',
       },
       symbol: {
-        textBloom: false,
-        textAllowOverlap: false,
-        textDx: 0,
-        textDy: 0,
         textFaceName: 'Microsoft YaHei,sans-serif',
-        textFill: [0, 0, 0, 1],
-        textHaloFill: [1, 1, 1, 1],
-        textHaloOpacity: 1,
-        textHaloRadius: 0,
-        textHorizontalAlignment: 'middle',
-        textIgnorePlacement: false,
+        textFill: [1, 1, 1, 1],
         textName: 'MapTalks',
-        textOpacity: 1,
-        textPitchAlignment: 'viewport',
-        textPlacement: 'point', //可被改成line
-        textRotation: 0,
+        textPitchAlignment: 'map',
         textRotationAlignment: 'viewport',
-        textSize: 20,
-        textSpacing: 250,
-        textStyle: 'normal',
-        textVerticalAlignment: 'middle',
-        textWeight: 'normal',
-        textWrapWidth: 240,
+        textSize: 40
       },
     },
     {
@@ -221,7 +206,6 @@ const style = {
 vt.setStyle(style);
 
 const groupLayer = new maptalks.GroupGLLayer('group', [vt], {
-    // 需要先开启后处理中的ssr属性
   sceneConfig:{
     environment: {
       enable: true,
