@@ -19,6 +19,7 @@ import { fixSizeOnZoomMarkerCodes } from "./GLTFMarker/fixsize-marker";
 import { modelMatrixMarkerCodes } from "./GLTFMarker/modelmatrix-marker";
 import { setAnimationTimeFrameMarkerCodes } from "./GLTFMarker/setAnimationTimeFrame-marker";
 import { propertyMarkerCodes } from "./GLTFMarker/property-marker";
+import { addDracoMarkerCodes } from "./GLTFMarker/addDraco-marker";
 //GLTFLayer
 import { addToGltfLayerCodes } from "./GLTFLayer/addto-gltflayer";
 import { getMarkerGLTFLayerCodes } from "./GLTFLayer/getmarker-gltflayer";
@@ -38,14 +39,6 @@ import { additemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/additem-multigltf
 import { removeitemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/removeitem-multigltfmarker";
 import { updateitemMultiGLTFMarkerCodes } from "./MultiGLTFMarker/updateitem-multigltfmarker";
 import { mouseeventMultiGLTFMarkerCodes } from "./MultiGLTFMarker/mouseevent-multigltfmarker";
-//Analysis
-import { viewshedAnalysisCodes } from "./Analysis/viewshed-analysis";
-import { floodAnalysisCodes } from "./Analysis/flood-analysis";
-import { skylineAnalysisCodes } from "./Analysis/skyline-analysis";
-//weather
-import { fogWeatherCodes } from "./Weather/fog-weather";
-import { rainWeatherCodes } from "./Weather/rain-weather";
-import { snowWeatherCodes } from "./Weather/snow-weather";
 //TransformControl
 import { addTranformControlCodes } from "./TransformControl/addTranformControl";
 
@@ -183,6 +176,12 @@ const gltfList =
                     html: propertyMarkerCodes.html,
                     css: propertyMarkerCodes.css,
                     js: propertyMarkerCodes.js,
+                },
+                {
+                    title: '1.22 添加draco压缩模型',
+                    html: addDracoMarkerCodes.html,
+                    css: addDracoMarkerCodes.css,
+                    js: addDracoMarkerCodes.js,
                 }
             ]
         },
@@ -299,56 +298,10 @@ const gltfList =
             ]
         },
         {
-            title: "4. Analysis示例",
+            title: "4. TransformControl",
             children: [
                 {
-                    title: '4.1 可视域分析',
-                    html: viewshedAnalysisCodes.html,
-                    css: viewshedAnalysisCodes.css,
-                    js: viewshedAnalysisCodes.js,
-                },
-                {
-                    title: '4.2 水淹分析',
-                    html: floodAnalysisCodes.html,
-                    css: floodAnalysisCodes.css,
-                    js: floodAnalysisCodes.js,
-                },
-                {
-                    title: '4.3 天际线分析',
-                    html: skylineAnalysisCodes.html,
-                    css: skylineAnalysisCodes.css,
-                    js: skylineAnalysisCodes.js,
-                }
-            ]
-        },
-        {
-            title: "5. 天气系统",
-            children: [
-                {
-                    title: '5.1 雾',
-                    html: fogWeatherCodes.html,
-                    css: fogWeatherCodes.css,
-                    js: fogWeatherCodes.js,
-                },
-                {
-                    title: '5.2 雨',
-                    html: rainWeatherCodes.html,
-                    css: rainWeatherCodes.css,
-                    js: rainWeatherCodes.js,
-                },
-                {
-                    title: '5.3 雪',
-                    html: snowWeatherCodes.html,
-                    css: snowWeatherCodes.css,
-                    js: snowWeatherCodes.js,
-                }
-            ]
-        },
-        {
-            title: "6. TransformControl",
-            children: [
-                {
-                    title: '6.1 控制模型的平移、旋转、缩放',
+                    title: '4.1 控制模型的平移、旋转、缩放',
                     html: addTranformControlCodes.html,
                     css: addTranformControlCodes.css,
                     js: addTranformControlCodes.js,

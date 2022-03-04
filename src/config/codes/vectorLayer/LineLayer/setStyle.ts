@@ -1,5 +1,5 @@
 const htmlCode = `<div id="map" class="container"></div>
-<div class="pane"><a href="javascript:styleLayer();">set style</a></div>`;
+<div class="pane"><a href="javascript:styleLayer();">为图层设置样式</a></div>`;
 
 const cssCode = `html,
 body {

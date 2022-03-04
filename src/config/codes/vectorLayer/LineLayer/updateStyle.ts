@@ -1,5 +1,5 @@
 const htmlCode = `<div id="map" class="container"></div>
-<div class="pane"><a href="javascript:updateStyle();">Update style</a></div>`;
+<div class="pane"><a href="javascript:updateStyle();">更新样式</a></div>`;
 
 const cssCode = `html,
 body {

@@ -1,4 +1,4 @@
-import { map, sceneConfig } from '../gltf-util';
+import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
@@ -16,10 +16,6 @@ body {
 const jsCode = `
 ${map}
 ${sceneConfig}
-//fit view
-map.setCenter([-0.09119584357631538, 51.532773817207584]);
-map.setZoom(15.864715607101017);
-map.setPitch(80);
 const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
@@ -37,11 +33,14 @@ const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig})
 
 const skylineAnalysis = new maptalksgl.SkylineAnalysis({
     lineColor: [1.0, 0.2, 0.0],
-    lineWidth: 1
+    lineWidth: 1.8
 });
 skylineAnalysis.addTo(groupGLLayer);
-`;
 
+//fit view
+map.setCenter(new maptalks.Coordinate([-0.11739548087734875,51.517852054879285]));
+map.setZoom(16.15933208319987);
+`;
 export const skylineAnalysisCodes = {
   html: htmlCode,
   css: cssCode,

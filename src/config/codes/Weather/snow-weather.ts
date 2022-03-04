@@ -1,4 +1,4 @@
-import { map, sceneConfig } from '../gltf-util';
+import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>`;
 
 const cssCode = `html,
@@ -7,25 +7,42 @@ body {
     height: 100%;
     width: 100%;
 }
-
 .container {
     width: 100%;
     height: 100%;
-}`;
+}
+#map { width: 100%; height: 100%; background-color: black }
+`;
 
 const jsCode = `
 ${map}
 ${sceneConfig}
 const gui = new dat.GUI({ width: 250 });
 const Config = function () {
-    this.waterHeight = 10;
-    this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
+    this.snow = true;
 };
 const options = new Config();
+const weather = {
+    enable: true,
+    fog: {
+        enable: true,
+        start: 0.1,
+        end: 100,
+        color: [0.9, 0.9, 0.9]
+    },
+    snow: {
+        enable: options.snow,
+        snowGroundTexture: './resources/images/perlin.png'
+    }
+};
+sceneConfig.weather = weather;
+
 const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
 const symbol = {
     url: url,
-    scale: [15, 15, 15]
+    shadow: true,
+    scale: [5, 5, 5],
+    translation:[0, 0, -2.3]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
@@ -37,23 +54,15 @@ const gltfMarker = new maptalks.GLTFMarker(position, {
 gltfLayer.addGeometry(gltfMarker);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
-const floodAnalysis = new maptalksgl.FloodAnalysis({
-    waterHeight: options.waterHeight,
-    waterColor: [0.1, 0.5, 0.6]
-});
-floodAnalysis.addTo(groupGLLayer);
-
-const waterHeightController = gui.add(options, 'waterHeight', 0, 20);
-waterHeightController.onChange(function (value) {
-    floodAnalysis.update('waterHeight', value);
-});
-const waterColorController = gui.addColor(options, 'waterColor');
-waterColorController.onChange(function (value) {
-    floodAnalysis.update('waterColor', [value[0] / 255, value[1] / 255, value[2] / 255]);
+const snowControl = gui.add(options, 'snow').name('enable snow');
+snowControl.onChange(function (value) {
+    const sceneConfig = groupGLLayer.getSceneConfig();
+    sceneConfig.weather.snow.enable = value;
+    groupGLLayer.setSceneConfig(sceneConfig);
 });
 `;
 
-export const floodAnalysisCodes = {
+export const snowWeatherCodes = {
   html: htmlCode,
   css: cssCode,
   js: jsCode,

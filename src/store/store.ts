@@ -9,6 +9,8 @@ export class Store {
   @observable htmlCode = "";
   @observable cssCode = "";
   @observable jsCode = "";
+  // 是否查看完整代码
+  @observable isReading = false;
 
   @action setCurrentKey(key: string) {
     this.currentKey = key;
@@ -26,10 +28,15 @@ export class Store {
     this.jsCode = code;
   }
 
+  @action setIsReading(isReading: boolean) {
+    this.isReading = isReading;
+  }
+
   @action setInit() {
     this.currentKey = "";
     this.htmlCode = "";
     this.cssCode = "";
     this.jsCode = "";
+    this.isReading = false;
   }
 }

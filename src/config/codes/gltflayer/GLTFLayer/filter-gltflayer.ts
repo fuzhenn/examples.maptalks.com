@@ -2,7 +2,7 @@ import { map, sceneConfig } from '../gltf-util';
 
 const htmlCode = `
 <div id="map" class="container"></div>
-<div class="pane"><a href="javascript:filter();">Select >= 0.2</a></div>
+<div class="pane"><a href="javascript:filter();">选择 num >= 0.2的模型</a></div>
 `;
 
 const cssCode = `html,

@@ -1,8 +1,8 @@
 const map = `const map = new maptalks.Map('map', {
     center: [-0.113049,51.498568],
     zoom: 14,
-    pitch: 75,
-    bearing: 180,
+    pitch: 80,
+    bearing:180,
     lights: {
         ambient: {
             resource: {
@@ -26,7 +26,7 @@ const sceneConfig = {
     shadow: { enable: true, opacity: 0.5, color: [0, 0, 0] },
     postProcess: {
         enable: true,
-        antialias: { enable: true },
+        antialias: { enable: true, "taa": true, "jitterRatio": 0.25},
         ssr: { enable: true },
         bloom: { enable: true },
         outline: { enable: true }

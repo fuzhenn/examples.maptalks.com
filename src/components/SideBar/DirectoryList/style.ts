@@ -16,6 +16,9 @@ const StyledTree = styled(DirectoryTree)`
       color: #ffffff;
       background: transparent;
     }
+    .ant-tree-treenode .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      color: #40a9ff;
+    }
   }
 `;
 

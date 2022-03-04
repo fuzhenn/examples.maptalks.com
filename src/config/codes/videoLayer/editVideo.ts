@@ -2,8 +2,8 @@ import { map, sceneConfig } from '../gltflayer/gltf-util';
 
 const htmlCode = `<div id="map" class="container"></div>
 <div class="pane">
-<a href="javascript:startEdit();">start edit</a>
-<a href="javascript:endEdit();">end edit</a>
+<a href="javascript:startEdit();">开始编辑</a>
+<a href="javascript:endEdit();">停止编辑</a>
 </div>
 <script type="text/javascript" src="https://unpkg.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
 `;
