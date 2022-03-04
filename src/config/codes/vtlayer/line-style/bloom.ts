@@ -18,7 +18,7 @@ const jsCode = `const map = new maptalks.Map('map', {
 });
   
 const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
 });
 

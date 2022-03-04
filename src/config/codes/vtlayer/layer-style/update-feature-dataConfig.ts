@@ -1,4 +1,4 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id=map class=container></div>`;
 
 const cssCode = `html,
 body {
@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -28,101 +29,67 @@ geo.on('dataload', e => {
 const style = {
   style: [
     {
-      "filter": true,
-      "renderPlugin": {
-        "dataConfig": {
-          "type": "fill"
+      filter: true,
+      renderPlugin: {
+        dataConfig: {
+          type: 'fill'
         },
-        "sceneConfig": {},
-        "type": "fill"
+        type: 'fill'
       },
-      "symbol": {
-        "polygonBloom": false,
-        "polygonFill": [0.345, 0.345, 0.502, 1],
-        "polygonOpacity": 1,
-        "polygonPatternFile": null,
-        "visible": true
+      symbol: {
+        polygonFill: [0.345, 0.345, 0.502, 1]
       }
     },
     {
-      "filter": true,
-      "renderPlugin": {
-        "dataConfig": {
-          "type": "line"
+      filter: true,
+      renderPlugin: {
+        dataConfig: {
+          type: 'line'
         },
-        "sceneConfig": {},
-        "type": "line"
+        type: 'line'
       },
-      "symbol": {
-        "lineBloom": false,
-        "lineCap": "butt",
-        "lineColor": [0.73, 0.73, 0.73, 1],
-        "lineDasharray": [0, 0, 0, 0],
-        "lineDashColor": [1, 1, 1, 0],
-        "lineDx": 0,
-        "lineDy": 0,
-        "lineGapWidth": 0,
-        "lineJoin": "miter",
-        "lineOpacity": 1,
-        "linePatternAnimSpeed": 0,
-        "linePatternFile": null,
-        "lineStrokeWidth": 0,
-        "lineStrokeColor": [0, 0, 0, 0],
-        "lineJoinPatternMode": 0,
-        "lineWidth": 2,
-        "visible": true
+      symbol: {
+        lineColor: [0.73, 0.73, 0.73, 1],
+        lineWidth: 2,
+        visible: true
       }
     }
   ],
-  "featureStyle": [
+  featureStyle: [
     {
-      "id": 12,
-      "style": [
+      id: 12,
+      style: [
         {
-          "renderPlugin": {
-            "dataConfig": {
-              "type": "fill"
+          renderPlugin: {
+            dataConfig: {
+              type: 'fill'
             },
-            "sceneConfig": {},
-            "type": "fill"
+            sceneConfig: {},
+            type: 'fill'
           },
-          "symbol": {
-            "polygonBloom": false,
-            "polygonFill": [
+          symbol: {
+            polygonBloom: false,
+            polygonFill: [
               0.9725490196078431, 0.1568627450980392,
               0.403921568627451, 1
             ],
-            "polygonOpacity": 1,
-            "polygonPatternFile": null,
-            "visible": true
+            polygonOpacity: 1,
+            polygonPatternFile: null,
+            visible: true
           }
         },
         {
-          "renderPlugin": {
-            "dataConfig": {
-              "type": "line"
+          renderPlugin: {
+            dataConfig: {
+              type: 'line'
             },
-            "sceneConfig": {},
-            "type": "line"
+            sceneConfig: {},
+            type: 'line'
           },
-          "symbol": {
-            "lineBloom": false,
-            "lineCap": "butt",
-            "lineColor": [0.73, 0.73, 0.73, 1],
-            "lineDasharray": [0, 0, 0, 0],
-            "lineDashColor": [1, 1, 1, 0],
-            "lineDx": 0,
-            "lineDy": 0,
-            "lineGapWidth": 0,
-            "lineJoin": "miter",
-            "lineOpacity": 1,
-            "linePatternAnimSpeed": 0,
-            "linePatternFile": null,
-            "lineStrokeWidth": 0,
-            "lineStrokeColor": [0, 0, 0, 0],
-            "lineJoinPatternMode": 0,
-            "lineWidth": 2,
-            "visible": true
+          symbol: {
+            lineColor: [0.73, 0.73, 0.73, 1],
+            lineOpacity: 1,
+            lineWidth: 2
           }
         }
       ]

@@ -1,4 +1,4 @@
-const htmlCode = `<div id="map" class="container"></div>`;
+const htmlCode = `<div id=map class=container></div>`;
 
 const cssCode = `html,
 body {
@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  background-color: #444444;
   width: 100%;
   height: 100%;
 }`;
@@ -18,26 +19,25 @@ const jsCode = `const map = new maptalks.Map('map', {
 });
 
 const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
 });
 
 const style = {
   style: [
     {
+      // 只显示图层为building，类型为Polygon的数据
+      // filter的具体说明可以参考：http://doc.maptalks.com/docs/style/filter/feature-filter/
       filter: ['all', ['==', '$layer', 'building'], ['==', '$type', 'Polygon']],
       renderPlugin: {
         dataConfig: {
           type: 'fill',
         },
-        sceneConfig: {},
         type: 'fill',
       },
       symbol: {
-        polygonBloom: false,
-        polygonFill: [0.345, 0.345, 0.502, 1],
-        polygonOpacity: 1,
-        polygonPatternFile: null,
+        polygonFill: '#577570',
+        polygonOpacity: 1
       },
     }
   ]

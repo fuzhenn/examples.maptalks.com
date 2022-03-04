@@ -11,7 +11,7 @@ import { setFeatureStyleCodes } from "./set-feature-style";
 import { updateFeatureDataConfigCodes } from "./update-feature-dataConfig";
 import { updateFeatureSceneConfigCodes } from "./update-feature-sceneConfig";
 import { updateFeatureStyleCodes } from "./update-feature-style";
-import { enlargeIconCodes } from "./enlarge-icon";
+// import { enlargeIconCodes } from "./enlarge-icon";
 
 export const layerStyleList = [
   {
@@ -39,13 +39,13 @@ export const layerStyleList = [
     js: updateRenderStyleCodes.js,
   },
   {
-    title: "更新渲染插件的dataConfig",
+    title: "更新dataConfig",
     html: updateDataConfigCodes.html,
     css: updateDataConfigCodes.css,
     js: updateDataConfigCodes.js,
   },
   {
-    title: "更新渲染插件的sceneConfig",
+    title: "更新sceneConfig",
     html: updateSceneConfigCodes.html,
     css: updateSceneConfigCodes.css,
     js: updateSceneConfigCodes.js,
@@ -80,22 +80,22 @@ export const layerStyleList = [
     css: updateFeatureStyleCodes.css,
     js: updateFeatureStyleCodes.js,
   },
-  {
-    title: "更新Feature渲染插件的dataConfig",
-    html: updateFeatureDataConfigCodes.html,
-    css: updateFeatureDataConfigCodes.css,
-    js: updateFeatureDataConfigCodes.js,
-  },
-  {
-    title: "更新Feature渲染插件的sceneConfig",
-    html: updateFeatureSceneConfigCodes.html,
-    css: updateFeatureSceneConfigCodes.css,
-    js: updateFeatureSceneConfigCodes.js,
-  },
-  {
-    title: "整体放大图标和文字",
-    html: enlargeIconCodes.html,
-    css: enlargeIconCodes.css,
-    js: enlargeIconCodes.js,
-  },
+  // {
+  //   title: "更新Feature渲染插件的dataConfig",
+  //   html: updateFeatureDataConfigCodes.html,
+  //   css: updateFeatureDataConfigCodes.css,
+  //   js: updateFeatureDataConfigCodes.js,
+  // },
+  // {
+  //   title: "更新Feature渲染插件的sceneConfig",
+  //   html: updateFeatureSceneConfigCodes.html,
+  //   css: updateFeatureSceneConfigCodes.css,
+  //   js: updateFeatureSceneConfigCodes.js,
+  // },
+  // {
+  //   title: "整体放大图标和文字",
+  //   html: enlargeIconCodes.html,
+  //   css: enlargeIconCodes.css,
+  //   js: enlargeIconCodes.js,
+  // },
 ];

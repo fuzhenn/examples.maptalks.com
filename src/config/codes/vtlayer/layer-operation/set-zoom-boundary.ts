@@ -20,7 +20,7 @@ const jsCode = `const map = new maptalks.Map('map', {
 
 // 图层只在14级到18级间显示
 const vt = new maptalks.VectorTileLayer('vt', {
-  urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
+  urlTemplate: 'http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
   minZoom: 14,
   maxZoom: 18
