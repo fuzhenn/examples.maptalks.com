@@ -35,10 +35,8 @@ const style = {
         type: 'fill',
       },
       symbol: {
-        polygonBloom: false,
         polygonFill: [0.345, 0.345, 0.502, 1],
-        polygonOpacity: 1,
-        polygonPatternFile: '/resources/textures/figure.jpg',
+        polygonPatternFile: '/resources/textures/pattern.webp',
       },
     }
   ]
