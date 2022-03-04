@@ -42,25 +42,25 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url,
-    scale: [2, 2, 2]
+  url: url,
+  scale: [2, 2, 2]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfMarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 });
 
 gltfLayer.addGeometry(gltfMarker);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 function setModelMatrix() {
-    const translation = [10, 10, 0];
-    const rotation = [0, 0, 0, 1];
-    const scale= [1, 1, 1];
-    const matrix = maptalksgl.mat4.fromRotationTranslationScale([], rotation, translation, scale);
-    gltfMarker.setModelMatrix(matrix);
+  const translation = [10, 10, 0];
+  const rotation = [0, 0, 0, 1];
+  const scale= [1, 1, 1];
+  const matrix = maptalksgl.mat4.fromRotationTranslationScale([], rotation, translation, scale);
+  gltfMarker.setModelMatrix(matrix);
 }
 `;
 

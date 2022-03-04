@@ -4,54 +4,54 @@ const htmlCode = `<div id="map" class="container"></div>
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #info {
-    position: fixed;
-    background-color: rgba(13, 13, 13, 0.5);
-    padding: 10px 10px 10px 10px;
-    font: 13px bold sans-serif;
-    color: #fff;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 70px;
-    overflow: hidden
-  }`;
+  position: fixed;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 10px 10px 10px 10px;
+  font: 13px bold sans-serif;
+  color: #fff;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  overflow: hidden
+}`;
 
 const jsCode = `
 ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url,
-    scale: [2, 2, 2]
+  url: url,
+  scale: [2, 2, 2]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfMarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltfLayer);
 
 gltfMarker.on('click', e => {
-    document.getElementById('info').innerHTML = 'click event';
+  document.getElementById('info').innerHTML = 'click event';
 });
 gltfMarker.on('mousemove', e => {
-    map.setCursor('url(/resources/images/cursor.png) 9 0, auto');
-    gltfMarker.setUniform('polygonFill', [0.0, 0.8, 0.0, 1.0]);
+  map.setCursor('url(/resources/images/cursor.png) 9 0, auto');
+  gltfMarker.setUniform('polygonFill', [0.0, 0.8, 0.0, 1.0]);
 });
 gltfMarker.on('mouseleave', e => {
-    map.resetCursor();
-    gltfMarker.setUniform('polygonFill', [1, 1, 1, 1.0]);
+  map.resetCursor();
+  gltfMarker.setUniform('polygonFill', [1, 1, 1, 1.0]);
 });
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);

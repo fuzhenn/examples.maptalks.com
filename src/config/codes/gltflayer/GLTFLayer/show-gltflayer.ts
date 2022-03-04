@@ -6,14 +6,14 @@ const htmlCode = `
 
 const cssCode = `html,
 body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .pane{background:#34495e;line-height:28px;color:#fff;z-index:10;position:absolute;top:40px;right:20px}
@@ -25,28 +25,28 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url
+  url: url
 };
 
 const gltfLayer1 = new maptalks.GLTFLayer('gltf1');
 const gltfLayer2 = new maptalks.GLTFLayer('gltf2');
 const position = map.getCenter();
 const gltfMarker1 = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltflayer1);
 
 const gltfMarker2 = new maptalks.GLTFMarker(position.add(0.01, 0), {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltflayer2);
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltflayer1, gltflayer2], {sceneConfig}).addTo(map);
 
 function show() {
-    if (gltflayer1.isVisible()) {
-        gltflayer1.hide();
-    } else {
-        gltflayer1.show();
-    }
+  if (gltflayer1.isVisible()) {
+    gltflayer1.hide();
+  } else {
+    gltflayer1.show();
+  }
 }
 `;
 

@@ -43,32 +43,32 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url
+  url: url
 };
 const position = map.getCenter();
 const data = [];
 for (let i = -3; i < 3; i++) {
-    for (let j = -3; j < 3; j++) {
-        data.push({
-            coordinates : position.add(i * 0.01, j * 0.01),
-            scale : [1, 1, 1],
-            color: [1, 1, 1, 1]
-        });
-    }
+  for (let j = -3; j < 3; j++) {
+    data.push({
+      coordinates : position.add(i * 0.01, j * 0.01),
+      scale : [1, 1, 1],
+      color: [1, 1, 1, 1]
+    });
+  }
 }
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const multiGLTFMarker = new maptalks.MultiGLTFMarker(data, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltfLayer);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 function addItem() {
-    multiGLTFMarker.addData({
-        coordinates : position.add(-0.02, 0.01),
-        translation : [0, 0, 0],
-        rotation : [0, 0, 0],
-        scale : [2, 2, 2],
-        color : [1.0, 0.4, 0.3, 1.0]
-    });
+  multiGLTFMarker.addData({
+    coordinates : position.add(-0.02, 0.01),
+    translation : [0, 0, 0],
+    rotation : [0, 0, 0],
+    scale : [2, 2, 2],
+    color : [1.0, 0.4, 0.3, 1.0]
+  });
 }
 `;
 

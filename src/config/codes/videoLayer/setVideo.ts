@@ -27,24 +27,24 @@ const jsCode = `
 ${mapCode}
 const gui = new dat.GUI({ width: 250 });
 const videoMap = {
-    test1: '/resources/videos/test1.mp4',
-    test2: '/resources/videos/test2.mp4'
+  test1: '/resources/videos/test1.mp4',
+  test2: '/resources/videos/test2.mp4'
 }
 const Config = function () {
-    this.videoList = 'test1';
-    this.opacity = 1;
-    this.show = true;
+  this.videoList = 'test1';
+  this.opacity = 1;
+  this.show = true;
 };
 const options = new Config();
 const ratio = (48 / 27) * 0.01;
 const videoSurface = new maptalks.VideoSurface([
-    [111.73424 - ratio , 30.435457967790365, 1],
-    [111.75424 + ratio, 30.435457967790365, 1],
-    [111.75424 + ratio, 30.415457967790365, 1],
-    [111.73424 - ratio, 30.415457967790365, 1]
+  [111.73424 - ratio , 30.435457967790365, 1],
+  [111.75424 + ratio, 30.435457967790365, 1],
+  [111.75424 + ratio, 30.415457967790365, 1],
+  [111.73424 - ratio, 30.415457967790365, 1]
 ], {
-    url: videoMap[options.videoList],
-    opacity: options.opacity
+  url: videoMap[options.videoList],
+  opacity: options.opacity
 });
 const videoLayer = new maptalks.VideoLayer('video');
 videoSurface.addTo(videoLayer);
@@ -54,22 +54,22 @@ const groupGLLayer = new maptalks.GroupGLLayer('gl', [videoLayer], {sceneConfig}
 
 const videoListControl = gui.add(options, 'videoList', ['test1', 'test2']).name('video list');
 videoListControl.onFinishChange(function(value) {
-    const url = videoMap[value];
-    videoSurface.setVideo(url);
+  const url = videoMap[value];
+  videoSurface.setVideo(url);
 });
 
 const opacityControl = gui.add(options, 'opacity', 0, 1).name('video opacity');
 opacityControl.onChange(function(value) {
-    videoSurface.setOpacity(value);
+  videoSurface.setOpacity(value);
 });
 
 const showControl = gui.add(options, 'show').name('video show');
 showControl.onChange(function(value) {
-    if (value) {
-        videoSurface.show();
-    } else {
-        videoSurface.hide();
-    }
+  if (value) {
+    videoSurface.show();
+  } else {
+    videoSurface.hide();
+  }
 });
 `;
 

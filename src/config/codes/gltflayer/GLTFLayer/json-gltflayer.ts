@@ -18,41 +18,41 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/alien/alien.glb';
 const symbol = {
-    url: url
+  url: url
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfMarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 }).addTo(gltfLayer);
 
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 const map1 = new maptalks.Map('map1', {
-    center: [-0.113049,51.498568],
-    zoom: 14,
-    pitch: 75,
-    bearing: 180,
-    lights: {
-        ambient: {
-            resource: {
-                url: './resources/hdr/env.hdr'
-            },
-            color: [1, 1, 1],
-            exposure: 2
+  center: [-0.113049,51.498568],
+  zoom: 14,
+  pitch: 75,
+  bearing: 180,
+  lights: {
+    ambient: {
+      resource: {
+        url: './resources/hdr/env.hdr'
       },
-      directional: {
-          color: [1, 1, 1],
-          lightColorIntensity: 5000,
-          direction: [-1, -1, -1]
-      }
+      color: [1, 1, 1],
+      exposure: 2
     },
-    baseLayer: new maptalks.TileLayer('base', {
-        urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        subdomains: ['a','b','c','d'],
-        attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
-    })
+    directional: {
+      color: [1, 1, 1],
+      lightColorIntensity: 5000,
+      direction: [-1, -1, -1]
+    }
+  },
+  baseLayer: new maptalks.TileLayer('base', {
+    urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+    subdomains: ['a','b','c','d'],
+    attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
+  })
 });
 const json = gltfLayer.toJSON();
       

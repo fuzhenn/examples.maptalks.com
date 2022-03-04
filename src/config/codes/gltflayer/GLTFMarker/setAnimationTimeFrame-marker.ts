@@ -43,28 +43,28 @@ ${map}
 ${sceneConfig}
 const url = '/resources/gltf/vibut_the_robot/scene.gltf';
 const symbol = {
-    url: url,
-    animation: true,
-    loop: true,
-    scale: [2, 2, 2],
-    rotation: [0, 0, 180]
+  url: url,
+  animation: true,
+  loop: true,
+  scale: [2, 2, 2],
+  rotation: [0, 0, 180]
 };
 
 const gltfLayer = new maptalks.GLTFLayer('gltf');
 const position = map.getCenter();
 const gltfMarker = new maptalks.GLTFMarker(position, {
-    symbol: symbol
+  symbol: symbol
 });
 
 gltfLayer.addGeometry(gltfMarker);
 const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], {sceneConfig}).addTo(map);
 
 function setAnimationTimeFrame() {
-    gltfMarker.setAnimationTimeframe(1000);//ms
-    const renderer = gltfLayer.getRenderer();
-    const meshes = renderer.getMarkerMeshes(gltfMarker);
-    const nodeMatrix = meshes[0].nodeMatrix;
-    document.getElementById('info').innerHTML = '[' + nodeMatrix + ']';
+  gltfMarker.setAnimationTimeframe(1000);//ms
+  const renderer = gltfLayer.getRenderer();
+  const meshes = renderer.getMarkerMeshes(gltfMarker);
+  const nodeMatrix = meshes[0].nodeMatrix;
+  document.getElementById('info').innerHTML = '[' + nodeMatrix + ']';
 }
 `;
 
