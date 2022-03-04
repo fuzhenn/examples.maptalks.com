@@ -36,7 +36,8 @@ const marker = new maptalks.Marker(
         markerFillOpacity: 1,
         markerWidth: 20,
         markerHeight: 20,
-        markerLineWidth: 0
+        markerLineWidth: 0,
+        markerVerticalAlignment: 'middle'
       },
       {
         markerType: 'ellipse',
@@ -44,7 +45,8 @@ const marker = new maptalks.Marker(
         markerFillOpacity: 0.9,
         markerWidth: 55,
         markerHeight: 55,
-        markerLineWidth: 0
+        markerLineWidth: 0,
+        markerVerticalAlignment: 'middle'
       },
       {
         markerType: 'ellipse',
@@ -52,7 +54,8 @@ const marker = new maptalks.Marker(
         markerFillOpacity: 0.8,
         markerWidth: 91,
         markerHeight: 91,
-        markerLineWidth: 0
+        markerLineWidth: 0,
+        markerVerticalAlignment: 'middle'
       },
       {
         markerType: 'ellipse',
@@ -60,7 +63,8 @@ const marker = new maptalks.Marker(
         markerFillOpacity: 0.3,
         markerWidth: 130,
         markerHeight: 130,
-        markerLineWidth: 0
+        markerLineWidth: 0,
+        markerVerticalAlignment: 'middle'
       },
       {
         markerType: 'ellipse',
@@ -68,7 +72,8 @@ const marker = new maptalks.Marker(
         markerFillOpacity: 0.2,
         markerWidth: 172,
         markerHeight: 172,
-        markerLineWidth: 0
+        markerLineWidth: 0,
+        markerVerticalAlignment: 'middle'
       }
     ]
   }

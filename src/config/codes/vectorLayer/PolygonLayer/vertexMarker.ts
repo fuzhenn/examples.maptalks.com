@@ -44,6 +44,7 @@ const polygon = new maptalks.Polygon([
     markerWidth: 30,
     markerHeight: 30,
     markerPlacement: 'vertex', // point, vertex, vertex-first, vertex-last, line
+    markerVerticalAlignment: 'middle',
     textName: 'A',
     textPlacement: 'vertex',   // point, vertex, vertex-first, vertex-last, line
     textFill: '#fff'

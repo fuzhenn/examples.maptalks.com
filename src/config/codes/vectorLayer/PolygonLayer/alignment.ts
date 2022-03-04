@@ -42,10 +42,7 @@ const polygon = new maptalks.Polygon([
     lineCap: 'round',
     lineDasharray: null,
     lineOpacity: 1,
-    markerFile: '/resources/images/marker.png',
-    markerPitchAlignment: 'map',
-    markerRotationAlignment: 'map',
-    textName: 'maptalks',
+    textName: 'MapTalks',
     textPitchAlignment: 'map',
     textRotationAlignment: 'map',
   }

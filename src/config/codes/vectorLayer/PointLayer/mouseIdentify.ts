@@ -81,7 +81,8 @@ for (let i = 65; i <= 90; i++) {
       markerLineWidth: 2,
       markerLineColor: '#fff',
       markerWidth: 70,
-      markerHeight: 70
+      markerHeight: 70,
+      markerVerticalAlignment: 'middle'
     }
   }));
 }

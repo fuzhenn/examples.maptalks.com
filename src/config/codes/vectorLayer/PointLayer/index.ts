@@ -135,12 +135,12 @@ export const pointLayerList = [
     css: vectorMarkerCodes.css,
     js: vectorMarkerCodes.js,
   },
-  {
-    title: "矢量标注模式填充",
-    html: vectorPatternCodes.html,
-    css: vectorPatternCodes.css,
-    js: vectorPatternCodes.js,
-  },
+  // {
+  //   title: "矢量标注模式填充",
+  //   html: vectorPatternCodes.html,
+  //   css: vectorPatternCodes.css,
+  //   js: vectorPatternCodes.js,
+  // },
   {
     title: "矢量标注渐变填充",
     html: vectorGradientCodes.html,

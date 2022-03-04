@@ -31,12 +31,12 @@ const line = new maptalks.LineString([
 ],
 {
   symbol:{
-  'lineColor' : '#1bbc9b',
+  'lineColor' : '#000',
   'lineWidth' : 6,
   'lineJoin'  : 'round', //miter, round, bevel
   'lineCap'   : 'round', //butt, round, square
-  'lineDasharray' : [10, 5, 5],
-  'lineDashColor': [0.8, 0.5, 0.2],
+  'lineDasharray' : [20, 15, 15],
+  'lineDashColor': [0.8, 0.5, 0.2, 0],
   'lineOpacity ' : 1
   }
 }).addTo(lineLayer);

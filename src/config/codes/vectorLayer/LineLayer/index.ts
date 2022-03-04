@@ -69,18 +69,18 @@ export const lineLayerList = [
     css: linePatternAnimSpeedCodes.css,
     js: linePatternAnimSpeedCodes.js
   },
-  {
-    title: "沿线绘制图标",
-    html: markerPlacementCodes.html,
-    css: markerPlacementCodes.css,
-    js: markerPlacementCodes.js
-  },
-  {
-    title: "沿线绘制文字",
-    html: textPlacementCodes.html,
-    css: textPlacementCodes.css,
-    js: textPlacementCodes.js
-  },
+  // {
+  //   title: "沿线绘制图标",
+  //   html: markerPlacementCodes.html,
+  //   css: markerPlacementCodes.css,
+  //   js: markerPlacementCodes.js
+  // },
+  // {
+  //   title: "沿线绘制文字",
+  //   html: textPlacementCodes.html,
+  //   css: textPlacementCodes.css,
+  //   js: textPlacementCodes.js
+  // },
   {
     title: "线样式部分更新",
     html: updateStyleCodes.html,
