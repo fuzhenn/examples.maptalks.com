@@ -1,9 +1,10 @@
+import { analysisList } from "./codes/Analysis/analysisList";
 import { gltfList } from "./codes/gltflayer/gltfList";
+import { threeDTilesLayerList } from "./codes/3dtilesLayer";
 import { vectorLayerList } from "./codes/vectorLayer";
 import { videoLayerList } from "./codes/videoLayer/videoLayerList";
 import { vtLayerList } from "./codes/vtlayer";
 import { weatherList } from "./codes/Weather/weatherList";
-import { analysisList } from "./codes/Analysis/analysisList";
 
 interface IListItem {
   title: string;
@@ -11,6 +12,7 @@ interface IListItem {
   html?: string;
   css?: string;
   js?: string;
+  href?: string;
   children?: IListItem[];
 }
 
@@ -20,7 +22,12 @@ const baseList: IListItem[] = [
   gltfList,
   videoLayerList,
   analysisList,
-  weatherList
+  weatherList,
+  ...threeDTilesLayerList,
+  {
+    title: "three插件",
+    href: "https://maptalks.org/maptalks.three/demo/index.html",
+  },
 ];
 
 // 生成 key 值
