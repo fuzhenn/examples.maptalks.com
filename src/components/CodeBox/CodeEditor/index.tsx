@@ -11,7 +11,7 @@ import { useStore } from "@/store";
 
 const { TabPane } = StyledTabs;
 
-const JS_POSTFIX = '\n\n\n\n\n\n\n\n\n\n\n\n';
+const JS_POSTFIX = "\n\n\n\n\n\n\n\n\n\n\n\n";
 
 function CodeEditor() {
   const store = useStore();
@@ -44,6 +44,28 @@ function CodeEditor() {
     store.setHtmlCode(value);
   }
 
+  const doc = `<!DOCTYPE html>
+  <html>
+  <head>
+  <style type="text/css">
+  ${store.cssCode}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
+  <script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@maptalks/gl/dist/maptalksgl.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@maptalks/vt/dist/maptalks.vt.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@maptalks/gltf-layer/dist/maptalks.gltf.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@maptalks/geojson-bbox/dist/bbox.umd"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dat.gui/build/dat.gui.min.js"></script>
+  </head>
+  <body>
+  ${store.htmlCode}
+  <script>
+  ${store.jsCode}
+  </script>
+  </body>
+  </html>`;
+
   return (
     <Container>
       <StyledTabs defaultActiveKey="js">
@@ -72,6 +94,15 @@ function CodeEditor() {
             height="100%"
             extensions={[html(), htmlCompletion, EditorView.lineWrapping]}
             onChange={handleHtmlCodeChange}
+          />
+        </TabPane>
+        <TabPane tab="完整代码" key="all">
+          <CodeMirror
+            editable={false}
+            extensions={[html(), htmlCompletion, EditorView.lineWrapping]}
+            height="100%"
+            theme="dark"
+            value={doc}
           />
         </TabPane>
       </StyledTabs>
