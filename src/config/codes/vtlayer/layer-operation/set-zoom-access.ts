@@ -18,6 +18,7 @@ const jsCode = `const map = new maptalks.Map('map', {
   zoomControl: true,
 });
 
+// 瓦片的最高级别是15级，地图在16级或更高时，仍然载入15级的瓦片。
 const vt = new maptalks.VectorTileLayer('vt', {
   urlTemplate: 'http://116.63.251.32:8080/tile/planet-single/{z}/{x}/{y}.mvt',
   spatialReference: 'preset-vt-3857',
