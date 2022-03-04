@@ -2,6 +2,7 @@ import { list } from "../config";
 
 function getFirstKey() {
   for (const item1 of list) {
+    console.log(item1)
     if (item1.html) {
       return item1.key;
     }
@@ -11,7 +12,7 @@ function getFirstKey() {
           return item2.key;
         }
         if (item2.children) {
-          for (const item3 of item1.children) {
+          for (const item3 of item2.children) {
             if (item3.html) {
               return item3.key;
             }
