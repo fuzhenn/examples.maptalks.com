@@ -63,7 +63,9 @@ function CodeEditor() {
   ${store.jsCode}
   </script>
   </body>
-  </html>`;
+  </html>
+
+`;
 
   return (
     <Container>

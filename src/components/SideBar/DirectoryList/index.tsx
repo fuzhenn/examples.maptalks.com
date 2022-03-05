@@ -18,7 +18,9 @@ function DirectoryList() {
 
   return (
     <StyledTree
+      defaultExpandAll={true}
       showIcon={false}
+      defaultSelectedKeys={['0-0-0']}
       switcherIcon={<DownOutlined />}
       treeData={list as DataNode[]}
       onSelect={handleSelect}
