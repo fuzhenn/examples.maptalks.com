@@ -57,10 +57,10 @@ export const layerOperationList = [
     css: removeLayerCodes.css,
     js: removeLayerCodes.js,
   },
-  {
-    title: "坐标系转换",
-    html: convertCoordinateCodes.html,
-    css: convertCoordinateCodes.css,
-    js: convertCoordinateCodes.js,
-  },
+  // {
+  //   title: "坐标系转换",
+  //   html: convertCoordinateCodes.html,
+  //   css: convertCoordinateCodes.css,
+  //   js: convertCoordinateCodes.js,
+  // },
 ];
