@@ -4,6 +4,7 @@ import { css, cssCompletion } from "@codemirror/lang-css";
 import { getCurrentCodes, getFirstKey } from "@/utils";
 import { html, htmlCompletion } from "@codemirror/lang-html";
 import { useMount, useUpdateEffect } from "react-use";
+import { html_beautify } from 'js-beautify';
 
 import { javascript } from "@codemirror/lang-javascript";
 import { observer } from "mobx-react-lite";
@@ -11,7 +12,9 @@ import { useStore } from "@/store";
 
 const { TabPane } = StyledTabs;
 
-const JS_POSTFIX = "\n\n\n\n\n\n\n\n\n\n\n\n";
+function newline(value: string | undefined): string {
+  return value ? value + "\n" : "";
+}
 
 function CodeEditor() {
   const store = useStore();
@@ -25,9 +28,9 @@ function CodeEditor() {
     if (store.currentKey) {
       const codes = getCurrentCodes(store.currentKey);
       if (codes.html || codes.css || codes.js) {
-        store.setHtmlCode(codes.html ?? "");
-        store.setCssCode(codes.css ?? "");
-        store.setJsCode(codes.js ? codes.js + JS_POSTFIX : "");
+        store.setHtmlCode(newline(codes.html));
+        store.setCssCode(newline(codes.css));
+        store.setJsCode(newline(codes.js));
       }
     }
   }, [store.currentKey]);
@@ -44,7 +47,7 @@ function CodeEditor() {
     store.setHtmlCode(value);
   }
 
-  const doc = `<!DOCTYPE html>
+  let doc = `<!DOCTYPE html>
   <html>
   <head>
   <style type="text/css">
@@ -66,6 +69,7 @@ function CodeEditor() {
   </html>
 
 `;
+  doc = html_beautify(doc, { indent_size: 2, end_with_newline: true });
 
   return (
     <Container>
