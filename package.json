@@ -3,16 +3,17 @@
   "private": false,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "npm run code-build && vite",
+    "build": "npm run code-build && tsc && vite build",
+    "preview": "vite preview",
+    "code-build":"node build.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@codemirror/lang-css": "^0.19.3",
     "@codemirror/lang-html": "^0.19.4",
     "@codemirror/lang-javascript": "^0.19.7",
-    "@uiw/react-codemirror": "^4.5.1",
+    "@uiw/react-codemirror": "4.5.1",
     "antd": "^4.18.9",
     "js-beautify": "^1.14.3",
     "mobx": "^6.4.2",
