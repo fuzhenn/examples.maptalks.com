@@ -9,6 +9,7 @@ export class Store {
   @observable htmlCode = "";
   @observable cssCode = "";
   @observable jsCode = "";
+  @observable isFile = false;
   // 是否查看完整代码
   @observable isReading = false;
 
@@ -31,6 +32,9 @@ export class Store {
   @action setIsReading(isReading: boolean) {
     this.isReading = isReading;
   }
+  @action setIsFile(isFile: boolean) {
+    this.isFile = isFile;
+  }
 
   @action setInit() {
     this.currentKey = "";
@@ -38,5 +42,6 @@ export class Store {
     this.cssCode = "";
     this.jsCode = "";
     this.isReading = false;
+    this.isFile = false;
   }
 }
