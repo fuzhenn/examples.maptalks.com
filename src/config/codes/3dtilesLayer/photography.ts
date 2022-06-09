@@ -1,6 +1,6 @@
 const htmlCode = `
-<script type="text/javascript" src="https://unpkg.com/@maptalks/3dtiles/dist/maptalks.3dtiles.js"></script>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/3dtiles/dist/maptalks.3dtiles.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
 <div id="map" class="container"></div>
 `;
 

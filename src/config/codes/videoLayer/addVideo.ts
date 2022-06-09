@@ -6,7 +6,7 @@ const htmlCode = `<div id="map" class="container"></div>
 <a href="javascript:pause();">停止</a>
 <a href="javascript:audio();">声音</a>
 </div>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
 `;
 
 const cssCode = `html,

@@ -5,7 +5,7 @@ const htmlCode = `<div id="map" class="container"></div>
 <a href="javascript:startEdit();">开始编辑</a>
 <a href="javascript:endEdit();">停止编辑</a>
 </div>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
 `;
 
 const cssCode = `html,

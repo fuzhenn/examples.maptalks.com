@@ -1,6 +1,6 @@
 import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
-<script type="text/javascript" src="https://unpkg.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
 `;
 
 const cssCode = `html,
