@@ -28,8 +28,17 @@ function DirectoryList() {
     return JSON.parse(JSON.stringify(obj));
   }
 
+  function expandNode(node: any) {
+    node.expand = !node.expand;
+    setList(cloneObject(list));
+  }
+
   function getIcon(node: any) {
-    return node.expand ? <DownOutlined /> : <RightOutlined />
+    return node.expand ? <DownOutlined onClick={() => {
+      expandNode(node);
+    }} /> : <RightOutlined onClick={() => {
+      expandNode(node);
+    }} />
   }
 
   function getChildrenDom(node: any) {
@@ -44,8 +53,7 @@ function DirectoryList() {
       return <li key={node.key} className="example-group">{
         getIcon(node)
       }<span className="example-directory" onClick={() => {
-        node.expand = !node.expand;
-        setList(cloneObject(list));
+        expandNode(node);
       }}>{node.title}</span>
         {
           node.expand ? <ul key={node.key} className="example-group"> {
