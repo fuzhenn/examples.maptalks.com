@@ -21,17 +21,26 @@ function CodeEditor() {
   useMount(() => {
     // const key = getFirstKey() ?? "";
     // store.setCurrentKey(key);
+    const hash = window.location.hash;
+    if (hash && hash.indexOf('/codes/') > -1) {
+      getHtmlFile(hash.substring(1, Infinity));
+    }
   });
+
+  const getHtmlFile = (filePath: string) => {
+    const url = `./resources${filePath}?__time=${new Date().getTime()}`;
+    fetch(url).then(res => res.text()).then(text => {
+      const html = html_beautify(text, { indent_size: 2, end_with_newline: true });
+      setDoc(html);
+      store.setHtmlCode(html);
+    })
+  }
 
   useUpdateEffect(() => {
     if (store.currentKey && store.isFile) {
-      console.log(store.currentKey)
-      const url = `./resources${store.currentKey}?__time=${new Date().getTime()}`;
-      fetch(url).then(res => res.text()).then(text => {
-        const html = html_beautify(text, { indent_size: 2, end_with_newline: true });
-        setDoc(html);
-        store.setHtmlCode(html);
-      })
+      console.log(store.currentKey);
+      window.location.hash = `#${store.currentKey}`;
+      getHtmlFile(store.currentKey);
       // let doc = store.htmlCode;
       // doc = html_beautify(doc, { indent_size: 2, end_with_newline: true });
       // const codes = getCurrentCodes(store.currentKey);
