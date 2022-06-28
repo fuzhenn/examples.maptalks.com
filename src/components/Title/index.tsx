@@ -1,7 +1,7 @@
 import { Container } from "./style";
 
 function Title() {
-  return <Container>MAPTALKS GL示例</Container>;
+  return <Container>maptalks GL示例</Container>;
 }
 
 export default Title;
