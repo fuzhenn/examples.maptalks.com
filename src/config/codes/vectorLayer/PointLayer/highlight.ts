@@ -93,7 +93,21 @@ function closeFading() {
   point.options.sceneConfig.fading = false
 }
 
-const groupLayer = new maptalks.GroupGLLayer('group', [point]);
+const sceneConfig = {
+  // 需要先开启后处理中的outline后处理
+  postProcess: {
+    enable: true,
+    outline: {
+      enable: true,
+      outlineFactor: 0.3,
+      highlightFactor: 0.2,
+      outlineWidth: 1,
+      outlineColor: [1, 1, 0],
+    },
+  }
+};
+
+const groupLayer = new maptalks.GroupGLLayer('group', [point], { sceneConfig });
 groupLayer.addTo(map);`;
 
 export const highlightCodes = {

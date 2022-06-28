@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>视频编辑</title>
+  <style type="text/css">
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pane {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      line-height: 25px;
+      z-index: 10;
+    }
+
+    .pane a {
+      display: block;
+      float: left;
+      text-align: left;
+      margin-left: 6px;
+      padding: 0 10px;
+      min-width: 28px;
+      min-height: 25px;
+      color: #000;
+      text-decoration: none;
+      background: #efefef;
+      border: 1px solid #000;
+    }
+  </style>
+  <link rel="stylesheet" href="https://npm.elemecdn.com/maptalks/dist/maptalks.css">
+  <script type="text/javascript" src="https://npm.elemecdn.com/maptalks/dist/maptalks.min.js"></script>
+  <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/gl-layers/dist/maptalks-gl-layers.js"></script>
+  <script type="text/javascript" src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"></script>
+</head>
+
+<body>
+  <div id="map" class="container"></div>
+  <div class="pane">
+    <a href="javascript:startEdit();">开始编辑</a>
+    <a href="javascript:endEdit();">停止编辑</a>
+  </div>
+  <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/video-layer/dist/maptalks.video.js"></script>
+
+  <script>
+
+    const map = new maptalks.Map('map', {
+      center: [111.74424, 30.425457967790365],
+      zoom: 14,
+      pitch: 0,
+      bearing: 0,
+      lights: {
+        ambient: {
+          resource: {
+            url: './resources/hdr/env.hdr'
+          },
+          color: [1, 1, 1],
+          exposure: 1
+        },
+        directional: {
+          color: [1, 1, 1],
+          lightColorIntensity: 5000,
+          direction: [1, -0.4, -1]
+        }
+      }
+    });
+
+    const ratio = (48 / 27) * 0.01;
+    const videoSurface = new maptalks.VideoSurface([
+      [111.73424 - ratio, 30.435457967790365, 1],
+      [111.75424 + ratio, 30.435457967790365, 1],
+      [111.75424 + ratio, 30.415457967790365, 1],
+      [111.73424 - ratio, 30.415457967790365, 1]
+    ], {
+      url: '/resources/videos/test1.mp4',
+      opacity: 1
+    });
+    const videoLayer = new maptalks.VideoLayer('video');
+    videoSurface.addTo(videoLayer);
+
+
+    const sceneConfig = {
+      environment: { enable: true, mode: 1, level: 1, brightness: 1 },
+      shadow: { enable: true, opacity: 0.5, color: [0, 0, 0] },
+      postProcess: {
+        enable: true,
+        antialias: { enable: true },
+        ssr: { enable: true },
+        bloom: { enable: false },
+        outline: { enable: true }
+      },
+      ground: {
+        enable: true,
+        renderPlugin: { type: 'lit' },
+        symbol: {
+          polygonOpacity: 1,
+          material: {
+            baseColorFactor: [0.48235, 0.48235, 0.48235, 1],
+            hsv: [0, 0, -0.532],
+            roughnessFactor: 0.22,
+            metallicFactor: 0.58
+          }
+        }
+      }
+    };
+
+    const groupGLLayer = new maptalks.GroupGLLayer('gl', [videoLayer], { sceneConfig }).addTo(map);
+
+    function startEdit() {
+      videoSurface.startEdit();
+    }
+
+    function endEdit() {
+      videoSurface.endEdit();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
