@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>可视域分析</title>
+  <title>通视分析</title>
   <style type="text/css">
     html,
     body {
@@ -29,7 +29,7 @@
   <div id="map" class="container"></div>
 
   <script>
-    let viewshedAnalysis = null, eyePos, lookPoint, verticalAngle, horizontalAngle;
+    let insightAnalysis = null, eyePos, lookPoint, verticalAngle, horizontalAngle;
     const map = new maptalks.Map('map', {
       center: [108.9605239272878, 34.21955775963946],
       zoom : 15,
@@ -80,8 +80,8 @@
     const Config = function () {
       this.verticalAngle = 30;
       this.horizonalAngle = 20;
-      this.eyePos = 50;
-      this.lookPoint = 0;
+      this.eyePos = 150;
+      this.lookPoint = 20;
     };
     const options = new Config();
     const thrDlayer = new maptalks.Geo3DTilesLayer('3d-tiles', {
@@ -101,35 +101,24 @@
       const extent = thrDlayer.getExtent(e.index);
       map.fitExtent(extent, 0, { animation: false });
       const center = map.getCenter();
-      eyePos = [center.x + 0.003, center.y, options.eyePos];
-      lookPoint = [center.x, center.y, options.lookPoint];
-      verticalAngle = 30;
-      horizontalAngle = 20;
-      viewshedAnalysis = new maptalks.ViewshedAnalysis({
+      lookPoint = [center.x, center.y, 20];
+      eyePos = [center.x + 0.003, center.y + 0.002, 150];
+      insightAnalysis = new maptalks.InSightAnalysis({
           eyePos,
           lookPoint,
-          verticalAngle,
-          horizontalAngle
+          visibleColor: [0, 1, 0, 1],
+          invisibleColor: [1, 0, 0, 1]
       });
-      viewshedAnalysis.addTo(groupLayer);
+      insightAnalysis.addTo(groupLayer);
     });
 
-    const verticalAngleController = gui.add(options, 'verticalAngle', 0, 90);
-    verticalAngleController.onChange(function (value) {
-      viewshedAnalysis.update('verticalAngle', value);
-    });
-    const horizonalAngleController = gui.add(options, 'horizonalAngle', 0, 90);
-    horizonalAngleController.onChange(function (value) {
-      viewshedAnalysis.update('horizontalAngle', value);
-    });
-
-    const eyePosController = gui.add(options, 'eyePos', 0, 100);
+    const eyePosController = gui.add(options, 'eyePos', 0, 500);
     eyePosController.onChange(function (value) {
-      viewshedAnalysis.update('eyePos', [eyePos[0], eyePos[1], value]);
+      insightAnalysis.update('eyePos', [eyePos[0], eyePos[1], value]);
     });
-    const lookPointController = gui.add(options, 'lookPoint', 0, 100);
+    const lookPointController = gui.add(options, 'lookPoint', 0, 500);
     lookPointController.onChange(function (value) {
-      viewshedAnalysis.update('lookPoint', [lookPoint[0], lookPoint[1], value]);
+      insightAnalysis.update('lookPoint', [lookPoint[0], lookPoint[1], value]);
     });
   </script>
 </body>

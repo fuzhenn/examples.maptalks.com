@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>可视域分析</title>
+  <title>剖面分析</title>
   <style type="text/css">
     html,
     body {
@@ -22,7 +22,6 @@
   <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
   <script type="text/javascript" src="./resources/js/maptalks.analysis.js"></script>
   <script type="text/javascript" src="./resources/js/maptalks.3dtiles.js"></script>
-  <script type="text/javascript" src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"></script>
 </head>
 
 <body>
@@ -30,29 +29,32 @@
 
   <script>
     let viewshedAnalysis = null, eyePos, lookPoint, verticalAngle, horizontalAngle;
-    const map = new maptalks.Map('map', {
-      center: [108.9605239272878, 34.21955775963946],
-      zoom : 15,
-      pitch: 70,
-      lights: {
-        ambient: {
-          resource: {
-            url: './resources/hdr/env.hdr'
+    const map = new maptalks.Map("map", {
+        center: [108.9605239272878, 34.21955775963946],
+        zoom : 15,
+        pitch: 70,
+        bearing: 90,
+        lights: {
+          //环境光
+          ambient: {
+            color: [1, 1, 1],
+            exposure: 1.5
           },
-          color: [1, 1, 1],
-          exposure: 1
+          //有向光
+          directional: {
+            color : [1, 1, 1],
+            direction : [1, 1, -1],
+          }
         },
-        directional: {
-          color: [1, 1, 1],
-          lightColorIntensity: 5000,
-          direction: [1, -0.4, -1]
-        }
-      }
+        baseLayer: new maptalks.TileLayer('base', {
+          urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+          subdomains: ['a','b','c','d'],
+          attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
+        })
     });
 
-
     const sceneConfig = {
-      environment: { enable: true, mode: 1, level: 1, brightness: 1 },
+      environment: { enable: false, mode: 1, level: 1, brightness: 1 },
       shadow: { enable: true, opacity: 0.5, color: [0, 0, 0] },
       postProcess: {
         enable: true,
@@ -62,7 +64,7 @@
         outline: { enable: true }
       },
       ground: {
-        enable: true,
+        enable: false,
         renderPlugin: { type: 'lit' },
         symbol: {
           polygonOpacity: 1,
@@ -76,14 +78,6 @@
       }
     };
     const groupLayer = new maptalks.GroupGLLayer('g', [], { sceneConfig }).addTo(map);
-    const gui = new dat.GUI({ width: 250 });
-    const Config = function () {
-      this.verticalAngle = 30;
-      this.horizonalAngle = 20;
-      this.eyePos = 50;
-      this.lookPoint = 0;
-    };
-    const options = new Config();
     const thrDlayer = new maptalks.Geo3DTilesLayer('3d-tiles', {
         // maxGPUMemory: 128,
         services : [
@@ -101,35 +95,12 @@
       const extent = thrDlayer.getExtent(e.index);
       map.fitExtent(extent, 0, { animation: false });
       const center = map.getCenter();
-      eyePos = [center.x + 0.003, center.y, options.eyePos];
-      lookPoint = [center.x, center.y, options.lookPoint];
-      verticalAngle = 30;
-      horizontalAngle = 20;
-      viewshedAnalysis = new maptalks.ViewshedAnalysis({
-          eyePos,
-          lookPoint,
-          verticalAngle,
-          horizontalAngle
+      const cutAnalysis = new maptalks.CutAnalysis({
+          position: [center.x, center.y, 0],
+          rotation: [45, 90, 0],
+          scale: [1, 1, 1]
       });
-      viewshedAnalysis.addTo(groupLayer);
-    });
-
-    const verticalAngleController = gui.add(options, 'verticalAngle', 0, 90);
-    verticalAngleController.onChange(function (value) {
-      viewshedAnalysis.update('verticalAngle', value);
-    });
-    const horizonalAngleController = gui.add(options, 'horizonalAngle', 0, 90);
-    horizonalAngleController.onChange(function (value) {
-      viewshedAnalysis.update('horizontalAngle', value);
-    });
-
-    const eyePosController = gui.add(options, 'eyePos', 0, 100);
-    eyePosController.onChange(function (value) {
-      viewshedAnalysis.update('eyePos', [eyePos[0], eyePos[1], value]);
-    });
-    const lookPointController = gui.add(options, 'lookPoint', 0, 100);
-    lookPointController.onChange(function (value) {
-      viewshedAnalysis.update('lookPoint', [lookPoint[0], lookPoint[1], value]);
+      cutAnalysis.addTo(groupLayer);
     });
   </script>
 </body>

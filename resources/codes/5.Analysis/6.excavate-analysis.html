@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>水淹分析</title>
+  <title>挖方分析</title>
   <style type="text/css">
     html,
     body {
@@ -87,26 +87,30 @@
     const groupLayer = new maptalks.GroupGLLayer('g', [terrainLayer], { sceneConfig }).addTo(map);
     const gui = new dat.GUI({ width: 250 });
     const Config = function () {
-      this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
-      this.waterHeight = 4000;
+      this.height = 4000;
+      this.textureUrl = 'ground';
       this.draw = false;
     };
     const options = new Config();
-    const floodAnalysis = new maptalks.FloodAnalysis({
-        boundary: [[91.06621721469963, 29.750666501207466],
+    const urlMap = {
+      'ground': './resources/images/ground.jpg',
+      'brick': './resources/images/brick.png',
+    };
+    const boundary = [[91.06621721469963, 29.750666501207466],
         [91.02892475390709, 29.705298214275178],
         [91.04344250050292, 29.59764099334311],
         [91.11351421386007, 29.627558843694757],
         [91.14112402035886, 29.712310012049215],
-        [91.1364614977414, 29.764105762952656]],
-        waterHeight: 4000,
-        waterColor: [0.1, 0.5, 0.6]
-    });
-    floodAnalysis.addTo(groupLayer);
-    var vlayer = new maptalks.VectorLayer('vector', { enableAltitude : true }).addTo(map);
+        [91.1364614977414, 29.764105762952656]];
+    const excavateAnalysis = new maptalks.ExcavateAnalysis({
+        boundary,
+        textureUrl: urlMap[options.textureUrl],
+        height: 2000
+    }).addTo(groupLayer);
+    const vlayer = new maptalks.VectorLayer('vector', { enableAltitude : true }).addTo(map);
     let altitudes = [], coordinates = [];
     let first = true;
-    var drawTool = new maptalks.DrawTool({
+    const drawTool = new maptalks.DrawTool({
         mode: 'LineString',
         symbol: {
             lineColor: '#f00'
@@ -172,20 +176,20 @@
                 altitude: altitudes
             }
         }).addTo(vlayer);
-        floodAnalysis.update('boundary', coordinates);
+        excavateAnalysis.update('boundary', coordinates);
         coordinates = [];
         altitudes = [];
     });
-    const waterColorController = gui.addColor(options, 'waterColor');
-    waterColorController.onChange(function (value) {
-      floodAnalysis.update('waterColor', [value[0] / 255, value[1] / 255, value[2] / 255]);
+    const textureControl = gui.add(options, 'textureUrl', ['ground', 'brick']);
+    textureControl.onChange(function (value) {
+      excavateAnalysis.update('textureUrl', urlMap[value]);
     });
-    const waterHeightController = gui.add(options, 'waterHeight', 0, 6000);
-    waterHeightController.onChange(function (value) {
-      floodAnalysis.update('waterHeight', value);
+    const heightController = gui.add(options, 'height', 0, 6000);
+    heightController.onChange(function (value) {
+      excavateAnalysis.update('height', value);
     });
 
-    const drawController = gui.add(options, 'draw');
+    const drawController = gui.add(options, 'draw').name('draw extent');
     drawController.onChange(function (value) {
       if (value) {
         drawTool.enable();
@@ -195,5 +199,4 @@
     });
   </script>
 </body>
-
 </html>

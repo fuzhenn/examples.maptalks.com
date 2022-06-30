@@ -18,19 +18,21 @@
   </style>
   <link rel="stylesheet" href="https://npm.elemecdn.com/maptalks/dist/maptalks.css">
   <script type="text/javascript" src="https://npm.elemecdn.com/maptalks/dist/maptalks.min.js"></script>
-  <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/gl-layers/dist/maptalks-gl-layers.js"></script>
+  <script type="text/javascript" src="./resources/js/maptalksgl.js"></script>
+  <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
+  <script type="text/javascript" src="./resources/js/maptalks.analysis.js"></script>
+  <script type="text/javascript" src="./resources/js/maptalks.3dtiles.js"></script>
   <script type="text/javascript" src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"></script>
 </head>
 
 <body>
   <div id="map" class="container"></div>
   <script>
-
+    let skylineAnalysis;
     const map = new maptalks.Map('map', {
-      center: [-0.113049, 51.498568],
-      zoom: 14,
-      pitch: 80,
-      bearing: 180,
+      center: [108.9605239272878, 33.05955775963946],
+      zoom : 16,
+      pitch: 75,
       lights: {
         ambient: {
           resource: {
@@ -72,43 +74,58 @@
         }
       }
     };
-    const url = '/resources/gltf/new_york_city._manhattan/scene.gltf';
-    const symbol = {
-      url: url,
-      scale: [5, 5, 5]
+    const groupLayer = new maptalks.GroupGLLayer('g', [], { sceneConfig }).addTo(map);
+    const gui = new dat.GUI({ width: 250 });
+    const Config = function () {
+      this.lineColor = [255,0, 0];
+      this.lineWidth = 1.8;
+      this.exportResult = false;
     };
-
-    const gltfLayer = new maptalks.GLTFLayer('gltf');
-    const position = map.getCenter();
-    const gltfMarker = new maptalks.GLTFMarker(position, {
-      symbol: symbol
+    const options = new Config();
+    const thrDlayer = new maptalks.Geo3DTilesLayer('3d-tiles', {
+        // maxGPUMemory: 128,
+        services : [
+            {
+                url: 'http://resource.dvgis.cn/data/3dtiles/dayanta/tileset.json',
+                ambientLight : [1, 1, 1],
+                maximumScreenSpaceError: 1.0,
+                pointOpacity: 0.5,
+                pointSize: 3,
+                heightOffset: -400
+            }
+        ]
+    }).addTo(groupLayer);
+    thrDlayer.once('loadtileset', e => {
+      const extent = thrDlayer.getExtent(e.index);
+      map.fitExtent(extent, 0, { animation: false });
+      const center = extent.getCenter();
+      const zoom = map.getZoom();
+      skylineAnalysis = new maptalks.SkylineAnalysis({
+          lineColor: [1, 0, 0],
+          lineWidth: 1.8
+      });
+      skylineAnalysis.addTo(groupLayer);
+      map.setCenter(center.add(0, -0.005));
+      map.setZoom(zoom + 2);
     });
 
-    gltfLayer.addGeometry(gltfMarker);
-    const groupGLLayer = new maptalks.GroupGLLayer('gl', [gltfLayer], { sceneConfig }).addTo(map);
-
-    const skylineAnalysis = new maptalksgl.SkylineAnalysis({
-      lineColor: [1.0, 0.2, 0.0],
-      lineWidth: 1.8
+    const lineColorController = gui.addColor(options, 'lineColor');
+    lineColorController.onChange(function (value) {
+      skylineAnalysis.update('lineColor', [value[0] / 255, value[1] / 255, value[2] / 255]);
     });
-    skylineAnalysis.addTo(groupGLLayer);
-
-    //fit view
-    map.setCenter(new maptalks.Coordinate([-0.11739548087734875, 51.517852054879285]));
-    map.setZoom(16.15933208319987);
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const lineWidthController = gui.add(options, 'lineWidth', 0.1, 2.0);
+    lineWidthController.onChange(function (value) {
+      skylineAnalysis.update('lineWidth', value);
+    });
+    const exportController = gui.add(options, 'exportResult').name('export result');
+    exportController.onChange(function (value) {
+      const url = skylineAnalysis.exportSkylineMap({
+        save: true
+      });
+    });
+    map.on('click', e => {
+      console.log(map);
+    });
   </script>
 </body>
 
