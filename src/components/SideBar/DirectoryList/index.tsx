@@ -1,16 +1,24 @@
+import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import {
+  ExampleDirectory,
+  ExampleFile,
+  ExampleLiGroup,
+  ExampleTree,
+  ExampleUlGroup,
+} from "./style";
 
 import { observer } from "mobx-react-lite";
-import { useStore } from "@/store";
-import { useMount, useUpdateEffect } from "react-use";
+import { useMount } from "react-use";
 import { useState } from "react";
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
-import './style.css';
+import { useStore } from "@/store";
 
 function DirectoryList() {
   useMount(() => {
-    fetch(`./resources/examples.json?__time=${new Date().getTime()}`).then(res => res.json()).then(json => {
-      setList(json);
-    })
+    fetch(`./resources/examples.json?__time=${new Date().getTime()}`)
+      .then((res) => res.json())
+      .then((json) => {
+        setList(json);
+      });
   });
   const store = useStore();
 
@@ -34,11 +42,19 @@ function DirectoryList() {
   }
 
   function getIcon(node: any) {
-    return node.expand ? <DownOutlined onClick={() => {
-      expandNode(node);
-    }} /> : <RightOutlined onClick={() => {
-      expandNode(node);
-    }} />
+    return node.expand ? (
+      <DownOutlined
+        onClick={() => {
+          expandNode(node);
+        }}
+      />
+    ) : (
+      <RightOutlined
+        onClick={() => {
+          expandNode(node);
+        }}
+      />
+    );
   }
 
   function getChildrenDom(node: any) {
@@ -46,35 +62,47 @@ function DirectoryList() {
       node.expand = true;
     }
     if (!node.children || node.children.length === 0) {
-      return <li key={node.key} className="example-file" onClick={() => {
-        handleSelect({ node });
-      }}>{node.title}</li>
+      return (
+        <ExampleFile
+          key={node.key}
+          onClick={() => {
+            handleSelect({ node });
+          }}
+        >
+          {node.title}
+        </ExampleFile>
+      );
     } else {
-      return <li key={node.key} className="example-group">{
-        getIcon(node)
-      }<span className="example-directory" onClick={() => {
-        expandNode(node);
-      }}>{node.title}</span>
-        {
-          node.expand ? <ul key={node.key} className="example-group"> {
-            node.children.map((child: any) => {
-              return getChildrenDom(child);
-            })
-
-          }</ul > : ''
-        }</li>
+      return (
+        <ExampleLiGroup key={node.key}>
+          {getIcon(node)}
+          <ExampleDirectory
+            onClick={() => {
+              expandNode(node);
+            }}
+          >
+            {node.title}
+          </ExampleDirectory>
+          {node.expand ? (
+            <ExampleUlGroup key={node.key}>
+              {node.children.map((child: any) => {
+                return getChildrenDom(child);
+              })}
+            </ExampleUlGroup>
+          ) : (
+            ""
+          )}
+        </ExampleLiGroup>
+      );
     }
   }
 
-
   return (
-    <ul className="example-tree">
-      {
-        list.map((node: any) => {
-          return getChildrenDom(node);
-        })
-      }
-    </ul>
+    <ExampleTree>
+      {list.map((node: any) => {
+        return getChildrenDom(node);
+      })}
+    </ExampleTree>
   );
 }
 

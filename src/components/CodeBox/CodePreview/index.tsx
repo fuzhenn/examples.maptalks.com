@@ -1,13 +1,11 @@
 import { IFrame } from "./style";
 import { observer } from "mobx-react-lite";
-import { useStore } from "@/store";
+import { useCodePreview } from "./hooks";
 
 function CodePreview() {
-  const store = useStore();
+  const { code } = useCodePreview();
 
-  const doc = store.htmlCode;
-
-  return <IFrame sandbox="allow-scripts allow-same-origin" srcDoc={doc} />;
+  return <IFrame sandbox="allow-scripts allow-same-origin" srcDoc={code} />;
 }
 
 export default observer(CodePreview);

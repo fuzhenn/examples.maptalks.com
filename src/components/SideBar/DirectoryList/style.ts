@@ -22,4 +22,40 @@ const StyledTree = styled(DirectoryTree)`
   }
 `;
 
-export { StyledTree };
+const ExampleTree = styled.ul`
+  padding-left: 0;
+  color: #cfcfcf;
+`;
+
+const ExampleUlGroup = styled.ul`
+  padding-left: 10px;
+  list-style-type: none;
+`;
+
+const ExampleLiGroup = styled.ul`
+  padding-left: 10px;
+  list-style-type: none;
+`;
+
+const ExampleDirectory = styled.span`
+  margin-left: 10px;
+  cursor: pointer;
+`;
+
+const ExampleFile = styled.li`
+  padding-left: 20px;
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+    color: #fff;
+  }
+`;
+
+export {
+  StyledTree,
+  ExampleTree,
+  ExampleUlGroup,
+  ExampleLiGroup,
+  ExampleDirectory,
+  ExampleFile,
+};
