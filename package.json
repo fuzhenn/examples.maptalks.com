@@ -6,30 +6,30 @@
     "dev": "npm run code-build && vite",
     "build": "npm run code-build && tsc && vite build",
     "preview": "vite preview",
-    "code-build":"node build.js"
+    "code-build": "node build.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@codemirror/lang-css": "^0.19.3",
-    "@codemirror/lang-html": "^0.19.4",
-    "@codemirror/lang-javascript": "^0.19.7",
-    "@uiw/react-codemirror": "4.5.1",
-    "antd": "^4.18.9",
-    "js-beautify": "^1.14.3",
-    "mobx": "^6.4.2",
-    "mobx-react-lite": "^3.3.0",
+    "@codemirror/lang-css": "^6.0.0",
+    "@codemirror/lang-html": "^6.1.0",
+    "@codemirror/lang-javascript": "^6.0.1",
+    "@uiw/react-codemirror": "^4.10.4",
+    "antd": "^4.21.5",
+    "js-beautify": "^1.14.4",
+    "mobx": "^6.6.1",
+    "mobx-react-lite": "^3.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-use": "^17.3.2",
-    "styled-components": "^5.3.3"
+    "react-use": "^17.4.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@types/js-beautify": "^1.13.3",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.13",
-    "@types/styled-components": "^5.1.24",
+    "@types/styled-components": "^5.1.25",
     "@vitejs/plugin-react": "^1.0.7",
-    "typescript": "^4.6.2",
-    "vite": "^2.8.6"
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13"
   }
 }

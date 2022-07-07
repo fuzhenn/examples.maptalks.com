@@ -1,14 +1,22 @@
-import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { Container, StyledTabs } from "./style";
+import { useMount, useUpdateEffect } from "react-use";
+
+import CodeMirror from "@uiw/react-codemirror";
+import { html } from "@codemirror/lang-html";
+import { html_beautify } from 'js-beautify';
+import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { useStore } from "@/store";
+
 // import { css, cssCompletion } from "@codemirror/lang-css";
 // import { getCurrentCodes, getFirstKey } from "@/utils";
-import { html, htmlCompletion } from "@codemirror/lang-html";
-import { useMount, useUpdateEffect } from "react-use";
-import { html_beautify } from 'js-beautify';
 
-import { observer } from "mobx-react-lite";
-import { useStore } from "@/store";
-import { useState } from "react";
+
+
+
+
+
+
 const { TabPane } = StyledTabs;
 
 function newline(value: string | undefined): string {
@@ -120,11 +128,12 @@ function CodeEditor() {
             </TabPane> */}
         <TabPane tab="HTML" key="all">
           <CodeMirror
-            editable={false}
-            extensions={[html(), htmlCompletion, EditorView.lineWrapping]}
+            editable={true}
+            extensions={[html()]}
             height="100%"
             theme="dark"
             value={doc}
+            onChange={handleHtmlCodeChange}
           />
         </TabPane>
       </StyledTabs>
