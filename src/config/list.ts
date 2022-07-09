@@ -1,29 +1,27 @@
-import { analysisList } from "./codes/Analysis/analysisList";
-import { gltfList } from "./codes/gltflayer/gltfList";
-import { threeDTilesLayerList } from "./codes/3dtilesLayer";
-import { vectorLayerList } from "./codes/vectorLayer";
-import { videoLayerList } from "./codes/videoLayer/videoLayerList";
-import { vtLayerList } from "./codes/vtlayer";
-import { weatherList } from "./codes/Weather/weatherList";
+import { analysisList } from "./analysis";
+import { gltfLayerList } from "./gltfLayer";
+import { threeDTilesLayerList } from "./3DTilesLayer";
+import { vectorLayerList } from "./vectorLayer";
+import { videoLayerList } from "./videoLayer";
+import { vtLayerList } from "./vtlayer";
+import { weatherList } from "./Weather";
 
 interface IListItem {
   title: string;
   key?: string;
-  html?: string;
-  css?: string;
-  js?: string;
+  path?: string;
   href?: string;
   children?: IListItem[];
 }
 
 const baseList: IListItem[] = [
-  ...vtLayerList,
-  ...vectorLayerList,
-  gltfList,
+  vtLayerList,
+  vectorLayerList,
+  gltfLayerList,
   videoLayerList,
   analysisList,
   weatherList,
-  ...threeDTilesLayerList,
+  threeDTilesLayerList,
   {
     title: "THREE图层插件",
     href: "https://github.com/maptalks/maptalks.three",

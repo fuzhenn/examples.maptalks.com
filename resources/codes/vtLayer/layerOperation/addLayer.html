@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>添加一个矢量瓦片图层</title>
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://npm.elemecdn.com/maptalks@latest/dist/maptalks.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/maptalks@latest/dist/maptalks.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/@maptalks/gl-layers@latest/dist/maptalks-gl-layers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="map" class="container"></div>
+
+    <script>
+      const map = new maptalks.Map("map", {
+        center: [-74.00912099912109, 40.71107610933129],
+        zoom: 16,
+      });
+
+      const vt = new maptalks.VectorTileLayer("vt", {
+        urlTemplate:
+          "http://tile.maptalks.com/test/planet-single/{z}/{x}/{y}.mvt",
+        spatialReference: "preset-vt-3857",
+      });
+
+      const sceneConfig = {
+        postProcess: {
+          enable: true,
+          antialias: {
+            enable: true,
+          },
+        },
+      };
+
+      const groupLayer = new maptalks.GroupGLLayer("group", [vt], {
+        sceneConfig,
+      });
+      groupLayer.addTo(map);
+    </script>
+  </body>
+</html>

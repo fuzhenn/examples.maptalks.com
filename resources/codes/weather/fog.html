@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>雾</title>
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+      }
+
+      #map {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://npm.elemecdn.com/maptalks@latest/dist/maptalks.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/maptalks@latest/dist/maptalks.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/@maptalks/gl-layers@latest/dist/maptalks-gl-layers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="map" class="container"></div>
+    <script>
+      const map = new maptalks.Map("map", {
+        center: [-0.12416643731910426, 51.52260565445428],
+        zoom: 14,
+        pitch: 80,
+        bearing: 210,
+        lights: {
+          ambient: {
+            resource: {
+              url: "/resources/hdr/env.hdr",
+            },
+            color: [1, 1, 1],
+            exposure: 1,
+          },
+          directional: {
+            color: [1, 1, 1],
+            lightColorIntensity: 5000,
+            direction: [1, -0.4, -1],
+          },
+        },
+      });
+
+      const sceneConfig = {
+        environment: { enable: true, mode: 1, level: 1, brightness: 1 },
+        shadow: { enable: true, opacity: 0.5, color: [0, 0, 0] },
+        postProcess: {
+          enable: true,
+          antialias: { enable: true },
+          ssr: { enable: true },
+          bloom: { enable: true },
+          outline: { enable: true },
+        },
+        ground: {
+          enable: true,
+          renderPlugin: { type: "lit" },
+          symbol: {
+            polygonOpacity: 1,
+            material: {
+              baseColorFactor: [0.48235, 0.48235, 0.48235, 1],
+              hsv: [0, 0, -0.532],
+              roughnessFactor: 0.22,
+              metallicFactor: 0.58,
+            },
+          },
+        },
+      };
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.weather = true;
+        this.fog = true;
+        this.fogStart = 0.1;
+        this.fogEnd = 45;
+        this.fogColor = [0.9 * 255, 0.9 * 255, 0.9 * 255];
+        this.baseMap = false;
+      };
+      const options = new Config();
+      const weather = {
+        enable: options.weather,
+        fog: {
+          enable: options.fog,
+          start: options.fogStart,
+          end: options.fogEnd,
+          color: [0.9, 0.9, 0.9],
+        },
+      };
+      sceneConfig.weather = weather;
+
+      const url = "/resources/gltf/new_york_city._manhattan/scene.gltf";
+      const symbol = {
+        url: url,
+        shadow: true,
+        scale: [12, 12, 12],
+        translation: [0, -50, -5],
+      };
+
+      const gltfLayer = new maptalks.GLTFLayer("gltf");
+      const position = map.getCenter();
+      const gltfMarker = new maptalks.GLTFMarker(position, {
+        symbol: symbol,
+      });
+
+      gltfLayer.addGeometry(gltfMarker);
+      const groupGLLayer = new maptalks.GroupGLLayer("gl", [gltfLayer], {
+        sceneConfig,
+      }).addTo(map);
+
+      const weatherControl = gui.add(options, "weather").name("enable weather");
+      weatherControl.onChange(function (value) {
+        const sceneConfig = groupGLLayer.getSceneConfig();
+        sceneConfig.weather.enable = value;
+        groupGLLayer.setSceneConfig(sceneConfig);
+      });
+
+      const fogControl = gui.add(options, "fog").name("enable fog");
+      fogControl.onChange(function (value) {
+        const sceneConfig = groupGLLayer.getSceneConfig();
+        sceneConfig.weather.fog.enable = value;
+        groupGLLayer.setSceneConfig(sceneConfig);
+      });
+
+      const startControl = gui
+        .add(options, "fogStart", 0.1, 10)
+        .name("start diatance");
+      startControl.onChange(function (value) {
+        const sceneConfig = groupGLLayer.getSceneConfig();
+        sceneConfig.weather.fog.start = value;
+        groupGLLayer.setSceneConfig(sceneConfig);
+      });
+
+      const endControl = gui
+        .add(options, "fogEnd", 2.0, 100)
+        .name("end distance");
+      endControl.onChange(function (value) {
+        const sceneConfig = groupGLLayer.getSceneConfig();
+        sceneConfig.weather.fog.end = value;
+        groupGLLayer.setSceneConfig(sceneConfig);
+      });
+
+      const fogColorController = gui
+        .addColor(options, "fogColor")
+        .name("fog color");
+      fogColorController.onChange(function (value) {
+        const sceneConfig = groupGLLayer.getSceneConfig();
+        sceneConfig.weather.fog.color = getColor(value);
+        groupGLLayer.setSceneConfig(sceneConfig);
+      });
+
+      const baseMapController = gui
+        .add(options, "baseMap")
+        .name("show baseMap");
+      baseMapController.onChange(function (value) {
+        const baseMap = map.getBaseLayer();
+        if (value) {
+          baseMap.show();
+        } else {
+          baseMap.hide();
+        }
+      });
+
+      function getColor(rgb) {
+        return [rgb[0] / 255, rgb[1] / 255, rgb[2] / 255];
+      }
+    </script>
+  </body>
+</html>
