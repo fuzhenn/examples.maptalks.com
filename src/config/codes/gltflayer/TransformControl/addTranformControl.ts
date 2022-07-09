@@ -1,7 +1,6 @@
 import { map, sceneConfig } from '../gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
-<div id="info"></div>
-<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/transform-control/dist/transform-control.js"></script>`;
+<div id="info"></div>`;
 
 const cssCode = `html,
 body {

@@ -1,8 +1,7 @@
 import { map, sceneConfig } from '../gltflayer/gltf-util';
 const htmlCode = `<div id="map" class="container"></div>
-<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/gl/dist/maptalksgl.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/gl-layers/dist/maptalks-gl-layers.js"></script>
 <script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
-<script type="text/javascript" src="https://npm.elemecdn.com/@maptalks/3dtiles/dist/maptalks.3dtiles.js"></script>
 `;
 
 const cssCode = `html,
