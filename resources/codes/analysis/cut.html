@@ -100,7 +100,6 @@
         sceneConfig,
       }).addTo(map);
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
-        // maxGPUMemory: 128,
         services: [
           {
             url: "http://resource.dvgis.cn/data/3dtiles/dayanta/tileset.json",
@@ -112,7 +111,7 @@
           },
         ],
       }).addTo(groupLayer);
-      
+
       thrDlayer.once("loadtileset", (e) => {
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
