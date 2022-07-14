@@ -87,7 +87,6 @@
       };
 
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
-        // maxGPUMemory: 128,
         services: [
           {
             url: "http://resource.dvgis.cn/data/3dtiles/dayanta/tileset.json",
@@ -106,18 +105,8 @@
       const groupLayer = new maptalks.GroupGLLayer("g", [thrDlayer], {
         sceneConfig,
       }).addTo(map);
-      thrDlayer.once("loadtileset", (e) => {
-        const extent = thrDlayer.getExtent(e.index);
-        map.fitExtent(extent, 0, { animation: false });
-      });
 
-      const gui = new dat.GUI({ width: 250 });
-      const Config = function () {
-        this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
-        this.waterHeight = 5;
-        this.draw = false;
-      };
-      const options = new Config();
+
       const floodAnalysis = new maptalks.FloodAnalysis({
         boundary: [
           [108.95888623345706, 34.220502132776204],
@@ -131,11 +120,13 @@
         waterColor: [0.1, 0.5, 0.6],
       });
       floodAnalysis.addTo(groupLayer);
-      var vlayer = new maptalks.VectorLayer("vector", {
+
+      const vlayer = new maptalks.VectorLayer("vector", {
         enableAltitude: true,
       }).addTo(map);
+
       let altitudes = [], coordinates = [], first = true;
-      var drawTool = new maptalks.DrawTool({
+      const drawTool = new maptalks.DrawTool({
         mode: "LineString",
         symbol: {
           lineColor: "#f00",
@@ -143,6 +134,7 @@
       })
         .addTo(map)
         .disable();
+
       drawTool.on("mousemove", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -162,6 +154,7 @@
         e.geometry.setCoordinates(coordinates);
         first = false;
       });
+
       drawTool.on("drawvertex", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -179,6 +172,7 @@
         });
         e.geometry.setCoordinates(coordinates);
       });
+
       drawTool.on("drawstart", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -190,6 +184,7 @@
         e.geometry.setCoordinates(coordinates);
         first = true;
       });
+
       drawTool.on("drawend", function (param) {
         vlayer.clear();
         const geometry = param.geometry;
@@ -207,6 +202,15 @@
         coordinates = [];
         altitudes = [];
       });
+
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
+        this.waterHeight = 5;
+        this.draw = false;
+      };
+      const options = new Config();
+
       const waterColorController = gui.addColor(options, "waterColor");
       waterColorController.onChange(function (value) {
         floodAnalysis.update("waterColor", [

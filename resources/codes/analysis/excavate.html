@@ -86,7 +86,6 @@
       };
 
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
-        // maxGPUMemory: 128,
         services: [
           {
             url: "http://resource.dvgis.cn/data/3dtiles/dayanta/tileset.json",
@@ -105,10 +104,7 @@
       const groupLayer = new maptalks.GroupGLLayer("g", [thrDlayer], {
         sceneConfig,
       }).addTo(map);
-      thrDlayer.once("loadtileset", (e) => {
-        const extent = thrDlayer.getExtent(e.index);
-        map.fitExtent(extent, 0, { animation: false });
-      });
+
 
       const gui = new dat.GUI({ width: 250 });
       const Config = function () {
@@ -134,9 +130,11 @@
         textureUrl: urlMap[options.textureUrl],
         height: 5,
       }).addTo(groupLayer);
+
       const vlayer = new maptalks.VectorLayer("vector", {
         enableAltitude: true,
       }).addTo(map);
+
       let altitudes = [], coordinates = [], first = true;
       const drawTool = new maptalks.DrawTool({
         mode: "LineString",
@@ -146,6 +144,7 @@
       })
         .addTo(map)
         .disable();
+
       drawTool.on("mousemove", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -165,6 +164,7 @@
         e.geometry.setCoordinates(coordinates);
         first = false;
       });
+
       drawTool.on("drawvertex", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -182,6 +182,7 @@
         });
         e.geometry.setCoordinates(coordinates);
       });
+
       drawTool.on("drawstart", (e) => {
         const identifyData = groupLayer.identify(e.coordinate)[0];
         const coordinate = identifyData && identifyData.point;
@@ -193,6 +194,7 @@
         e.geometry.setCoordinates(coordinates);
         first = true;
       });
+
       drawTool.on("drawend", function (param) {
         vlayer.clear();
         const geometry = param.geometry;
@@ -210,13 +212,16 @@
         coordinates = [];
         altitudes = [];
       });
+
       const textureControl = gui.add(options, "textureUrl", [
         "ground",
         "brick",
       ]);
+
       textureControl.onChange(function (value) {
         excavateAnalysis.update("textureUrl", urlMap[value]);
       });
+
       const heightController = gui.add(options, "height", 0, 100);
       heightController.onChange(function (value) {
         excavateAnalysis.update("height", value);
