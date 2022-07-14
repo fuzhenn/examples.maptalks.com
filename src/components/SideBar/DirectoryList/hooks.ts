@@ -1,10 +1,20 @@
+import { useLocation, useMount } from "react-use";
+
 import { Key } from "rc-tree/lib/interface";
+import { getCurrentKey } from "./utils";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "@/store";
 
 export function useDirectoryList() {
   const store = useStore();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useMount(() => {
+    const pathname = location.pathname ?? "";
+    const key = getCurrentKey(pathname.substr(1));
+    store.setCurrentKey(key ?? "");
+  });
 
   function handleSelect(keys: Key[], { node }: Record<string, any>) {
     if (node.path) {
