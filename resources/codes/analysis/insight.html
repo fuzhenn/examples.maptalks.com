@@ -53,7 +53,7 @@
         lights: {
           ambient: {
             resource: {
-              url: "./resources/hdr/env.hdr",
+              url: "../resources/hdr/env.hdr",
             },
             color: [1, 1, 1],
             exposure: 1,
@@ -93,14 +93,7 @@
       const groupLayer = new maptalks.GroupGLLayer("g", [], {
         sceneConfig,
       }).addTo(map);
-      const gui = new dat.GUI({ width: 250 });
-      const Config = function () {
-        this.verticalAngle = 30;
-        this.horizonalAngle = 20;
-        this.eyePos = 150;
-        this.lookPoint = 20;
-      };
-      const options = new Config();
+
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
         // maxGPUMemory: 128,
         services: [
@@ -114,25 +107,42 @@
           },
         ],
       }).addTo(groupLayer);
+
       thrDlayer.once("loadtileset", (e) => {
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
         const center = map.getCenter();
-        lookPoint = [center.x, center.y, 20];
-        eyePos = [center.x + 0.003, center.y + 0.002, 150];
+        // 目标点
+        lookPoint = [center.x - 0.001, center.y - 0.0005, 10];
+        // 相机位置
+        eyePos = [center.x + 0.003, center.y + 0.002, 50];
+        // 创建通视分析对象
         insightAnalysis = new maptalks.InSightAnalysis({
           eyePos,
           lookPoint,
+          // 可视部分的颜色
           visibleColor: [0, 1, 0, 1],
+          // 不可视部分的颜色
           invisibleColor: [1, 0, 0, 1],
         });
         insightAnalysis.addTo(groupLayer);
       });
 
+
+      // dat gui 创建代码
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.verticalAngle = 30;
+        this.horizonalAngle = 20;
+        this.eyePos = 150;
+        this.lookPoint = 20;
+      };
+      const options = new Config();
       const eyePosController = gui.add(options, "eyePos", 0, 500);
       eyePosController.onChange(function (value) {
         insightAnalysis.update("eyePos", [eyePos[0], eyePos[1], value]);
       });
+
       const lookPointController = gui.add(options, "lookPoint", 0, 500);
       lookPointController.onChange(function (value) {
         insightAnalysis.update("lookPoint", [

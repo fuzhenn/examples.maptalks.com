@@ -106,17 +106,13 @@
       }).addTo(map);
 
 
-      const gui = new dat.GUI({ width: 250 });
-      const Config = function () {
-        this.height = 5;
-        this.textureUrl = "ground";
-        this.draw = false;
-      };
-      const options = new Config();
+
+      // 可供选择的挖方底部的纹理
       const urlMap = {
         ground: "../resources/images/ground.jpg",
         brick: "../resources/images/brick.png",
       };
+      // 挖方分析区域
       const boundary = [
         [108.95888623345706, 34.220502132776204],
         [108.9582019833017, 34.21987192350153],
@@ -127,10 +123,11 @@
       ];
       const excavateAnalysis = new maptalks.ExcavateAnalysis({
         boundary,
-        textureUrl: urlMap[options.textureUrl],
+        textureUrl: urlMap['ground'],
         height: 5,
       }).addTo(groupLayer);
 
+      // 以下是绘制自定义分析区域的代码
       const vlayer = new maptalks.VectorLayer("vector", {
         enableAltitude: true,
       }).addTo(map);
@@ -213,11 +210,19 @@
         altitudes = [];
       });
 
+
+      // dat gui 的创建代码
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.height = 5;
+        this.textureUrl = "ground";
+        this.draw = false;
+      };
+      const options = new Config();
       const textureControl = gui.add(options, "textureUrl", [
         "ground",
         "brick",
       ]);
-
       textureControl.onChange(function (value) {
         excavateAnalysis.update("textureUrl", urlMap[value]);
       });

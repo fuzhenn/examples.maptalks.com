@@ -108,6 +108,7 @@
 
 
       const floodAnalysis = new maptalks.FloodAnalysis({
+        // 洪水分析的区域
         boundary: [
           [108.95888623345706, 34.220502132776204],
           [108.9582019833017, 34.21987192350153],
@@ -116,11 +117,15 @@
           [108.96043811487289, 34.219454268264116],
           [108.96030941797153, 34.2204038033789]
         ],
-        waterHeight: 5,
+        // 水面海拔高度，单位米
+        waterHeight: 25,
+        // 水的颜色
         waterColor: [0.1, 0.5, 0.6],
       });
       floodAnalysis.addTo(groupLayer);
 
+
+      // 以下是绘制自定义水淹分析区域的逻辑
       const vlayer = new maptalks.VectorLayer("vector", {
         enableAltitude: true,
       }).addTo(map);
@@ -203,10 +208,11 @@
         altitudes = [];
       });
 
+      // dat gui 的创建代码
       const gui = new dat.GUI({ width: 250 });
       const Config = function () {
         this.waterColor = [0.1 * 255, 0.5 * 255, 0.6 * 255];
-        this.waterHeight = 5;
+        this.waterHeight = 25;
         this.draw = false;
       };
       const options = new Config();

@@ -48,7 +48,7 @@
         lights: {
           ambient: {
             resource: {
-              url: "./resources/hdr/env.hdr",
+              url: "../resources/hdr/env.hdr",
             },
             color: [1, 1, 1],
             exposure: 1,
@@ -88,13 +88,7 @@
       const groupLayer = new maptalks.GroupGLLayer("g", [], {
         sceneConfig,
       }).addTo(map);
-      const gui = new dat.GUI({ width: 250 });
-      const Config = function () {
-        this.lineColor = [255, 0, 0];
-        this.lineWidth = 1.8;
-        this.exportResult = false;
-      };
-      const options = new Config();
+      
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
         // maxGPUMemory: 128,
         services: [
@@ -108,11 +102,13 @@
           },
         ],
       }).addTo(groupLayer);
+
       thrDlayer.once("loadtileset", (e) => {
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
         const center = extent.getCenter();
         const zoom = map.getZoom();
+        // 创建天际线分析
         skylineAnalysis = new maptalks.SkylineAnalysis({
           lineColor: [1, 0, 0],
           lineWidth: 1.8,
@@ -122,6 +118,14 @@
         map.setZoom(zoom + 2);
       });
 
+      // dat gui 的创建代码
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.lineColor = [255, 0, 0];
+        this.lineWidth = 1.8;
+        this.exportResult = false;
+      };
+      const options = new Config();
       const lineColorController = gui.addColor(options, "lineColor");
       lineColorController.onChange(function (value) {
         skylineAnalysis.update("lineColor", [
