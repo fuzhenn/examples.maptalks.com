@@ -14,6 +14,11 @@
         width: 100%;
         height: 100%;
       }
+      #result {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -39,6 +44,7 @@
 
   <body>
     <div id="map" class="container"></div>
+    <img id="result"/>
     <script>
       let skylineAnalysis;
       const map = new maptalks.Map("map", {
@@ -137,16 +143,15 @@
       lineWidthController.onChange(function (value) {
         skylineAnalysis.update("lineWidth", value);
       });
-      const exportController = gui
-        .add(options, "exportResult")
-        .name("export result");
+      const exportController = gui.add(options, "exportResult").name("输出天际线图");
       exportController.onChange(function (value) {
         const url = skylineAnalysis.exportSkylineMap({
-          save: true,
+          // save: true, //直接下载图片
         });
-      });
-      map.on("click", (e) => {
-        console.log(map);
+        const resultImage = document.getElementById('result');
+        resultImage.width = map.width / 4;
+        resultImage.height = map.height / 4;
+        resultImage.src = url;
       });
     </script>
   </body>
