@@ -133,6 +133,7 @@
       let altitudes = [], coordinates = [], first = true;
       const drawTool = new maptalks.DrawTool({
         mode: "LineString",
+        enableAltitude: true,
         symbol: {
           lineColor: "#f00",
         },
@@ -141,8 +142,7 @@
         .disable();
 
       drawTool.on("mousemove", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
         if (!coordinate) {
           return;
         }
@@ -161,8 +161,10 @@
       });
 
       drawTool.on("drawvertex", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
         if (first) {
           coordinates.push([coordinate.x, coordinate.y]);
           altitudes.push(coordinate.z);
@@ -179,8 +181,10 @@
       });
 
       drawTool.on("drawstart", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
         coordinates.push([coordinate.x, coordinate.y]);
         altitudes.push(coordinate.z);
         e.geometry.setProperties({
@@ -207,6 +211,16 @@
         coordinates = [];
         altitudes = [];
       });
+
+      function getPickedCoordinate(coordinate) {
+        const identifyData = groupLayer.identify(coordinate)[0];
+        const pickedPoint = identifyData && identifyData.point;
+        if (pickedPoint) {
+          const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
+          const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
+          return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        }
+      }
 
       // dat gui 的创建代码
       const gui = new dat.GUI({ width: 250 });

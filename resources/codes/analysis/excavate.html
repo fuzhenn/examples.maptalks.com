@@ -24,13 +24,13 @@
       src="https://npm.elemecdn.com/maptalks@latest/dist/maptalks.min.js"
     ></script>
     <script
-    type="text/javascript"
-    src="https://npm.elemecdn.com/@maptalks/gl-layers@latest/dist/maptalks-gl-layers.js"
-  ></script>
-  <script
-    type="text/javascript"
-    src="https://npm.elemecdn.com/@maptalks/transcoders.draco@latest/dist/transcoders.draco.js"
-  ></script>
+      type="text/javascript"
+      src="https://npm.elemecdn.com/@maptalks/gl-layers@latest/dist/maptalks-gl-layers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://npm.elemecdn.com/@maptalks/transcoders.draco@latest/dist/transcoders.draco.js"
+    ></script>
     <script
       type="text/javascript"
       src="https://npm.elemecdn.com/dat.gui/build/dat.gui.min.js"
@@ -100,6 +100,20 @@
       thrDlayer.once("loadtileset", (e) => {
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
+         // 挖方分析区域
+        const boundary = [
+          [108.95888623345706, 34.220502132776204],
+          [108.9582019833017, 34.21987192350153],
+          [108.95866479224173, 34.21879554904879],
+          [108.95976365662978, 34.21870809810403],
+          [108.96043811487289, 34.219454268264116],
+          [108.96030941797153, 34.2204038033789]
+        ];
+        const excavateAnalysis = new maptalks.ExcavateAnalysis({
+          boundary,
+          textureUrl: urlMap['ground'],
+          height: 5,
+        }).addTo(groupLayer);
       });
       const groupLayer = new maptalks.GroupGLLayer("g", [thrDlayer], {
         sceneConfig,
@@ -112,20 +126,6 @@
         ground: "../resources/images/ground.jpg",
         brick: "../resources/images/brick.png",
       };
-      // 挖方分析区域
-      const boundary = [
-        [108.95888623345706, 34.220502132776204],
-        [108.9582019833017, 34.21987192350153],
-        [108.95866479224173, 34.21879554904879],
-        [108.95976365662978, 34.21870809810403],
-        [108.96043811487289, 34.219454268264116],
-        [108.96030941797153, 34.2204038033789]
-      ];
-      const excavateAnalysis = new maptalks.ExcavateAnalysis({
-        boundary,
-        textureUrl: urlMap['ground'],
-        height: 5,
-      }).addTo(groupLayer);
 
       // 以下是绘制自定义分析区域的代码
       const vlayer = new maptalks.VectorLayer("vector", {
@@ -135,6 +135,7 @@
       let altitudes = [], coordinates = [], first = true;
       const drawTool = new maptalks.DrawTool({
         mode: "LineString",
+        enableAltitude: true,
         symbol: {
           lineColor: "#f00",
         },
@@ -143,8 +144,7 @@
         .disable();
 
       drawTool.on("mousemove", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
         if (!coordinate) {
           return;
         }
@@ -163,8 +163,10 @@
       });
 
       drawTool.on("drawvertex", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
         if (first) {
           coordinates.push([coordinate.x, coordinate.y]);
           altitudes.push(coordinate.z);
@@ -181,8 +183,10 @@
       });
 
       drawTool.on("drawstart", (e) => {
-        const identifyData = groupLayer.identify(e.coordinate)[0];
-        const coordinate = identifyData && identifyData.point;
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
         coordinates.push([coordinate.x, coordinate.y]);
         altitudes.push(coordinate.z);
         e.geometry.setProperties({
@@ -210,6 +214,15 @@
         altitudes = [];
       });
 
+      function getPickedCoordinate(coordinate) {
+        const identifyData = groupLayer.identify(coordinate)[0];
+        const pickedPoint = identifyData && identifyData.point;
+        if (pickedPoint) {
+          const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
+          const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
+          return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        }
+      }
 
       // dat gui 的创建代码
       const gui = new dat.GUI({ width: 250 });
@@ -232,7 +245,7 @@
         excavateAnalysis.update("height", value);
       });
 
-      const drawController = gui.add(options, "draw").name("draw extent");
+      const drawController = gui.add(options, "draw").name("挖方范围");
       drawController.onChange(function (value) {
         if (value) {
           drawTool.enable();

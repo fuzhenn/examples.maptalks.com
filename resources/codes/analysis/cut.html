@@ -41,11 +41,7 @@
     <div id="map" class="container"></div>
 
     <script>
-      let viewshedAnalysis = null,
-        eyePos,
-        lookPoint,
-        verticalAngle,
-        horizontalAngle;
+      let cutAnalysis;
       const map = new maptalks.Map("map", {
         center: [108.9605239272878, 34.21955775963946],
         zoom: 15,
@@ -116,12 +112,23 @@
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
         const center = map.getCenter();
-        const cutAnalysis = new maptalks.CutAnalysis({
+        cutAnalysis = new maptalks.CutAnalysis({
           position: [center.x, center.y, 0],
-          rotation: [45, 90, 0],
+          rotation: [45, 0, 0],
           scale: [1, 1, 1],
         });
         cutAnalysis.addTo(groupLayer);
+      });
+
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.reset = false;
+      };
+      const options = new Config();
+
+      const resetController = gui.add(options, "reset").name('重置');
+      resetController.onChange(function (value) {
+        cutAnalysis.reset();
       });
     </script>
   </body>
