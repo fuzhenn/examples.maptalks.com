@@ -85,6 +85,7 @@
         },
       };
 
+      let excavateAnalysis = null;
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
         services: [
           {
@@ -109,7 +110,7 @@
           [108.96043811487289, 34.219454268264116],
           [108.96030941797153, 34.2204038033789]
         ];
-        const excavateAnalysis = new maptalks.ExcavateAnalysis({
+        excavateAnalysis = new maptalks.ExcavateAnalysis({
           boundary,
           textureUrl: urlMap['ground'],
           height: 5,

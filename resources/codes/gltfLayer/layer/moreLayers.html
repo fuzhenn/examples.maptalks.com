@@ -44,7 +44,7 @@
         lights: {
           ambient: {
             resource: {
-              url: "./resources/hdr/env.hdr",
+              url: "/resources/hdr/env.hdr",
             },
             color: [1, 1, 1],
             exposure: 1,
@@ -90,7 +90,7 @@
       const layers = [];
       for (let i = 0; i < 5; i++) {
         const gltfLayer = new maptalks.GLTFLayer("gltf_" + i);
-        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01, 0), {
+        const gltfMarker = new maptalks.GLTFMarker(position.add(i * 0.01 - 0.02, 0), {
           symbol: symbol,
         }).addTo(gltfLayer);
         layers.push(gltfLayer);
