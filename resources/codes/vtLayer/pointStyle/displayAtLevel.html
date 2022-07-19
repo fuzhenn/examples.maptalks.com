@@ -39,11 +39,9 @@
     <script>
       const map = new maptalks.Map("map", {
         center: [-74.00912099912109, 40.71107610933129],
-        zoom: 16,
+        zoom: 17,
         zoomControl: true,
       });
-
-      // 只在16级上显示
 
       const style = {
         style: [
@@ -66,9 +64,9 @@
             },
             symbol: {
               visible: {
-                type: "categorical",
-                default: false,
-                stops: [[16, true]],
+                // 只在 16 到19级之间显示
+                type: "interval",
+                stops: [[0, false], [17, true], [19, false]],
               },
               markerType: "ellipse",
               markerHeight: 20,
