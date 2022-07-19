@@ -18,7 +18,7 @@ const analysisList = {
       path: "analysis/insight.html",
     },
     {
-      title: "剖面分析",
+      title: "平面裁剪",
       path: "analysis/cut.html",
     },
     {
