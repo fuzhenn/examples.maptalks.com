@@ -25,6 +25,10 @@ const analysisList = {
       title: "挖方分析",
       path: "analysis/excavate.html",
     },
+    {
+      title: "剖面分析",
+      path: "analysis/crosscut.html"
+    },
   ],
 };
 
