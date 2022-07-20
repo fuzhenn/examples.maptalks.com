@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>剖面分析</title>
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+      }
+
+      #chart {
+        width: 100%;
+        position: absolute;
+        height: 350px;
+        bottom: 0px;
+        z-index: 999;
+        display: none;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://maptalks.com/api/maptalks.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://maptalks.com/api/maptalks.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maptalks.com/api/maptalks-gl-layers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maptalks.com/api/transcoders.draco.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maptalks.com/api/dat.gui.min.js"
+    ></script>
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  </head>
+
+  <body>
+    <div id="map" class="container"></div>
+    <div id="chart"></div>
+    <script>
+      let crosscutAnalysis = null;
+      const map = new maptalks.Map("map", {
+        center: [108.9605239272878, 34.21955775963946],
+        zoom: 12,
+        pitch: 45,
+        lights: {
+          ambient: {
+            resource: {
+              url: "../resources/hdr/env.hdr",
+            },
+            color: [1, 1, 1],
+            exposure: 1,
+          },
+          directional: {
+            color: [1, 1, 1],
+            lightColorIntensity: 5000,
+            direction: [1, -0.4, -1],
+          },
+        },
+      });
+
+      const sceneConfig = {
+        environment: { enable: true, mode: 1, level: 1, brightness: 1 },
+        shadow: { enable: true, opacity: 0.5, color: [0, 0, 0] },
+        postProcess: {
+          enable: true,
+          antialias: { enable: true },
+          ssr: { enable: true },
+          bloom: { enable: true },
+          outline: { enable: true },
+        },
+        ground: {
+          enable: true,
+          renderPlugin: { type: "lit" },
+          symbol: {
+            polygonOpacity: 1,
+            material: {
+              baseColorFactor: [0.48235, 0.48235, 0.48235, 1],
+              hsv: [0, 0, -0.532],
+              roughnessFactor: 0.22,
+              metallicFactor: 0.58,
+            },
+          },
+        },
+      };
+
+      const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
+        services: [
+          {
+            url: "http://resource.dvgis.cn/data/3dtiles/dayanta/tileset.json",
+            ambientLight: [1, 1, 1],
+            maximumScreenSpaceError: 1.0,
+            pointOpacity: 0.5,
+            pointSize: 3,
+            heightOffset: -400,
+          },
+        ],
+      });
+      thrDlayer.once("loadtileset", (e) => {
+        const extent = thrDlayer.getExtent(e.index);
+        map.fitExtent(extent, 0, { animation: false });
+        crosscutAnalysis = new maptalks.CrossCutAnalysis({
+          cutLine: [[108.95943151743995, 34.220773839751956], [108.95942615302192, 34.21846280188899]],
+          cutLineColor: [0.0, 1.0, 0.0, 1.0]
+        }).addTo(groupLayer);
+      });
+      const groupLayer = new maptalks.GroupGLLayer("g", [thrDlayer], {
+        sceneConfig,
+      }).addTo(map);
+
+      // 以下是绘制剖面分析的交互逻辑
+      const vlayer = new maptalks.VectorLayer("vector", {
+        enableAltitude: true,
+      }).addTo(map);
+      let altitudes = [], coordinates = [], first = true;
+      const drawTool = new maptalks.DrawTool({
+        mode: "LineString",
+        enableAltitude: true,
+        symbol: {
+          lineColor: '#f00',
+        },
+      }).addTo(map).disable();
+
+      drawTool.on("mousemove", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        first = false;
+      });
+
+      drawTool.on("drawvertex", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+          first = false;
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+          first = true;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+      });
+
+      drawTool.on("drawstart", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        coordinates.push([coordinate.x, coordinate.y]);
+        altitudes.push(coordinate.z);
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        first = true;
+      });
+
+      drawTool.on("drawend", function(param) {
+        vlayer.clear();
+        drawTool.disable();
+        vlayer.clear();
+        crosscutAnalysis.update("cutLine", coordinates);
+        const results = crosscutAnalysis.getAltitudes(500);
+        const distances = results.map(result => {
+          return Number(result.distance.toFixed(3));
+        });
+        const coords = results.map(result => {
+          return [result.point[0], result.point[1]];
+        });
+        const alts = results.map(result => {
+          return result.point[2];
+        });
+        new maptalks.LineString(coords, {
+          properties: {
+              altitude: alts
+          },
+          symbol: {
+              lineColor: '#0f0'
+          }
+        }).addTo(vlayer);
+        drawChart(distances, alts);
+        coordinates = [];
+        altitudes = [];
+      });
+
+      function getPickedCoordinate(coordinate) {
+        const identifyData = groupLayer.identify(coordinate)[0];
+        const pickedPoint = identifyData && identifyData.point;
+        if (pickedPoint) {
+          const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
+          const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
+          return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        }
+      }
+
+      function drawChart(distances, alts) {
+        console.log(distances);
+        console.log(alts);
+        const dom = document.getElementById('chart');
+        dom.style.display = "block";
+        const myChart = echarts.init(dom, null, {
+          renderer: 'canvas',
+          useDirtyRect: false
+        });
+
+        const option = {
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: distances,
+            name: '间距',
+            nameTextStyle: {
+              color: '#000',
+              fontSize: 18
+            }
+          },
+          yAxis: {
+            type: 'value',
+            name: '高度',
+            nameTextStyle: {
+              color: '#000',
+              fontSize: 18
+            }
+          },
+          series: [
+            {
+              data: alts,
+              type: 'line',
+              lineStyle: {
+                color: '#aa63f2'
+              },
+              label: {
+                color: '#5412dd'
+              },
+              areaStyle: {
+                opacity: 0.6
+              }
+            }
+          ]
+        };
+
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      }
+
+      // dat gui 的创建代码
+      const gui = new dat.GUI({ width: 250 });
+      const Config = function () {
+        this.draw = false;
+      };
+      const options = new Config();
+
+      const drawController = gui.add(options, "draw").name('绘制切线');
+      drawController.onChange(function (value) {
+        if (value) {
+          drawTool.enable();
+        } else {
+          drawTool.disable();
+        }
+      });
+    </script>
+  </body>
+</html>
