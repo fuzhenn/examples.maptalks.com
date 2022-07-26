@@ -129,13 +129,91 @@
         viewshedAnalysis.addTo(groupLayer);
       });
 
+      // 以下是绘制可视域分析的交互逻辑
+      let altitudes = [], coordinates = [], first = true;
+      const drawTool = new maptalks.DrawTool({
+        mode: "LineString",
+        symbol: {
+          lineOpacity: 0,
+        },
+      }).addTo(map).disable();
+
+      drawTool.on("mousemove", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
+        viewshedAnalysis.update('lookPoint', lookPoint);
+        first = false;
+      });
+
+      drawTool.on("drawvertex", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+          first = false;
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+          first = true;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
+        viewshedAnalysis.update('lookPoint', lookPoint);
+        drawController.setValue(false);// disable drawtool
+      });
+
+      drawTool.on("drawstart", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        coordinates.push([coordinate.x, coordinate.y]);
+        altitudes.push(coordinate.z);
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        eyePos = [coordinate.x, coordinate.y, coordinate.z];
+        viewshedAnalysis.update('eyePos', eyePos);
+        first = true;
+      });
+
+      function getPickedCoordinate(coordinate) {
+        const identifyData = groupLayer.identify(coordinate)[0];
+        const pickedPoint = identifyData && identifyData.point;
+        if (pickedPoint) {
+          const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
+          const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
+          return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        }
+      }
+
       // dat gui的创建代码
       const gui = new dat.GUI({ width: 250 });
       const Config = function () {
         this.verticalAngle = 30;
         this.horizonalAngle = 20;
-        this.eyePos = 50;
-        this.lookPoint = 0;
+        this.draw = false;
       };
       const options = new Config();
       const verticalAngleController = gui.add(options, "verticalAngle", 0, 90);
@@ -152,17 +230,13 @@
         viewshedAnalysis.update("horizontalAngle", value);
       });
 
-      const eyePosController = gui.add(options, "eyePos", 0, 100);
-      eyePosController.onChange(function (value) {
-        viewshedAnalysis.update("eyePos", [eyePos[0], eyePos[1], value]);
-      });
-      const lookPointController = gui.add(options, "lookPoint", 0, 100);
-      lookPointController.onChange(function (value) {
-        viewshedAnalysis.update("lookPoint", [
-          lookPoint[0],
-          lookPoint[1],
-          value,
-        ]);
+      const drawController = gui.add(options, "draw");
+      drawController.onChange(function (value) {
+        if (value) {
+          drawTool.enable();
+        } else {
+          drawTool.disable();
+        }
       });
     </script>
   </body>
