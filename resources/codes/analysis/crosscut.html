@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>可视域分析</title>
+    <title>剖面分析</title>
     <style type="text/css">
       html,
       body {
@@ -13,6 +13,15 @@
       .container {
         width: 100%;
         height: 100%;
+      }
+
+      #chart {
+        width: 100%;
+        position: absolute;
+        height: 350px;
+        bottom: 0px;
+        z-index: 999;
+        display: none;
       }
     </style>
     <link
@@ -35,21 +44,18 @@
       type="text/javascript"
       src="https://maptalks.com/api/dat.gui.min.js"
     ></script>
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   </head>
 
   <body>
     <div id="map" class="container"></div>
-
+    <div id="chart"></div>
     <script>
-      let viewshedAnalysis = null,
-        eyePos,
-        lookPoint,
-        verticalAngle,
-        horizontalAngle;
+      let crosscutAnalysis = null;
       const map = new maptalks.Map("map", {
         center: [108.9605239272878, 34.21955775963946],
-        zoom: 15,
-        pitch: 70,
+        zoom: 12,
+        pitch: 45,
         lights: {
           ambient: {
             resource: {
@@ -90,9 +96,6 @@
           },
         },
       };
-      const groupLayer = new maptalks.GroupGLLayer("g", [], {
-        sceneConfig,
-      }).addTo(map);
 
       const thrDlayer = new maptalks.Geo3DTilesLayer("3d-tiles", {
         services: [
@@ -105,36 +108,29 @@
             heightOffset: -400,
           },
         ],
-      }).addTo(groupLayer);
-
+      });
       thrDlayer.once("loadtileset", (e) => {
         const extent = thrDlayer.getExtent(e.index);
         map.fitExtent(extent, 0, { animation: false });
-        const center = map.getCenter();
-        // 相机位置
-        eyePos = [center.x + 0.003, center.y, options.eyePos];
-        // 目标点
-        lookPoint = [center.x, center.y, options.lookPoint];
-        // 垂直视角
-        verticalAngle = 30;
-        // 水平视角
-        horizontalAngle = 20;
-        // 创建可视域分析对象
-        viewshedAnalysis = new maptalks.ViewshedAnalysis({
-          eyePos,
-          lookPoint,
-          verticalAngle,
-          horizontalAngle,
-        });
-        viewshedAnalysis.addTo(groupLayer);
+        crosscutAnalysis = new maptalks.CrossCutAnalysis({
+          cutLine: [[108.95943151743995, 34.220773839751956], [108.95942615302192, 34.21846280188899]],
+          cutLineColor: [0.0, 1.0, 0.0, 1.0]
+        }).addTo(groupLayer);
       });
+      const groupLayer = new maptalks.GroupGLLayer("g", [thrDlayer], {
+        sceneConfig,
+      }).addTo(map);
 
-      // 以下是绘制可视域分析的交互逻辑
+      // 以下是绘制剖面分析的交互逻辑
+      const vlayer = new maptalks.VectorLayer("vector", {
+        enableAltitude: true,
+      }).addTo(map);
       let altitudes = [], coordinates = [], first = true;
       const drawTool = new maptalks.DrawTool({
         mode: "LineString",
+        enableAltitude: true,
         symbol: {
-          lineOpacity: 0,
+          lineColor: '#f00',
         },
       }).addTo(map).disable();
 
@@ -154,8 +150,6 @@
           altitude: altitudes,
         });
         e.geometry.setCoordinates(coordinates);
-        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
-        viewshedAnalysis.update('lookPoint', lookPoint);
         first = false;
       });
 
@@ -177,9 +171,6 @@
           altitude: altitudes,
         });
         e.geometry.setCoordinates(coordinates);
-        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
-        viewshedAnalysis.update('lookPoint', lookPoint);
-        drawController.setValue(false);// disable drawtool
       });
 
       drawTool.on("drawstart", (e) => {
@@ -193,9 +184,35 @@
           altitude: altitudes,
         });
         e.geometry.setCoordinates(coordinates);
-        eyePos = [coordinate.x, coordinate.y, coordinate.z];
-        viewshedAnalysis.update('eyePos', eyePos);
         first = true;
+      });
+
+      drawTool.on("drawend", function(param) {
+        vlayer.clear();
+        drawTool.disable();
+        vlayer.clear();
+        crosscutAnalysis.update("cutLine", coordinates);
+        const results = crosscutAnalysis.getAltitudes(500);
+        const distances = results.map(result => {
+          return Number(result.distance.toFixed(3));
+        });
+        const coords = results.map(result => {
+          return [result.point[0], result.point[1]];
+        });
+        const alts = results.map(result => {
+          return result.point[2];
+        });
+        new maptalks.LineString(coords, {
+          properties: {
+              altitude: alts
+          },
+          symbol: {
+              lineColor: '#0f0'
+          }
+        }).addTo(vlayer);
+        drawChart(distances, alts);
+        coordinates = [];
+        altitudes = [];
       });
 
       function getPickedCoordinate(coordinate) {
@@ -208,29 +225,65 @@
         }
       }
 
-      // dat gui的创建代码
+      function drawChart(distances, alts) {
+        console.log(distances);
+        console.log(alts);
+        const dom = document.getElementById('chart');
+        dom.style.display = "block";
+        const myChart = echarts.init(dom, null, {
+          renderer: 'canvas',
+          useDirtyRect: false
+        });
+
+        const option = {
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: distances,
+            name: '间距',
+            nameTextStyle: {
+              color: '#000',
+              fontSize: 18
+            }
+          },
+          yAxis: {
+            type: 'value',
+            name: '高度',
+            nameTextStyle: {
+              color: '#000',
+              fontSize: 18
+            }
+          },
+          series: [
+            {
+              data: alts,
+              type: 'line',
+              lineStyle: {
+                color: '#aa63f2'
+              },
+              label: {
+                color: '#5412dd'
+              },
+              areaStyle: {
+                opacity: 0.6
+              }
+            }
+          ]
+        };
+
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      }
+
+      // dat gui 的创建代码
       const gui = new dat.GUI({ width: 250 });
       const Config = function () {
-        this.verticalAngle = 30;
-        this.horizonalAngle = 20;
         this.draw = false;
       };
       const options = new Config();
-      const verticalAngleController = gui.add(options, "verticalAngle", 0, 90);
-      verticalAngleController.onChange(function (value) {
-        viewshedAnalysis.update("verticalAngle", value);
-      });
-      const horizonalAngleController = gui.add(
-        options,
-        "horizonalAngle",
-        0,
-        90
-      );
-      horizonalAngleController.onChange(function (value) {
-        viewshedAnalysis.update("horizontalAngle", value);
-      });
 
-      const drawController = gui.add(options, "draw");
+      const drawController = gui.add(options, "draw").name('绘制切线');
       drawController.onChange(function (value) {
         if (value) {
           drawTool.enable();

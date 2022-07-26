@@ -15,26 +15,26 @@
         height: 100%;
       }
     </style>
-    <link
-      rel="stylesheet"
-      href="https://maptalks.com/api/maptalks.css"
-    />
-    <script
-      type="text/javascript"
-      src="https://maptalks.com/api/maptalks.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://maptalks.com/api/maptalks-gl-layers.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://maptalks.com/api/transcoders.draco.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://maptalks.com/api/dat.gui.min.js"
-    ></script>
+        <link
+        rel="stylesheet"
+        href="https://maptalks.com/api/maptalks.css"
+      />
+      <script
+        type="text/javascript"
+        src="https://maptalks.com/api/maptalks.min.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://maptalks.com/api/maptalks-gl-layers.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://maptalks.com/api/transcoders.draco.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://maptalks.com/api/dat.gui.min.js"
+      ></script>
   </head>
 
   <body>
@@ -43,9 +43,7 @@
     <script>
       let insightAnalysis = null,
         eyePos,
-        lookPoint,
-        verticalAngle,
-        horizontalAngle;
+        lookPoint;
       const map = new maptalks.Map("map", {
         center: [108.9605239272878, 34.21955775963946],
         zoom: 15,
@@ -127,14 +125,90 @@
         insightAnalysis.addTo(groupLayer);
       });
 
+      // 以下是绘制通视分析的逻辑
+      let altitudes = [], coordinates = [], first = true;
+      const drawTool = new maptalks.DrawTool({
+        mode: "LineString",
+        symbol: {
+          lineOpacity: 0,
+        },
+      }).addTo(map).disable();
 
+      drawTool.on("mousemove", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
+        insightAnalysis.update('lookPoint', lookPoint);
+        first = false;
+      });
+
+      drawTool.on("drawvertex", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        if (first) {
+          coordinates.push([coordinate.x, coordinate.y]);
+          altitudes.push(coordinate.z);
+          first = false;
+        } else {
+          coordinates[coordinates.length - 1] = [coordinate.x, coordinate.y];
+          altitudes[altitudes.length - 1] = coordinate.z;
+          first = true;
+        }
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        lookPoint = [coordinate.x, coordinate.y, coordinate.z];
+        insightAnalysis.update('lookPoint', lookPoint);
+        drawTool.disable();
+      });
+
+      drawTool.on("drawstart", (e) => {
+        const coordinate = getPickedCoordinate(e.coordinate);
+        if (!coordinate) {
+          return;
+        }
+        coordinates.push([coordinate.x, coordinate.y]);
+        altitudes.push(coordinate.z);
+        e.geometry.setProperties({
+          altitude: altitudes,
+        });
+        e.geometry.setCoordinates(coordinates);
+        eyePos = [coordinate.x, coordinate.y, coordinate.z];
+        insightAnalysis.update('eyePos', eyePos);
+        first = true;
+      });
+
+      function getPickedCoordinate(coordinate) {
+        const identifyData = groupLayer.identify(coordinate)[0];
+        const pickedPoint = identifyData && identifyData.point;
+        if (pickedPoint) {
+          const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
+          const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
+          return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        }
+      }
       // dat gui 创建代码
       const gui = new dat.GUI({ width: 250 });
       const Config = function () {
-        this.verticalAngle = 30;
-        this.horizonalAngle = 20;
         this.eyePos = 150;
         this.lookPoint = 20;
+        this.draw = false;
       };
       const options = new Config();
       const eyePosController = gui.add(options, "eyePos", 0, 500);
@@ -149,6 +223,15 @@
           lookPoint[1],
           value,
         ]);
+      });
+
+      const drawController = gui.add(options, "draw");
+      drawController.onChange(function (value) {
+        if (value) {
+          drawTool.enable();
+        } else {
+          drawTool.disable();
+        }
       });
     </script>
   </body>

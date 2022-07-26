@@ -18,12 +18,16 @@ const analysisList = {
       path: "analysis/insight.html",
     },
     {
-      title: "剖面分析",
+      title: "平面裁剪",
       path: "analysis/cut.html",
     },
     {
       title: "挖方分析",
       path: "analysis/excavate.html",
+    },
+    {
+      title: "剖面分析",
+      path: "analysis/crosscut.html"
     },
   ],
 };
