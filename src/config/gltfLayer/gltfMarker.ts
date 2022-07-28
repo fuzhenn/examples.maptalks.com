@@ -83,4 +83,8 @@ export const gltfMarkerList = [
     title: "添加draco压缩模型",
     path: "gltfLayer/gltfMarker/addDraco.html",
   },
+  {
+    title: "给gltfmarker设置高度",
+    path: "gltfLayer/gltfMarker/setAltitude.html",
+  },
 ];
