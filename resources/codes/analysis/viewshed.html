@@ -205,6 +205,8 @@
           const altitude = map.pointAtResToAltitude(pickedPoint[2], map.getGLRes());
           const coordinate = map.pointAtResToCoordinate(new maptalks.Point(pickedPoint[0], pickedPoint[1]), map.getGLRes());
           return new maptalks.Coordinate(coordinate.x, coordinate.y, altitude);
+        } else {
+          return coordinate;
         }
       }
 
