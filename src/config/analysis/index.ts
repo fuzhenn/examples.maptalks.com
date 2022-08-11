@@ -29,6 +29,10 @@ const analysisList = {
       title: "剖面分析",
       path: "analysis/crosscut.html"
     },
+    {
+      title: "限高分析",
+      path: "analysis/heightlimit.html"
+    },
   ],
 };
 
