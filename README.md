@@ -12,6 +12,13 @@ $ npm install
 $ npm run dev
 ```
 
+生成页面
+
+```bash
+$ npm run build
+```
+生成的页面在dist目录中
+
 ## 目录结构说明
 
 - 资源目录：示例代码里面用到的资源，统一放到 resources 文件夹下面，通过子目录进行层级区分
