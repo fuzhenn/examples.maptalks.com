@@ -197,10 +197,10 @@
           return Number(result.distance.toFixed(3));
         });
         const coords = results.map(result => {
-          return [result.point[0], result.point[1]];
+          return [result.coordinate.x, result.coordinate.y];
         });
         const alts = results.map(result => {
-          return result.point[2];
+          return result.coordinate.z;
         });
         new maptalks.LineString(coords, {
           properties: {

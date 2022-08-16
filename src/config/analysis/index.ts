@@ -33,6 +33,10 @@ const analysisList = {
       title: "限高分析",
       path: "analysis/heightlimit.html"
     },
+    {
+      title: "日照分析",
+      path: "analysis/shadow.html"
+    },
   ],
 };
 
