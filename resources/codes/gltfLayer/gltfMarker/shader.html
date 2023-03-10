@@ -103,7 +103,7 @@
         sceneConfig,
       }).addTo(map);
       const shaderListControl = gui
-        .add(options, "shaderList", ["pbr", "phong", "wireframe"])
+        .add(options, "shaderList", ["pbr", "phong"])
         .name("shader list");
       shaderListControl.onChange(function (value) {
         gltfMarker.setShader(value);
