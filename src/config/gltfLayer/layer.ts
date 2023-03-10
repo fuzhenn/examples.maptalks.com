@@ -47,4 +47,8 @@ export const layerList = [
     title: "模型载入完成事件",
     path: "gltfLayer/layer/modelLoad.html",
   },
+  {
+    title: "gltflayer坐标系统",
+    path: "gltfLayer/layer/gltfCoordinateSystem.html",
+  },
 ];
